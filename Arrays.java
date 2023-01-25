@@ -1,4 +1,4 @@
-// import java.util.*;
+import java.util.*;
 public class Arrays
 {
     public static void fun(int marks[])
@@ -247,6 +247,6 @@ public class Arrays
     }
     public static void main(String args[])
     {
-        // int numbers[] = {7,1,5,3,6,4};
+        int numbers[] = {7,1,5,3,6,4};
     }
 }
