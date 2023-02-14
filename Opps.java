@@ -2,9 +2,7 @@ public class Opps
 {
 	public static void main(String args[])
 	{
-		Child ch = new Child();
-		Parent p = new Parent();
-		System.out.println(p.color);
+
 	}
 }
 
