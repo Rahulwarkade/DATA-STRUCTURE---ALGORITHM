@@ -11,9 +11,26 @@ public class LinkedLists
 			this.next = null;
 		}
 	}
+	static class dllNode
+	{
+		int dlldata;
+		dllNode dllnext;
+		dllNode dllprev;
+
+		dllNode(int data)
+		{
+			this.dlldata = data;
+			this.dllnext = null;
+			this.dllprev = null;
+		}
+	}
 	Node head;
 	Node tail;
 	static int size;
+
+	static dllNode dllhead;
+	static dllNode dlltail;
+	static int dllsize;
 	void addFirst(int data)
 	{
 		Node newNode = new Node(data);
@@ -390,23 +407,143 @@ public class LinkedLists
 			rhead = rnext;
 		}
 	}
+	void dllAddFirst(int data)
+	{
+		dllNode newNode = new dllNode(data);
+		if(dllsize == 0)
+		{
+			dllhead = dlltail = newNode;
+			dllsize++;
+			return;
+		}
+		newNode.dllnext = dllhead;
+		dllhead.dllprev = newNode;
+		dllhead = newNode;
+		dllsize++;
+	}
+
+	void printdll()
+	{
+		if(dllsize==0){
+			System.out.println("Doubly linkedList is empty");
+			return;
+		}
+		dllNode temp = dllhead;
+		while(temp!=null)
+		{
+			System.out.print(temp.dlldata+"<->");
+			temp = temp.dllnext;
+		}
+		System.out.println("null");
+		return;
+	}
+	void dllAddLast(int data)
+	{
+		dllNode newNode = new dllNode(data);
+		if(dllsize == 0)
+		{
+			dllhead = dlltail = newNode;
+			dllsize++;
+			return ;
+		}
+		dlltail.dllnext = newNode;
+		newNode.dllprev = dlltail;
+		dlltail = newNode;
+		dllsize++;
+		return;
+	}
+
+	int dllremoveFirst()
+	{
+		int key = -1;
+		if(dllsize==0)
+		{
+			return key;
+		}
+		else if(dllsize==1)
+		{
+			key = dllhead.dlldata;
+			dllhead = dlltail = null;
+			dllsize--;
+			return key;
+		}
+		key = dllhead.dlldata;
+		dllhead = dllhead.dllnext;
+		dllhead.dllprev = null;
+		dllsize--;
+		return key;
+	}
+	int dllremoveLast()
+	{
+		int key = -1;
+		if(dllsize==0)
+		{
+			return key;
+		}
+		else if(dllsize==1)
+		{
+			key = dllhead.dlldata;
+			dllhead = dlltail = null;
+			dllsize--;
+			return key;
+		}
+		key = dlltail.dlldata;
+		dlltail = dlltail.dllprev;
+		dlltail.dllnext = null;
+		dllsize--;
+		return key;
+	}
+	void reverseDll()
+	{
+		dllNode curr = dllhead;
+		dllNode prev = null;
+		dllNode next;
+
+		while(curr!=null)
+		{
+			next = curr.dllnext;
+			curr.dllnext = prev;
+			curr.dllprev = next;
+
+			prev = curr;
+			curr = next;
+		}
+
+		dllhead = prev;
+	}
 	public static void main(String args[])
 	{
 		LinkedLists ll = new LinkedLists();
-		ll.addFirst(1);
-		ll.addLast(2);
-		ll.addLast(3);
-		ll.addLast(4);
-		ll.addLast(5);
+
+		//Doubly Linked List
+
+		ll.dllAddFirst(24);
+		ll.dllAddFirst(23);
+		ll.dllAddFirst(22);
+		ll.dllAddLast(21);
+		ll.dllAddLast(1);
+		ll.printdll();
+		System.out.println(LinkedLists.dllsize);
+		System.out.println(ll.dllremoveLast());
+		System.out.println(ll.dllremoveFirst	());
+		ll.printdll();
+		System.out.println(LinkedLists.dllsize);
+		ll.reverseDll();
+		ll.printdll();
+		// ll.addFirst(1);
+		// ll.addLast(2);
+		// ll.addLast(3);
+		// ll.addLast(4);
+		// ll.addLast(5);
 		// ll.addAtIdx(2,3);
 		// ll.removeFirst();
 		// ll.removeLast();
-		ll.printLL(ll.head);
+		// ll.printLL(ll.head);
 		// Node temp = ll.mergeSort(ll.head);
 
 		// ll.printLL(temp);
-		ll.zigZagLinkedList();
-		ll.printLL(ll.head);
+		// ll.zigZagLinkedList();
+		// ll.printLL(ll.head);
 		// ll.removeNthNodeFromEnd(3);
 		// ll.printLL(ll.head);
 		// ll.reverseLL();
