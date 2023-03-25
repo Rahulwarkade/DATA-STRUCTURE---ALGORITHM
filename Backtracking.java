@@ -67,12 +67,14 @@ public class Backtracking
 			if(arr[i][j]=='Q')
 				return false;
 		}
+		//right diagonal
 		for(int i= row,j= colm; i>=0 && j<arr.length; i--,j++)
 		{
 			if(arr[i][j]=='Q')
 				return false;
 
 		}
+		//top column 
 		for(int i = row,j= colm; i>=0; i--)
 		{
 			if(arr[i][j]=='Q')
@@ -81,37 +83,131 @@ public class Backtracking
 
 		return true;
 	}
-	static void nQueen(char arr[][],int row)
+	static int count = 0;
+	static boolean nQueen(char arr[][],int row)
 	{
-		if(row==arr[0].length)
+		if(row==arr.length)
 		{
-			print(arr);
-			System.out.println();
-			return;
+			// print(arr);
+			// System.out.println();
+			count++;
+
+			// return;
+			return true;
 		}
 
 		for(int i=0; i<arr[0].length; i++)
 		{
-			arr[row][i] = 'Q';
 			if(isSafe(arr,row,i))
 			{
-				nQueen(arr,row+1);
+				arr[row][i] = 'Q';
+				if(nQueen(arr,row+1))
+				{
+					return true;
+				}
+				arr[row][i] = '.';
 			}
-			// arr[row][i] = '.';
+		}
+		return false;
+	}
+
+	public static int gridWays(int grid[][],int x,int y)
+	{
+		if((x==grid.length-1) && (y==grid[0].length-1)) return 1;
+		if(x>=grid.length || y>=grid[0].length) return 0;
+
+		return gridWays(grid,x+1,y) + gridWays(grid,x,y+1);
+	}
+
+	public static void printSudoku(int arr[][])
+	{
+		for(int i=0; i<arr.length; i++)
+		{
+			for(int j=0; j<arr[0].length; j++)
+			{
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
 		}
 	}
-	public static void main(String ars[])
+
+	public static boolean isSafeCell(int sudoku[][],int row,int col,int digit)
 	{
-		int n = 4;
-
-		char arr[][] = new char[n][n];
-
-		for(int i=0; i<n; i++)
+		//row wise
+		for(int i=0; i<9; i++)
 		{
-			for(int j=0; j<n; j++)
-				arr[i][j] = '.';
+			if(sudoku[i][col]==digit)
+				return false;
+		}
+		//colmun wise		
+		for(int i=0; i<9; i++)
+		{
+			if(sudoku[row][i]==digit)
+				return false;
+		}
+		//is Grid safe
+
+		int firstR = (row/3)*3;
+		int firstC = (col/3)*3;
+
+		for(int i=firstR; i<(firstR+3); i++)
+		{
+			for(int j=firstC; j<(firstC+3); j++)
+				if(sudoku[i][j]==digit)
+					return false;
 		}
 
-		nQueen(arr,0);
+		return true;
+	}
+	public static boolean sudokuSolver(int sudoku[][],int row,int col)
+	{
+		if(row==sudoku.length)
+			return true;
+		int nextR,nextC;
+		nextC = col+1;
+		nextR = row;
+		if(col+1==sudoku[0].length)
+		{
+			nextR = row+1;
+			nextC = 0;
+		}
+		if(sudoku[row][col]!=0)
+		{
+			return sudokuSolver(sudoku,nextR,nextC);
+		}
+		for(int digit = 1; digit<=9; digit++)
+		{
+			if(isSafeCell(sudoku,row,col,digit))
+			{
+				sudoku[row][col] = digit;
+				if(sudokuSolver(sudoku,nextR,nextC))
+				{
+					return true;
+				}
+				sudoku[row][col] = 0;
+			}
+		}
+
+		return false;
+	}
+
+	public static void main(String ars[])
+	{
+
+		int sudoku[][] = {
+			{0,0,8,0,0,0,0,0,0},
+			{4,9,0,1,5,7,0,0,2},
+			{0,0,3,0,0,4,1,9,0},
+			{1,8,5,0,6,0,0,2,0},
+			{0,0,0,0,2,0,0,6,0},
+			{9,6,0,4,0,5,3,0,0},
+			{0,3,0,0,7,2,0,0,4},
+			{0,4,9,0,3,0,0,5,7},
+			{8,2,7,0,0,9,0,1,3}
+		};
+
+
+		System.out.println(sudokuSolver(sudoku,0,0));
+		printSudoku(sudoku);
 	}
 }
