@@ -79,18 +79,79 @@ public class ArrayLists
 			System.out.println();
 		}
 	}
+//Brute Force Approach
+	public static int maxStoreWater(ArrayList<Integer> height)
+	{
+		int maxWater = 0;
+
+		for(int i=0; i<height.size(); i++)
+		{
+			for(int j=i+1; j<height.size(); j++)
+			{
+				int level = Math.min(height.get(i),height.get(j));
+				int width = j-i;
+				int water = level * width;
+				maxWater = Math.max(maxWater,water);
+			}
+		}
+		return maxWater;
+	}
+
+//Optimized Approach two pointer approach
+
+	public static int storeWater(ArrayList<Integer> height)
+	{
+		int maxWater = 0;
+		int lp = 0,rp = height.size()-1;
+		while(lp<rp)
+		{
+			int level = Math.min(height.get(lp),height.get(rp));
+			int width = rp-lp;
+			int water = level * width;
+			maxWater = Math.max(maxWater,water);
+			if(height.get(lp)<height.get(rp)) lp++;
+			else rp--;
+		}
+
+		return maxWater;
+	}
+
+	public static int pairSum(ArrayList<Integer> height,int target)
+	{
+		int lp = 0;
+		int rp = 0;
+		int n = height.size();
+		for(int i=0; i<n-1; i++)
+		{
+			if(height.get(i)>height.get(i+1))
+			{
+				lp = i+1;
+				rp = i;
+				break;
+			}
+		}
+
+		while(lp!=rp)
+		{
+			if(height.get(lp)+height.get(rp)==target)
+				return target;
+			else if(height.get(lp)+height.get(rp)<target)
+				lp = (lp+1)%n;
+			else rp = (n+rp-1)%n;
+		}
+		return -1;
+	}
 	public static void main(String args[])
 	{
-		multidimensional();
-		// ArrayList<Integer> list = new ArrayList<>();
-		// list.add(3);
-		// list.add(2);
-		// list.add(8);
-		// list.add(7);
-		// System.out.println(list);
-		// Collections.sort(list);
-		// System.out.println(list);
-		// Collections.sort(list,Collections.reverseOrder());
-		// System.out.println(list);
+		ArrayList<Integer> height = new ArrayList<>();
+		int target = 16;
+		height.add(11);
+		height.add(15);
+		height.add(6);
+		height.add(8);
+		height.add(9);
+		height.add(10);
+
+		System.out.println(pairSum(height,target));
 	}
 }
