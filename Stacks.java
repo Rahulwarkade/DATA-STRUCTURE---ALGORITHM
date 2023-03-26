@@ -74,22 +74,46 @@ class Stacks
 			return head.data;
 		}
 	}
+	static class StackJCFll
+	{
+		LinkedList<Integer> ll = new LinkedList<>();
+
+		boolean isEmpty()
+		{
+			return ll.size() == 0;
+		}
+
+		void push(int data)
+		{
+			ll.addFirst(data);
+		}
+
+		int pop()
+		{
+			if(isEmpty()) return -1;
+			return ll.removeFirst();
+		}
+		int peek()
+		{
+			if(isEmpty()) return -1;
+			int top = ll.removeFirst();
+			ll.addFirst(top);
+			return top;
+		}
+	}
 	public static void main(String args[])
 	{
-		// StackList st = new StackList();
-		// st.push(1);
-		// st.push(3);
-		// st.push(2);
-		// st.push(4);
+	// Stack implimentation using ArrayList
+		// StackList sc = new StackList();
+	// using LinkedList
+		//StackLL sc = new StackLL();
 
-		// while(!st.isEmpty())
-		// {
-		// 	System.out.println(st.peek());
-		// 	st.pop();
-		// }
+	// using JCF LinkedList
+		// StackJCFll sc = new StackJCFll();
 
-		StackLL sc = new StackLL();
+	// inbuilt Stack usign JCF
 
+	    Stack<Integer> sc = new Stack<>();
 		sc.push(2);
 		sc.push(3);
 		sc.push(7);
