@@ -231,6 +231,41 @@ class Stacks
 		if(st.isEmpty()) return true;
 		return false;
 	}
+
+	static boolean duplicatePar(String str)
+	{
+		Stack<Character> stck = new Stack<>();
+
+		for(int i=0; i<str.length(); i++)
+		{
+			char ch = str.charAt(i);
+
+			if(ch==')')
+			{
+				int count = 0;
+				while(stck.peek()!='(')
+				{
+					stck.pop();
+					count++;
+				}
+
+				if(count<1)
+				{
+					return true;
+				}
+				else  
+				{
+					stck.pop();
+				}
+			}
+			else 
+			{
+				stck.push(ch);
+			}
+		}
+
+		return false;
+	}
 	public static void main(String args[])
 	{
 	// Stack implimentation using ArrayList
@@ -274,10 +309,10 @@ class Stacks
 		// for(int i=0; i<nge.length; i++)
 		// 	System.out.println(arr[i]+" nge = "+nge[i]);
 
-		String str = "({[]}())";
-		if(vailidPar(str))
-			System.out.println("Vailid parentheses");
+		String str = "(a+(b)+s+2+)";
+		if(duplicatePar(str))
+			System.out.println("duplicates");
 		else 
-			System.out.println("invailid parentheses");
+			System.out.println("No duplicates");
 	}
 }
