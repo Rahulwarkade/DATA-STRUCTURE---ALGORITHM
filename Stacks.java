@@ -266,6 +266,62 @@ class Stacks
 
 		return false;
 	}
+
+	static void nextSmallestL(int height[], int nseL[])
+	{
+		Stack<Integer> st = new Stack<>();
+		int n = height.length;
+
+		for (int i=0; i<n; i++) {
+			int curr = height[i];
+			while (!st.isEmpty() && curr<=height[st.peek()])
+			{
+				st.pop();
+			}
+			if(st.isEmpty()) nseL[i] = -1;
+			else nseL[i] = st.peek();
+			st.push(i);
+		}
+	}
+	static void nextSmallestR(int height[], int nseR[])
+	{
+		Stack<Integer> st = new Stack<>();
+		int n = height.length;
+		for(int i=n-1; i>=0; --i)
+		{
+			int curr = height[i];
+
+			while(!st.isEmpty() && curr<=height[st.peek()])
+			{
+				st.pop();
+			}
+			if(st.isEmpty())
+				nseR[i] = n;
+			else 
+				nseR[i] = st.peek();
+
+			st.push(i);
+		}
+	}
+	static int histogram(int height[])
+	{
+		int n = height.length;
+		int nseL[] = new int[n];
+		int nseR[] = new int[n];
+
+		nextSmallestL(height,nseL);
+		nextSmallestR(height,nseR);
+
+		int maxRect = Integer.MIN_VALUE;
+		for(int i=0; i<n; i++)
+		{
+			int width = nseR[i] - nseL[i] - 1;
+			int area = height[i] * width;
+			maxRect = Math.max(area,maxRect);
+		}
+
+		return maxRect;
+	}
 	public static void main(String args[])
 	{
 	// Stack implimentation using ArrayList
@@ -309,10 +365,13 @@ class Stacks
 		// for(int i=0; i<nge.length; i++)
 		// 	System.out.println(arr[i]+" nge = "+nge[i]);
 
-		String str = "(a+(b)+s+2+)";
-		if(duplicatePar(str))
-			System.out.println("duplicates");
-		else 
-			System.out.println("No duplicates");
+		// String str = "(a+(b)+s+2+)";
+		// if(duplicatePar(str))
+		// 	System.out.println("duplicates");
+		// else 
+		// 	System.out.println("No duplicates");
+
+		int height[] = {2,1,5,6,2,3};
+		System.out.println(histogram(height));
 	}
 }
