@@ -204,6 +204,33 @@ class Stacks
 			s.push(i);
 		}
 	}
+
+	static boolean vailidPar(String str)
+	{
+		Stack<Character> st = new Stack<>();
+		for(int i=0; i<str.length(); i++)
+		{
+			char ch = str.charAt(i);
+			if(ch=='{' || ch=='[' || ch=='(')
+			{
+				st.push(ch);
+			}
+			else 
+			{
+				if(st.isEmpty()) return false;
+
+				if(ch==')' && st.peek()=='(' ||
+				   ch=='}' && st.peek()=='{' ||
+				   ch==']' && st.peek()=='[' )
+				{
+					st.pop();
+				}
+				else return false;
+			}
+		}
+		if(st.isEmpty()) return true;
+		return false;
+	}
 	public static void main(String args[])
 	{
 	// Stack implimentation using ArrayList
@@ -240,12 +267,17 @@ class Stacks
 		// 	System.out.println("span of day "+(i)+" = "+ span[i]);
 		// }
 
-		int arr[] = {6,8,0,1,3};
-		int nge[] = new int[arr.length];
+		// int arr[] = {6,8,0,1,3};
+		// int nge[] = new int[arr.length];
 
-		nextGreaterEl(arr,nge);
-		for(int i=0; i<nge.length; i++)
-			System.out.println(arr[i]+" nge = "+nge[i]);
+		// nextGreaterEl(arr,nge);
+		// for(int i=0; i<nge.length; i++)
+		// 	System.out.println(arr[i]+" nge = "+nge[i]);
 
+		String str = "({[]}())";
+		if(vailidPar(str))
+			System.out.println("Vailid parentheses");
+		else 
+			System.out.println("invailid parentheses");
 	}
 }
