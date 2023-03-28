@@ -101,6 +101,84 @@ class Stacks
 			return top;
 		}
 	}
+
+	static void pushAtBottom(Stack<Integer> s,int data)
+	{
+		if(s.isEmpty())
+		{
+			s.push(data);
+			return;
+		}
+		int top = s.pop();
+		pushAtBottom(s,data);
+		s.push(top);
+	}
+
+	static String revers(String str)
+	{
+		Stack<Character> st = new Stack<>();
+
+		for(int i=0; i<str.length(); i++)
+		{
+			st.push(str.charAt(i));
+		}
+
+		StringBuilder ans = new StringBuilder();
+		while(!st.isEmpty())
+		{
+		 ans.append(st.pop());
+		}
+
+		return ans.toString();
+	}
+
+	static void reverStack(Stack<Integer> obj)
+	{
+		if(obj.isEmpty())
+		{
+			return ;	
+		}
+		int top = obj.pop();
+		reverStack(obj);
+		pushAtBottom(obj,top);
+	}
+	static void printStack(Stack<Integer> obj)
+	{
+		while(!obj.isEmpty())
+		{
+			System.out.println(obj.peek());
+			obj.pop();
+		}
+		System.out.println();
+	}
+
+	static void stockSpan(int stocks[],int span[])
+	{
+		Stack<Integer> st = new Stack<>();
+		span[0] = 1;
+		st.push(0);
+
+		for(int i=1; i<stocks.length; i++)
+		{
+			int currtPrice = stocks[i];
+
+			while(!st.isEmpty() && currtPrice>=stocks[st.peek()])
+			{
+				st.pop();
+			}
+
+			if(st.isEmpty())
+			{
+				span[i] = i+1;
+			}
+			else 
+			{
+				int prevHigh = st.peek();
+				span[i] = i-prevHigh;
+			}
+			st.push(i);
+		}
+	}
 	public static void main(String args[])
 	{
 	// Stack implimentation using ArrayList
@@ -113,16 +191,28 @@ class Stacks
 
 	// inbuilt Stack usign JCF
 
-	    Stack<Integer> sc = new Stack<>();
-		sc.push(2);
-		sc.push(3);
-		sc.push(7);
-		sc.push(5);
+	    // Stack<Integer> sc = new Stack<>();
+		// sc.push(2);
+		// sc.push(3);
+		// sc.push(7);
+		// sc.push(5);
 
-		while(!sc.isEmpty())
+		// pushAtBottom(sc,8);
+		// printStack(sc);
+		// reverStack(sc);
+		// printStack(sc);
+
+		// System.out.println(revers("Rahul"));
+
+		int stocks[] = {100,80,60,70,60,85,100};
+
+		int span[] = new int[stocks.length];
+
+		stockSpan(stocks,span);
+
+		for(int i=0; i<stocks.length; i++)
 		{
-			System.out.println(sc.peek());
-			sc.pop();
+			System.out.println("span of day "+(i)+" = "+ span[i]);
 		}
 
 	}
