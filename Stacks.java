@@ -179,6 +179,31 @@ class Stacks
 			st.push(i);
 		}
 	}
+
+	static void nextGreaterEl(int arr[],int nge[])
+	{
+		Stack<Integer> s = new Stack<>();
+
+		for(int i = arr.length-1; i>=0; i--)
+		{
+			int curr = arr[i];
+
+			while(!s.isEmpty() && curr>=arr[s.peek()])
+			{
+				s.pop();
+			}
+
+			if(s.isEmpty())
+			{
+				nge[i] = -1;
+			}
+			else  
+			{
+				nge[i] = arr[s.peek()];
+			}
+			s.push(i);
+		}
+	}
 	public static void main(String args[])
 	{
 	// Stack implimentation using ArrayList
@@ -204,16 +229,23 @@ class Stacks
 
 		// System.out.println(revers("Rahul"));
 
-		int stocks[] = {100,80,60,70,60,85,100};
+		// int stocks[] = {100,80,60,70,60,85,100};
 
-		int span[] = new int[stocks.length];
+		// int span[] = new int[stocks.length];
 
-		stockSpan(stocks,span);
+		// stockSpan(stocks,span);
 
-		for(int i=0; i<stocks.length; i++)
-		{
-			System.out.println("span of day "+(i)+" = "+ span[i]);
-		}
+		// for(int i=0; i<stocks.length; i++)
+		// {
+		// 	System.out.println("span of day "+(i)+" = "+ span[i]);
+		// }
+
+		int arr[] = {6,8,0,1,3};
+		int nge[] = new int[arr.length];
+
+		nextGreaterEl(arr,nge);
+		for(int i=0; i<nge.length; i++)
+			System.out.println(arr[i]+" nge = "+nge[i]);
 
 	}
 }
