@@ -324,15 +324,15 @@ class Stacks
 	}
 	public static void main(String args[])
 	{
-	// Stack implimentation using ArrayList
+// Stack implimentation using ArrayList
 		// StackList sc = new StackList();
-	// using LinkedList
+// using LinkedList
 		//StackLL sc = new StackLL();
 
-	// using JCF LinkedList
+// using JCF LinkedList
 		// StackJCFll sc = new StackJCFll();
 
-	// inbuilt Stack usign JCF
+// inbuilt Stack usign JCF
 
 	    // Stack<Integer> sc = new Stack<>();
 		// sc.push(2);
@@ -347,29 +347,35 @@ class Stacks
 
 		// System.out.println(revers("Rahul"));
 
-		// int stocks[] = {100,80,60,70,60,85,100};
+// Stocks span
 
-		// int span[] = new int[stocks.length];
+		int stocks[] = {100,80,60,70,60,85,100};
 
-		// stockSpan(stocks,span);
+		int span[] = new int[stocks.length];
 
-		// for(int i=0; i<stocks.length; i++)
-		// {
-		// 	System.out.println("span of day "+(i)+" = "+ span[i]);
-		// }
+		stockSpan(stocks,span);
 
-		// int arr[] = {6,8,0,1,3};
-		// int nge[] = new int[arr.length];
+		for(int i=0; i<stocks.length; i++)
+		{
+			System.out.println("span of day "+(i)+" = "+ span[i]);
+		}
 
-		// nextGreaterEl(arr,nge);
-		// for(int i=0; i<nge.length; i++)
-		// 	System.out.println(arr[i]+" nge = "+nge[i]);
+// Next Greater Element
 
-		// String str = "(a+(b)+s+2+)";
-		// if(duplicatePar(str))
-		// 	System.out.println("duplicates");
-		// else 
-		// 	System.out.println("No duplicates");
+		int arr[] = {6,8,0,1,3};
+		int nge[] = new int[arr.length];
+
+		nextGreaterEl(arr,nge);
+		for(int i=0; i<nge.length; i++)
+			System.out.println(arr[i]+" nge = "+nge[i]);
+
+		String str = "(a+(b)+s+2+)";
+		if(duplicatePar(str))
+			System.out.println("duplicates");
+		else 
+			System.out.println("No duplicates");
+
+//Histogram Maximum Rectangle Area
 
 		int height[] = {2,1,5,6,2,3};
 		System.out.println(histogram(height));
