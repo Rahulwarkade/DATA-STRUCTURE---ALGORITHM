@@ -1,3 +1,4 @@
+import java.util.*;
 class Queues
 {
 	static class QueueArr
@@ -163,7 +164,9 @@ class Queues
 	public static void main(String args[])
 	{
 	// Queues using array
-		QueueLL q = new QueueLL();
+		// QueueLL q = new QueueLL();
+		// Queue<Integer> q = new LinkedList<>();
+		Queue<Integer> q = new ArrayDeque<>();
 		q.add(4);
 		q.add(3);
 		q.add(2);
