@@ -375,6 +375,26 @@ class Queues
 			q.add(s.pop());
 		}
 	}
+
+	public static class StackDq
+	{
+		Deque<Integer> dq = new LinkedList<>();
+
+		void push(int data)
+		{
+			dq.addLast(data);
+		}
+
+		int pop()
+		{
+			return dq.removeLast();
+		}
+
+		int peek()
+		{
+			return dq.getLast();
+		}
+	}
 	public static void main(String args[])
 	{
 	// Queues using array
@@ -426,17 +446,29 @@ class Queues
 
 // Double Ended queue => deque
 
-		Deque<Integer> dq = new LinkedList<>();
+		// Deque<Integer> dq = new LinkedList<>();
 
-		dq.addFirst(1);
-		dq.addLast(2);
-		dq.addFirst(3);
-		dq.addLast(4);
-		System.out.println(dq);
-		dq.removeFirst();
-		dq.removeLast();
-		System.out.println(dq);
-		System.out.println("get first = "+ dq.getFirst());
-		System.out.println("get Last = "+ dq.getLast());
+		// dq.addFirst(1);
+		// dq.addLast(2);
+		// dq.addFirst(3);
+		// dq.addLast(4);
+		// System.out.println(dq);
+		// dq.removeFirst();
+		// dq.removeLast();
+		// System.out.println(dq);
+		// System.out.println("get first = "+ dq.getFirst());
+		// System.out.println("get Last = "+ dq.getLast());
+
+//Stack using Deque
+
+		StackDq s = new StackDq();
+
+		s.push(1);
+		s.push(2);
+		s.push(3);
+		System.out.println("peek = "+s.peek());
+		System.out.println(s.pop());
+		System.out.println(s.pop());
+		System.out.println(s.pop());
 	}
 }
