@@ -395,6 +395,28 @@ class Queues
 			return dq.getLast();
 		}
 	}
+
+	public static class QueueDq
+	{
+		Deque<Integer> deque = new LinkedList<>();
+
+		void add(int data)
+		{
+			deque.addLast(data);
+		}
+
+		int remove()
+		{
+			if(deque.isEmpty()) return -1;
+			return deque.removeFirst();
+		}
+
+		int peek()
+		{
+			if(deque.isEmpty()) return -1;
+			return deque.getFirst();
+		}
+	}
 	public static void main(String args[])
 	{
 	// Queues using array
@@ -470,5 +492,16 @@ class Queues
 		System.out.println(s.pop());
 		System.out.println(s.pop());
 		System.out.println(s.pop());
+
+//Queue using Deque	
+		QueueDq q = new QueueDq();
+
+		q.add(1);
+		q.add(2);
+		q.add(3);
+		System.out.println("peek = "+q.peek());
+		System.out.println(q.remove());
+		System.out.println(q.remove());
+		System.out.println(q.remove());
 	}
 }
