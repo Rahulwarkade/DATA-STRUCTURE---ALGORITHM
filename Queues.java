@@ -321,6 +321,29 @@ class Queues
 			return top;
 		}
 	}
+
+	public static void firstNonRepeatingEl(String str)
+	{
+		Queue<Character> q = new LinkedList<>();
+		int freq[] = new int[26];
+
+		for(int i=0; i<str.length(); i++)
+		{
+			char ch = str.charAt(i);
+			freq[ch-'a']++;
+			q.add(ch);
+
+			while(!q.isEmpty() && freq[q.peek()-'a']>1)
+			{
+				q.remove();
+			}
+
+			if(q.isEmpty())
+				System.out.print(-1+" ");
+			else  
+				System.out.print(q.peek()+" ");
+		}
+	}
 	public static void main(String args[])
 	{
 	// Queues using array
@@ -328,20 +351,23 @@ class Queues
 		// Queue<Integer> q = new LinkedList<>();
 		// Queue<Integer> q = new ArrayDeque<>();
 
-		StackQueue q = new StackQueue();
-		q.push(4);
-		q.push(3);
-		q.push(2);
-		System.out.println(q.pop());
-		q.push(0);
-		System.out.println(q.pop());
-		q.push(1);
+		// StackQueue q = new StackQueue();
+		// q.push(4);
+		// q.push(3);
+		// q.push(2);
+		// System.out.println(q.pop());
+		// q.push(0);
+		// System.out.println(q.pop());
+		// q.push(1);
 
-		while(!q.isEmpty())
-		{
-			System.out.println(q.peek());
-			q.pop();
-		}
+		// while(!q.isEmpty())
+		// {
+		// 	System.out.println(q.peek());
+		// 	q.pop();
+		// }
 
+// First non-repeating element in string 
+
+		firstNonRepeatingEl("aabccxb");
 	}
 }
