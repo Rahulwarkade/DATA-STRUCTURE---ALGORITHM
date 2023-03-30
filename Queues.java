@@ -161,24 +161,186 @@ class Queues
 			return head.data;
 		}
 	}
+
+	static class QueueStack
+	{
+		Stack<Integer> s1 = new Stack<>();
+		Stack<Integer> s2 = new Stack<>();
+
+		boolean isEmpty()
+		{
+			return s1.isEmpty();
+		}
+
+		void add(int data)
+		{
+			while(!s1.isEmpty())
+			{
+				s2.push(s1.pop());
+			}
+			s1.push(data);
+
+			while(!s2.isEmpty())
+			{
+				s1.push(s2.pop());
+			}
+		}
+
+		int remove()
+		{
+			if(isEmpty()) return -1;
+
+			return s1.pop();
+		}
+
+		int peek()
+		{
+			if(isEmpty()) return -1;
+			return s1.peek();
+		}
+
+	}
+
+	static class QueueStack2
+	{
+		Stack<Integer> s1 = new Stack<>();
+		Stack<Integer> s2 = new Stack<>();
+
+		boolean isEmpty()
+		{
+			return s1.isEmpty();
+		}
+
+		void add(int data)
+		{
+			s1.push(data);
+		}
+
+		int remove()
+		{
+			if(isEmpty()) return -1;
+			while(!isEmpty())
+			{
+				s2.push(s1.pop());
+			}
+			int top = s2.pop();
+			while(!s2.isEmpty())
+			{
+				s1.push(s2.pop());
+			}
+			return top;
+		}
+		int peek()
+		{
+			if(isEmpty()) return -1;
+			while(!isEmpty())
+			{
+				s2.push(s1.pop());
+			}
+			int top = s2.peek();
+			while(!s2.isEmpty())
+			{
+				s1.push(s2.pop());
+			}
+			return top;
+		}
+
+	}
+
+	static class StackQueue
+	{
+		Queue<Integer> q1 = new LinkedList<>();
+		Queue<Integer> q2 = new LinkedList<>();
+
+		boolean isEmpty()
+		{
+			return q1.isEmpty() && q2.isEmpty();
+		}
+
+		void push(int data)
+		{
+			if(!q1.isEmpty())
+				q1.add(data);
+			else  
+				q2.add(data);
+		}
+
+		int pop()
+		{
+			if(isEmpty()) return -1;
+			int top = -1;
+			if(!q1.isEmpty())
+			{
+				while(!q1.isEmpty())
+				{
+					top = q1.remove();
+					if(q1.isEmpty())
+					{
+						break;
+					}
+					q2.add(top);
+				}
+			}
+			else  
+			{
+				while(!q2.isEmpty())
+				{
+					top = q2.remove();
+					if(q2.isEmpty())
+					{
+						break;
+					}
+					q1.add(top);
+				}
+			}
+
+			return top;
+		}
+
+		int peek()
+		{
+			if(isEmpty()) return -1;
+			int top = -1;
+			if(!q1.isEmpty())
+			{
+				while(!q1.isEmpty())
+				{
+					top = q1.remove();
+					q2.add(top);
+				}
+			}
+			else  
+			{
+				while(!q2.isEmpty())
+				{
+					top = q2.remove();
+					q1.add(top);
+				}
+			}
+
+			return top;
+		}
+	}
 	public static void main(String args[])
 	{
 	// Queues using array
 		// QueueLL q = new QueueLL();
 		// Queue<Integer> q = new LinkedList<>();
-		Queue<Integer> q = new ArrayDeque<>();
-		q.add(4);
-		q.add(3);
-		q.add(2);
-		System.out.println(q.remove());
-		q.add(0);
-		System.out.println(q.remove());
-		q.add(1);
+		// Queue<Integer> q = new ArrayDeque<>();
+
+		StackQueue q = new StackQueue();
+		q.push(4);
+		q.push(3);
+		q.push(2);
+		System.out.println(q.pop());
+		q.push(0);
+		System.out.println(q.pop());
+		q.push(1);
 
 		while(!q.isEmpty())
 		{
 			System.out.println(q.peek());
-			q.remove();
+			q.pop();
 		}
 
 	}
