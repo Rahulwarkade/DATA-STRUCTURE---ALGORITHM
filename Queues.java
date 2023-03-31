@@ -420,66 +420,66 @@ class Queues
 	public static void main(String args[])
 	{
 	// Queues using array
-		// QueueLL q = new QueueLL();
-		// Queue<Integer> q = new LinkedList<>();
-		// Queue<Integer> q = new ArrayDeque<>();
+		QueueLL q = new QueueLL();
+		Queue<Integer> q = new LinkedList<>();
+		Queue<Integer> q = new ArrayDeque<>();
 
-		// StackQueue q = new StackQueue();
-		// q.push(4);
-		// q.push(3);
-		// q.push(2);
-		// System.out.println(q.pop());
-		// q.push(0);
-		// System.out.println(q.pop());
-		// q.push(1);
+		StackQueue q = new StackQueue();
+		q.push(4);
+		q.push(3);
+		q.push(2);
+		System.out.println(q.pop());
+		q.push(0);
+		System.out.println(q.pop());
+		q.push(1);
 
-		// while(!q.isEmpty())
-		// {
-		// 	System.out.println(q.peek());
-		// 	q.pop();
-		// }
+		while(!q.isEmpty())
+		{
+			System.out.println(q.peek());
+			q.pop();
+		}
 
 // First non-repeating element in string 
 
-		// firstNonRepeatingEl("aabccxb");
+		firstNonRepeatingEl("aabccxb");
 
 //Interleave two halves of queue
 
-		// q.add(1);
-		// q.add(2);
-		// q.add(3);
-		// q.add(4);
-		// q.add(5);
-		// q.add(6);
-		// q.add(7);
-		// q.add(8);
-		// q.add(9);
-		// q.add(10);
-		// interleave(q);
+		q.add(1);
+		q.add(2);
+		q.add(3);
+		q.add(4);
+		q.add(5);
+		q.add(6);
+		q.add(7);
+		q.add(8);
+		q.add(9);
+		q.add(10);
+		interleave(q);
 
 // Queue Reversal
 
-		// reverse(q);
-		// while(!q.isEmpty())
-		// {
-		// 	System.out.print(q.peek()+" ");
-		// 	q.remove();
-		// }
+		reverse(q);
+		while(!q.isEmpty())
+		{
+			System.out.print(q.peek()+" ");
+			q.remove();
+		}
 
 // Double Ended queue => deque
 
-		// Deque<Integer> dq = new LinkedList<>();
+		Deque<Integer> dq = new LinkedList<>();
 
-		// dq.addFirst(1);
-		// dq.addLast(2);
-		// dq.addFirst(3);
-		// dq.addLast(4);
-		// System.out.println(dq);
-		// dq.removeFirst();
-		// dq.removeLast();
-		// System.out.println(dq);
-		// System.out.println("get first = "+ dq.getFirst());
-		// System.out.println("get Last = "+ dq.getLast());
+		dq.addFirst(1);
+		dq.addLast(2);
+		dq.addFirst(3);
+		dq.addLast(4);
+		System.out.println(dq);
+		dq.removeFirst();
+		dq.removeLast();
+		System.out.println(dq);
+		System.out.println("get first = "+ dq.getFirst());
+		System.out.println("get Last = "+ dq.getLast());
 
 //Stack using Deque
 
