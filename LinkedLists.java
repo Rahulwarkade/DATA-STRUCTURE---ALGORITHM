@@ -541,22 +541,22 @@ public class LinkedLists
 		ll.printLL(ll.head);
 		Node temp = ll.mergeSort(ll.head);
 
-		// ll.printLL(temp);
-		// ll.zigZagLinkedList();
-		// ll.printLL(ll.head);
-		// ll.removeNthNodeFromEnd(3);
-		// ll.printLL(ll.head);
-		// ll.reverseLL();
-		// ll.printLL(ll.head);
-		// ll.removeNthNodeFromEnd(2);
-		// ll.printLL(ll.head);
-		// System.out.println(ll.checkPalindrome());
-		// ll.tail.next = ll.head.next;
-		// System.out.println(ll.isCycle());
-		// ll.removeCycle();
-		// System.out.println(ll.isCycle());
-		// System.out.println(ll.recursiveSearch(ll.head,5));
-		// System.out.println(ll.recursiveSearch(ll.head,3));
+		ll.printLL(temp);
+		ll.zigZagLinkedList();
+		ll.printLL(ll.head);
+		ll.removeNthNodeFromEnd(3);
+		ll.printLL(ll.head);
+		ll.reverseLL();
+		ll.printLL(ll.head);
+		ll.removeNthNodeFromEnd(2);
+		ll.printLL(ll.head);
+		System.out.println(ll.checkPalindrome());
+		ll.tail.next = ll.head.next;
+		System.out.println(ll.isCycle());
+		ll.removeCycle();
+		System.out.println(ll.isCycle());
+		System.out.println(ll.recursiveSearch(ll.head,5));
+		System.out.println(ll.recursiveSearch(ll.head,3));
 
 		// LinkedList<Integer> list = new LinkedList<>();
 
