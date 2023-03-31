@@ -530,16 +530,16 @@ public class LinkedLists
 		System.out.println(LinkedLists.dllsize);
 		ll.reverseDll();
 		ll.printdll();
-		// ll.addFirst(1);
-		// ll.addLast(2);
-		// ll.addLast(3);
-		// ll.addLast(4);
-		// ll.addLast(5);
-		// ll.addAtIdx(2,3);
-		// ll.removeFirst();
-		// ll.removeLast();
-		// ll.printLL(ll.head);
-		// Node temp = ll.mergeSort(ll.head);
+		ll.addFirst(1);
+		ll.addLast(2);
+		ll.addLast(3);
+		ll.addLast(4);
+		ll.addLast(5);
+		ll.addAtIdx(2,3);
+		ll.removeFirst();
+		ll.removeLast();
+		ll.printLL(ll.head);
+		Node temp = ll.mergeSort(ll.head);
 
 		// ll.printLL(temp);
 		// ll.zigZagLinkedList();
