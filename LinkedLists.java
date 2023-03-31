@@ -558,17 +558,17 @@ public class LinkedLists
 		System.out.println(ll.recursiveSearch(ll.head,5));
 		System.out.println(ll.recursiveSearch(ll.head,3));
 
-		// LinkedList<Integer> list = new LinkedList<>();
+		LinkedList<Integer> list = new LinkedList<>();
 
-		// list.addFirst(1);
-		// list.addLast(2);
-		// list.addLast(3);
-		// list.addLast(4);
-		// System.out.println(list);
-		// list.removeFirst();
-		// list.removeLast();
-		// System.out.println(list);
-		// System.out.println(list.size());
+		list.addFirst(1);
+		list.addLast(2);
+		list.addLast(3);
+		list.addLast(4);
+		System.out.println(list);
+		list.removeFirst();
+		list.removeLast();
+		System.out.println(list);
+		System.out.println(list.size());
 
 	}
 }
