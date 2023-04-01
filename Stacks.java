@@ -340,10 +340,10 @@ class Stacks
 		// sc.push(7);
 		// sc.push(5);
 
-		// pushAtBottom(sc,8);
-		// printStack(sc);
-		// reverStack(sc);
-		// printStack(sc);
+		pushAtBottom(sc,8);
+		printStack(sc);
+		reverStack(sc);
+		printStack(sc);
 
 		// System.out.println(revers("Rahul"));
 
