@@ -115,7 +115,7 @@ public class Recursion
 		System.out.println(ob.fibonacci(6));
 		int arr[] = {8,3,6,9,5,10,3,5,3};
 		// System.out.println(ob.isSorted(arr,0));
-		// System.out.println(ob.firstOcc(arr,0,5));
+		System.out.println(ob.firstOcc(arr,0,5));
 		// System.out.println(ob.lastOcc(arr,0,5));
 		// System.out.println(ob.tillingPro(3));
 		// StringBuilder ans = new StringBuilder();
