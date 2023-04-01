@@ -325,12 +325,12 @@ class Stacks
 	public static void main(String args[])
 	{
 // Stack implimentation using ArrayList
-		// StackList sc = new StackList();
+		StackList sc = new StackList();
 // using LinkedList
-		//StackLL sc = new StackLL();
+		StackLL sc = new StackLL();
 
 // using JCF LinkedList
-		// StackJCFll sc = new StackJCFll();
+		StackJCFll sc = new StackJCFll();
 
 // inbuilt Stack usign JCF
 
