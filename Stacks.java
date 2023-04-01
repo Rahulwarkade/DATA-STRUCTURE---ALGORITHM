@@ -334,11 +334,11 @@ class Stacks
 
 // inbuilt Stack usign JCF
 
-	    // Stack<Integer> sc = new Stack<>();
-		// sc.push(2);
-		// sc.push(3);
-		// sc.push(7);
-		// sc.push(5);
+	    Stack<Integer> sc = new Stack<>();
+		sc.push(2);
+		sc.push(3);
+		sc.push(7);
+		sc.push(5);
 
 		pushAtBottom(sc,8);
 		printStack(sc);
