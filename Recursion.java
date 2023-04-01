@@ -108,7 +108,7 @@ public class Recursion
 	public static void main(String args[])
 	{
 		Recursion ob = new Recursion();
-		// ob.decreasingOrder(10);
+		ob.decreasingOrder(10);
 		// ob.increasingOrder(10);
 		// System.out.println(ob.factorial(5));
 		// System.out.println(ob.sumOfNnum(10));
