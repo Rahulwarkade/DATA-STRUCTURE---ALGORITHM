@@ -112,7 +112,7 @@ public class Recursion
 		// ob.increasingOrder(10);
 		// System.out.println(ob.factorial(5));
 		// System.out.println(ob.sumOfNnum(10));
-		// System.out.println(ob.fibonacci(6));
+		System.out.println(ob.fibonacci(6));
 		int arr[] = {8,3,6,9,5,10,3,5,3};
 		// System.out.println(ob.isSorted(arr,0));
 		// System.out.println(ob.firstOcc(arr,0,5));
