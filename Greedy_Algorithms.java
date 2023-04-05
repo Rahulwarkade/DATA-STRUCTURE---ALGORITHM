@@ -120,6 +120,30 @@ public class Greedy_Algorithms
 
 		System.out.println("Maximum length of the chain = "+maxLength);
 	}
+
+	static void indianCoins()
+	{
+		int coins[] = {2000,500,100,50,20,10,5,2,1};
+		int amount = 590;
+		// Arrays.sort(coins);
+
+		int maxCoins = 0;
+		for(int i=0; i<coins.length; i++)
+		{
+			int coin = coins[i];
+			if(coin<=amount)
+			{
+				while(coin<=amount)
+				{
+					amount -= coin;
+					maxCoins++;
+				}
+			}
+		}
+
+		System.out.println("Max coins = "+maxCoins);
+
+	}
 	public static void main(String args[])
 	{
 		int startTime[] = {1,3,0,5,8,5};
@@ -129,7 +153,7 @@ public class Greedy_Algorithms
 
 		// knapsack();
 		// minAbsoluteDiffPairs();
-		chainOfPairs();
-
+		// chainOfPairs();
+		indianCoins();
 	}
 }
