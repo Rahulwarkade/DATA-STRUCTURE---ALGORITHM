@@ -103,8 +103,8 @@ public class Greedy_Algorithms
 	}
 	public static void main(String args[])
 	{
-		// int startTime[] = {1,3,0,5,8,5};
-		// int endTime[] = {2,4,6,7,9,9};
+		int startTime[] = {1,3,0,5,8,5};
+		int endTime[] = {2,4,6,7,9,9};
 
 		// activitySelection(startTime,endTime);
 
