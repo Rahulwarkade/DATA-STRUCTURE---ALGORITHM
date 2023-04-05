@@ -123,11 +123,14 @@ public class Greedy_Algorithms
 
 	static void indianCoins()
 	{
-		int coins[] = {2000,500,100,50,20,10,5,2,1};
+		Integer coins[] = {2000,500,100,50,20,10,5,2,1};
 		int amount = 590;
 		// Arrays.sort(coins);
 
+		Arrays.sort(coins,Comparator.reverseOrder());
 		int maxCoins = 0;
+
+		ArrayList<Integer> ans = new ArrayList<>();
 		for(int i=0; i<coins.length; i++)
 		{
 			int coin = coins[i];
@@ -137,11 +140,14 @@ public class Greedy_Algorithms
 				{
 					amount -= coin;
 					maxCoins++;
+					ans.add(coin);
 				}
 			}
 		}
 
 		System.out.println("Max coins = "+maxCoins);
+
+		System.out.println(ans);
 
 	}
 	public static void main(String args[])
