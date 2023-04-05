@@ -101,6 +101,25 @@ public class Greedy_Algorithms
 		}
 		System.out.println("Min absolute diff = "+minDiff);
 	}
+	static void chainOfPairs()
+	{
+		int pairs[][] = {{5,24},{39,60},{5,28},{27,40},{50,90}};
+		Arrays.sort(pairs,Comparator.comparingDouble(o->o[1]));
+
+		int maxLength = 1;
+		int chainEnd = pairs[0][1];
+		for(int i=1; i<pairs.length; i++)
+		{
+			int chainStart = pairs[i][0];
+			if(chainStart>=chainEnd)
+			{
+				chainEnd = pairs[i][1];
+				maxLength++;
+			}
+		}
+
+		System.out.println("Maximum length of the chain = "+maxLength);
+	}
 	public static void main(String args[])
 	{
 		int startTime[] = {1,3,0,5,8,5};
@@ -109,6 +128,8 @@ public class Greedy_Algorithms
 		// activitySelection(startTime,endTime);
 
 		// knapsack();
+		// minAbsoluteDiffPairs();
+		chainOfPairs();
 
 	}
 }
