@@ -41,11 +41,57 @@ public class Greedy_Algorithms
 			System.out.print("A"+ans.get(i)+" ");
 		}
 	}
+
+	static void knapsack()
+	{
+		int weight[] = {10,20,30};
+		int value[] = {60,100,20};
+		int capcity = 50;
+		int ratio[] = new int[weight.length];
+
+		for(int i=0; i<ratio.length; i++)
+		{
+			ratio[i] = value[i]/weight[i];
+		}
+
+		int sack[][] = new int[weight.length][4];
+
+		for(int i=0; i<weight.length; i++)
+		{
+			sack[i][0] = i;
+			sack[i][1] = weight[i];
+			sack[i][2] = value[i];
+			sack[i][3] = ratio[i];
+		}
+
+		Arrays.sort(sack,Comparator.comparingDouble(o -> o[3]));
+		int ans = 0;
+		for(int i=0; i<sack.length; i++)
+		{
+			int cap = sack[i][1];
+
+			if(cap<=capcity)
+			{
+				ans += cap*sack[i][2];
+				capcity -= cap;
+			}
+			else 
+			{
+				ans += capcity*sack[i][2];
+			}
+
+			System.out.println(ans);
+		}
+
+	}
 	public static void main(String args[])
 	{
-		int startTime[] = {1,3,0,5,8,5};
-		int endTime[] = {2,4,6,7,9,9};
+		// int startTime[] = {1,3,0,5,8,5};
+		// int endTime[] = {2,4,6,7,9,9};
 
-		activitySelection(startTime,endTime);
+		// activitySelection(startTime,endTime);
+
+		knapsack();
+
 	}
 }
