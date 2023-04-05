@@ -150,6 +150,91 @@ public class Greedy_Algorithms
 		System.out.println(ans);
 
 	}
+
+	static class Job
+	{
+		int id;
+		int deadline;
+		int profit;
+
+		public Job(int id,int deadline,int profit)
+		{
+			this.id = id;
+			this.deadline = deadline;
+			this.profit = profit;
+		}
+	}
+	static void jobSequencing()
+	{
+		int jobInfo[][] = {{4,20},{1,10},{1,40},{1,30}};
+
+		ArrayList<Job> jobs = new ArrayList<>();
+
+		for(int i=0; i<jobInfo.length; i++)
+		{
+			Job data = new Job(i,jobInfo[i][0],jobInfo[i][1]);
+			jobs.add(data);
+		}
+
+		Collections.sort(jobs,(obj1,obj2) -> obj2.profit-obj1.profit);
+
+		int time = 0;
+		int mxJob = 0;
+		ArrayList<Integer> seq = new ArrayList<>();
+		for(int i=0; i<jobs.size(); i++)
+		{
+			Job data = jobs.get(i);
+
+			if(data.deadline>time)
+			{
+				time++;
+				mxJob++;
+				seq.add(data.id);
+			}
+		}
+
+		System.out.println("Max jobs = "+mxJob);
+		System.out.println(seq);
+	}
+
+	static void chocolaProb()
+	{
+		int n =4,m = 3;
+		Integer verCost[] = {2,1,3,1,4};
+		Integer horCost[] = {4,1,2};
+
+		int v = 0,h = 0,vp=1,hp = 1;
+
+		Arrays.sort(verCost,Comparator.reverseOrder());
+		Arrays.sort(horCost,Comparator.reverseOrder());
+		int cost = 0;
+		while(v<verCost.length && h<horCost.length)
+		{
+			if(verCost[v]>horCost[h])
+			{
+				cost += hp*verCost[v++];
+				vp++;
+			}
+			else
+			{
+				cost +=  vp*horCost[h++];
+				hp++;
+			}
+		}
+
+		while(v<verCost.length)
+		{
+			cost += hp*verCost[v++];
+			vp++;
+		}
+		while(h<horCost.length)
+		{
+			cost += vp*horCost[h++];
+			hp++;
+		}
+
+		System.out.println("Minimum cost is = "+cost);
+	}
 	public static void main(String args[])
 	{
 		int startTime[] = {1,3,0,5,8,5};
@@ -160,6 +245,8 @@ public class Greedy_Algorithms
 		// knapsack();
 		// minAbsoluteDiffPairs();
 		// chainOfPairs();
-		indianCoins();
+		// indianCoins();
+		// jobSequencing();
+		chocolaProb();
 	}
 }
