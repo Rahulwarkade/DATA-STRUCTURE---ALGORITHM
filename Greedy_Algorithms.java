@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Arrays;
 public class Greedy_Algorithms
 {
 	static void activitySelection(int startTime[],int endTime[])
@@ -17,7 +18,7 @@ public class Greedy_Algorithms
 				activities[i][2] = endTime[i];
 		}
 
-		// Arrays.sort(activities,Comparator.comparingDouble(o -> o[2]));
+		Arrays.sort(activities,Comparator.comparingDouble(o -> o[2]));
 
 		ArrayList<Integer> ans = new ArrayList<>();
 
@@ -45,7 +46,7 @@ public class Greedy_Algorithms
 	static void knapsack()
 	{
 		int weight[] = {10,20,30};
-		int value[] = {60,100,20};
+		int value[] = {60,100,120};
 		int capcity = 50;
 		int ratio[] = new int[weight.length];
 
@@ -66,23 +67,39 @@ public class Greedy_Algorithms
 
 		Arrays.sort(sack,Comparator.comparingDouble(o -> o[3]));
 		int ans = 0;
-		for(int i=0; i<sack.length; i++)
+		int W = capcity;
+		for(int i=sack.length-1; i>=0; --i)
 		{
 			int cap = sack[i][1];
 
-			if(cap<=capcity)
+			if(cap<=W)
 			{
-				ans += cap*sack[i][2];
-				capcity -= cap;
+				ans += sack[i][2];
+				W -= cap;
 			}
 			else 
 			{
-				ans += capcity*sack[i][2];
+				ans += W*sack[i][3];
+				W = 0;
+				break;
 			}
-
-			System.out.println(ans);
 		}
+		System.out.println("max value = "+ans);
+	}
 
+	static void minAbsoluteDiffPairs()
+	{
+		int arr1[] = {4,1,8,7};
+		int  arr2[] = {2,3,6,5};
+
+		Arrays.sort(arr1);
+		Arrays.sort(arr2);
+		int minDiff = 0;
+		for(int i=0; i<arr1.length; i++)
+		{
+			minDiff += Math.abs(arr1[i]-arr2[i]);
+		}
+		System.out.println("Min absolute diff = "+minDiff);
 	}
 	public static void main(String args[])
 	{
@@ -91,7 +108,7 @@ public class Greedy_Algorithms
 
 		// activitySelection(startTime,endTime);
 
-		knapsack();
+		// knapsack();
 
 	}
 }

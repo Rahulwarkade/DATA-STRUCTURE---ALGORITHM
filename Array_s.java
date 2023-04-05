@@ -1,5 +1,5 @@
 import java.util.*;
-public class Arrays
+public class Array_s
 {
     public static void fun(int marks[])
     {
