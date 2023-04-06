@@ -61,9 +61,42 @@ public class Binary_Trees
 		postOrder(root.right);
 		System.out.print(root.data+" ");
 	}
+
+	public static void levelOrder(Node root)
+	{
+		Queue<Node> q = new LinkedList<>();
+		q.add(root);
+		q.add(null);
+
+		while(!q.isEmpty())
+		{
+			Node curr = q.remove();
+			if(curr==null)
+			{
+				if(q.isEmpty())
+					break;
+				System.out.println();
+				q.add(null);
+			}
+			else
+			{
+				System.out.print(curr.data+" ");
+				if(curr.left!=null)
+					q.add(curr.left);
+				if(curr.right!=null)
+					q.add(curr.right);
+			}
+		}
+	}
+	public static int height(Node root)
+	{
+		if(root == null)
+			return 0;
+		return Math.max(height(root.left), height(root.right))+1;
+	}
 	public static void main(String args[])
 	{
-		int node[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+		int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
 
 		BTree tree = new BTree();
 		Node root = tree.buildTree(node);
@@ -74,6 +107,6 @@ public class Binary_Trees
 		// System.out.println(root.right.data);
 		// System.out.println(root.right.right.data);
 
-		postOrder(root);
+		System.out.println(height(root));
 	}
 }
