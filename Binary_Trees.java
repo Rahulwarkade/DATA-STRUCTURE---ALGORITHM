@@ -118,6 +118,30 @@ public class Binary_Trees
 
 		return Math.max(selfdimeter,Math.max(leftdimeter,rightdimeter));
 	}
+	public static class Info
+	{
+		int diam;
+		int ht;
+		Info(int diam,int ht)
+		{
+			this.diam = diam;
+			this.ht = ht;
+		}
+	}
+
+	public static Info optDiameter(Node root)
+	{
+		if(root == null)
+			return new Info(0,0);
+
+		Info leftdiam = optDiameter(root.left);
+		Info rightdiam = optDiameter(root.right);
+		
+		int diam = Math.max(leftdiam.ht+rightdiam.ht+1,Math.max(leftdiam.diam,rightdiam.diam));
+		int height = Math.max(leftdiam.ht,rightdiam.ht)+1;
+
+		return new Info(diam,height);
+	}
 	public static void main(String args[])
 	{
 		int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
@@ -133,6 +157,6 @@ public class Binary_Trees
 		// System.out.println(root.right.data);
 		// System.out.println(root.right.right.data);
 
-		System.out.println(diameter(root));
+		System.out.println(optDiameter(root).diam);
 	}
 }
