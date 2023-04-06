@@ -107,11 +107,22 @@ public class Binary_Trees
 			return 0;
 		return sumNodes(root.left)+sumNodes(root.right) + root.data;
 	}
+
+	public static int diameter(Node root)
+	{
+		if(root == null)
+			return 0;
+		int leftdimeter = diameter(root.left);
+		int rightdimeter = diameter(root.right);
+		int selfdimeter = height(root.left) + height(root.right) + 1;
+
+		return Math.max(selfdimeter,Math.max(leftdimeter,rightdimeter));
+	}
 	public static void main(String args[])
 	{
-		// int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
+		int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
 
-		int node[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+		// int node[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
 
 		BTree tree = new BTree();
 		Node root = tree.buildTree(node);
@@ -122,6 +133,6 @@ public class Binary_Trees
 		// System.out.println(root.right.data);
 		// System.out.println(root.right.right.data);
 
-		System.out.println(sumNodes(root));
+		System.out.println(diameter(root));
 	}
 }
