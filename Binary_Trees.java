@@ -142,14 +142,48 @@ public class Binary_Trees
 
 		return new Info(diam,height);
 	}
+
+	public static boolean isIdentical(Node root,Node subroot)
+	{
+		if(root==null && subroot == null)
+			return true;
+		if(root==null || subroot ==null || root.data!=subroot.data)
+			return false;
+
+		if(!isIdentical(root.left,subroot.left))
+		{
+			return false;
+		}
+		if(!isIdentical(root.right,subroot.right))
+			return false;
+		return true;
+	}
+	public static boolean subTree(Node root,Node subroot)
+	{
+		if(root==null || subroot==null)
+			return false;
+
+		if(root.data==subroot.data)
+		{
+			if(isIdentical(root,subroot))
+				return true;
+			else  
+				return false;
+		}
+
+		return subTree(root.left,subroot) || subTree(root.right,subroot);
+	}
 	public static void main(String args[])
 	{
 		// int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
 
 		int node[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+		int node2[] = {2,4,2,-1,-1,-1,5,-1,-1};
 
 		BTree tree = new BTree();
-		Node root = tree.buildTree(node);
+		BTree tree2 = new BTree();
+		Node root = tree2.buildTree(node);
+		Node subroot = tree.buildTree(node2);
 		// System.out.println(root.data);
 		// System.out.println(root.left.data);
 		// System.out.println(root.left.left.data);
@@ -157,6 +191,14 @@ public class Binary_Trees
 		// System.out.println(root.right.data);
 		// System.out.println(root.right.right.data);
 
-		System.out.println(optDiameter(root).diam);
+		// System.out.println(optDiameter(root).diam);
+		if(subTree(root,subroot))
+		{
+			System.out.println("Subtree of another tree");
+		}
+		else  
+		{
+			System.out.println("Not a subtree of another tree");
+		}
 	}
 }
