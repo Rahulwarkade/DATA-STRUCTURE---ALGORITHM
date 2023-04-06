@@ -94,9 +94,24 @@ public class Binary_Trees
 			return 0;
 		return Math.max(height(root.left), height(root.right))+1;
 	}
+
+	public static int countNodes(Node root)
+	{
+		if(root ==null)
+			return 0;
+		return countNodes(root.left)+countNodes(root.right) + 1;
+	}	
+	public static int sumNodes(Node root)
+	{
+		if(root ==null)
+			return 0;
+		return sumNodes(root.left)+sumNodes(root.right) + root.data;
+	}
 	public static void main(String args[])
 	{
-		int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
+		// int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
+
+		int node[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
 
 		BTree tree = new BTree();
 		Node root = tree.buildTree(node);
@@ -107,6 +122,6 @@ public class Binary_Trees
 		// System.out.println(root.right.data);
 		// System.out.println(root.right.right.data);
 
-		System.out.println(height(root));
+		System.out.println(sumNodes(root));
 	}
 }
