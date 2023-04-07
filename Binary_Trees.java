@@ -227,17 +227,32 @@ public class Binary_Trees
 			System.out.println(mp.get(i).data+" ");
 		}
 	}
+
+	public static void kthLevel(Node root, int level,int k)
+	{
+		if(root==null)
+			return;
+		if(level==k)
+		{
+			System.out.print(root.data+" ");
+			return;
+		}
+
+		kthLevel(root.left,level+1,k);
+		kthLevel(root.right,level+1,k);
+	}
 	public static void main(String args[])
 	{
 		// int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
 
 		int node[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
 		int node2[] = {2,4,2,-1,-1,-1,5,-1,-1};
+		int node3[] = {1,2,4,-1,-1,5,-1,-1,3,6,-1,-1,7,-1,-1};
 
 		BTree tree = new BTree();
 		BTree tree2 = new BTree();
 		Node root = tree2.buildTree(node);
-		Node subroot = tree.buildTree(node2);
+		Node subroot = tree.buildTree(node3);
 		// System.out.println(root.data);
 		// System.out.println(root.left.data);
 		// System.out.println(root.left.left.data);
@@ -255,6 +270,7 @@ public class Binary_Trees
 		// 	System.out.println("Not a subtree of another tree");
 		// }
 
-		topView(root);
+		// topView(root);
+		kthLevel(subroot,0,2);
 	}
 }
