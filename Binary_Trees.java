@@ -291,6 +291,23 @@ public class Binary_Trees
 
 		return path1.get(i-1);
 	}
+
+	public static Node optLca(Node root,int n1,int n2)
+	{
+		if(root ==null || root.data ==n1 || root.data == n2)
+		{
+			return root;
+		}
+
+		Node leftlca = optLca(root.left,n1,n2);
+		Node rightlca = optLca(root.right,n1,n2);
+
+		if(leftlca==null)
+			return rightlca;
+		if(rightlca == null)
+			return leftlca;
+		return root;
+	}
 	public static void main(String args[])
 	{
 		// int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
@@ -323,6 +340,6 @@ public class Binary_Trees
 		// topView(subroot);
 		// kthLevel(subroot,0,2);
 
-		System.out.println(lca(subroot,4,5));
+		System.out.println(optLca(subroot,4,5).data);
 	}
 }
