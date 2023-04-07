@@ -323,6 +323,25 @@ public class Binary_Trees
 
 		return -1;
 	}
+
+	public static int kthAncestor(Node root,int n,int k)
+	{
+		if(root== null)
+			return -1;
+		if(root.data == n)
+			return 0;
+
+		int val1 = kthAncestor(root.left,n,k);
+		int val2 = kthAncestor(root.right,n,k);
+
+		if(val1 == -1 && val2 == -1)
+			return -1;
+		int max = Math.max(val1,val2);
+
+		if(max+1 == k)
+			System.out.println(root.data);
+		return max+1;
+	}
 	public static int minDist(Node root,int n1,int n2)
 	{
 		if(root==null)
@@ -367,6 +386,6 @@ public class Binary_Trees
 		// topView(subroot);
 		// kthLevel(subroot,0,2);
 
-		System.out.println(minDist(subroot,4,5));
+		System.out.println(kthAncestor(subroot,5,2));
 	}
 }
