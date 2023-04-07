@@ -173,6 +173,60 @@ public class Binary_Trees
 
 		return subTree(root.left,subroot) || subTree(root.right,subroot);
 	}
+
+	public static class Info2
+	{
+		Node node;
+		int hd;
+		Info2(int hd,Node node)
+		{
+			this.hd = hd;
+			this.node = node;
+		}
+
+	}
+	public static void topView(Node root)
+	{
+		Queue<Info2> q = new LinkedList<>();
+		HashMap<Integer,Node> mp = new HashMap<>();
+
+		int min=0,max = 0;
+		q.add(new Info2(0,root));
+		q.add(null);
+
+		while(!q.isEmpty())
+		{
+			Info2 curr = q.remove();
+			if(curr ==null)
+			{
+				if(q.isEmpty())
+					break;
+				else  
+					q.add(null);
+			}
+			else  
+			{
+				if(!mp.containsKey(curr.hd))
+				{
+					mp.put(curr.hd,curr.node);
+				}
+				if(curr.node.left!=null){
+					q.add(new Info2(curr.hd-1,curr.node.left));
+					min = Math.min(curr.hd-1,min);
+				}
+				if(curr.node.right !=null)
+				{
+					q.add(new Info2(curr.hd+1,curr.node.right));
+					max = Math.max(curr.hd+1,max);
+				}
+			}
+
+		}
+
+		for (int i=min; i<=max; i++) {
+			System.out.println(mp.get(i).data+" ");
+		}
+	}
 	public static void main(String args[])
 	{
 		// int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
@@ -192,13 +246,15 @@ public class Binary_Trees
 		// System.out.println(root.right.right.data);
 
 		// System.out.println(optDiameter(root).diam);
-		if(subTree(root,subroot))
-		{
-			System.out.println("Subtree of another tree");
-		}
-		else  
-		{
-			System.out.println("Not a subtree of another tree");
-		}
+		// if(subTree(root,subroot))
+		// {
+		// 	System.out.println("Subtree of another tree");
+		// }
+		// else  
+		// {
+		// 	System.out.println("Not a subtree of another tree");
+		// }
+
+		topView(root);
 	}
 }
