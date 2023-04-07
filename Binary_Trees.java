@@ -242,6 +242,55 @@ public class Binary_Trees
 		kthLevel(root.left,level+1,k);
 		kthLevel(root.right,level+1,k);
 	}
+
+	public static boolean getPath(Node root,ArrayList<Integer> path,int n)
+	{
+		if(root==null)
+			return false;
+
+		path.add(root.data);
+		if(root.data == n)
+		{
+			return true;
+		}
+
+		boolean left = getPath(root.left,path,n);
+		boolean right = getPath(root.right,path,n);
+		// if(!left)
+		// {
+		// 	path.remove(path.size()-1);
+		// }
+		// if(!right)
+		// {
+		// 	path.remove(path.size()-1);
+		// }
+		if(left || right)
+			return true;
+
+		path.remove(path.size()-1);
+		return false;
+
+		// return left || right;
+	}
+
+	public static int lca(Node root,int n1,int n2)
+	{
+		ArrayList<Integer> path1 = new ArrayList<>();
+		ArrayList<Integer> path2 = new ArrayList<>();
+
+		getPath(root,path1,n1);
+		getPath(root,path2,n2);
+
+		int i= 0;
+		while(i<path1.size() && i<path2.size())
+		{
+			if(path1.get(i)!=path2.get(i))
+				break;
+			i++;
+		}
+
+		return path1.get(i-1);
+	}
 	public static void main(String args[])
 	{
 		// int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
@@ -271,7 +320,9 @@ public class Binary_Trees
 		// 	System.out.println("Not a subtree of another tree");
 		// }
 
-		topView(subroot);
+		// topView(subroot);
 		// kthLevel(subroot,0,2);
+
+		System.out.println(lca(subroot,4,5));
 	}
 }
