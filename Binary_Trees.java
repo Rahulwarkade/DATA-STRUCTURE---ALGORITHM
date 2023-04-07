@@ -206,10 +206,7 @@ public class Binary_Trees
 			}
 			else  
 			{
-				if(!mp.containsKey(curr.hd))
-				{
-					mp.put(curr.hd,curr.node);
-				}
+
 				if(curr.node.left!=null){
 					q.add(new Info2(curr.hd-1,curr.node.left));
 					min = Math.min(curr.hd-1,min);
@@ -218,6 +215,10 @@ public class Binary_Trees
 				{
 					q.add(new Info2(curr.hd+1,curr.node.right));
 					max = Math.max(curr.hd+1,max);
+				}
+								if(!mp.containsKey(curr.hd))
+				{
+					mp.put(curr.hd,curr.node);
 				}
 			}
 
@@ -270,7 +271,7 @@ public class Binary_Trees
 		// 	System.out.println("Not a subtree of another tree");
 		// }
 
-		// topView(root);
-		kthLevel(subroot,0,2);
+		topView(subroot);
+		// kthLevel(subroot,0,2);
 	}
 }
