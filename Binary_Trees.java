@@ -35,7 +35,7 @@ public class Binary_Trees
 	public static void preOrder(Node root)
 	{
 		if(root == null){
-			System.out.print("-1 ");
+			// System.out.print("-1 ");
 			return;
 		}
 
@@ -354,6 +354,21 @@ public class Binary_Trees
 
 		return distn1 + distn2;
 	}
+
+
+	public static int sumTree(Node root)
+	{
+		if(root == null)
+			return 0;
+
+		int leftsum = sumTree(root.left);
+		int rightsum = sumTree(root.right);
+
+		int data = root.data;
+		root.data = leftsum + rightsum;
+
+		return data+(root.data);
+	}
 	public static void main(String args[])
 	{
 		// int node[] = {1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
@@ -386,6 +401,11 @@ public class Binary_Trees
 		// topView(subroot);
 		// kthLevel(subroot,0,2);
 
-		System.out.println(kthAncestor(subroot,5,2));
+		// System.out.println(kthAncestor(subroot,5,2));
+
+		preOrder(subroot);
+		System.out.println();
+		sumTree(subroot);
+		preOrder(subroot);
 	}
 }
