@@ -246,7 +246,7 @@ public class Greedy_Algorithms
 		// minAbsoluteDiffPairs();
 		chainOfPairs();
 		// indianCoins();
-		// jobSequencing();
+		jobSequencing();
 		chocolaProb();
 	}
 }
