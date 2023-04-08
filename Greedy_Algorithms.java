@@ -244,7 +244,7 @@ public class Greedy_Algorithms
 
 		knapsack();
 		// minAbsoluteDiffPairs();
-		// chainOfPairs();
+		chainOfPairs();
 		// indianCoins();
 		// jobSequencing();
 		chocolaProb();
