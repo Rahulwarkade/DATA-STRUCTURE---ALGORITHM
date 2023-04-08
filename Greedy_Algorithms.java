@@ -242,7 +242,7 @@ public class Greedy_Algorithms
 
 		// activitySelection(startTime,endTime);
 
-		// knapsack();
+		knapsack();
 		// minAbsoluteDiffPairs();
 		// chainOfPairs();
 		// indianCoins();
