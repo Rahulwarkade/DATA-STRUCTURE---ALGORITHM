@@ -136,6 +136,23 @@ public class BST
 			printInRange(root.right,k1,k2);
 		}
 	}
+
+	public static void rootToLeaf(Node root,ArrayList<Integer> path)
+	{
+		if(root.left== null && root.right== null)
+		{
+			path.add(root.data);
+			System.out.println(path);
+			return;
+		}
+		path.add(root.data);
+
+		if(root.left!=null)	
+			rootToLeaf(root.left,path);
+		path.remove(path.size()-1);
+		if(root.right!=null)
+			rootToLeaf(root.right,path);
+	}
 	public static void main(String args[])
 	{
 
@@ -148,7 +165,7 @@ public class BST
 		    root = buildBST(root,arr[i]);
 		}
 
-		inOrder(root);
+		// inOrder(root);
 		// System.out.println(search(root,4));
 		System.out.println();
 		// root = delete(root,5);
@@ -156,7 +173,8 @@ public class BST
 		// System.out.println();
 		// preOrder(root);
 
-		printInRange(root,5,12);
+		// printInRange(root,5,12);
+		rootToLeaf(root,new ArrayList<>());
 
 	}
 }
