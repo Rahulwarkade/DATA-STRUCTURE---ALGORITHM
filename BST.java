@@ -153,6 +153,19 @@ public class BST
 		if(root.right!=null)
 			rootToLeaf(root.right,path);
 	}
+
+	public static boolean validateBST(Node root)
+	{
+		if(root == null) return true;
+		if(root.left == null && root.right==null)
+			return true;
+		if(root.left!=null && root.data<=root.left.data)
+			return false;
+		if( root.right!=null && root.data>=root.right.data)
+			return false;
+
+		return validateBST(root.left) && validateBST(root.right);
+	}
 	public static void main(String args[])
 	{
 
@@ -167,14 +180,15 @@ public class BST
 
 		// inOrder(root);
 		// System.out.println(search(root,4));
-		System.out.println();
+		// System.out.println();
 		// root = delete(root,5);
 		// inOrder(root);
 		// System.out.println();
-		// preOrder(root);
+		// preOrder(root);b
 
 		// printInRange(root,5,12);
-		rootToLeaf(root,new ArrayList<>());
+		// rootToLeaf(root,new ArrayList<>());
+		System.out.println(validateBST(root));
 
 	}
 }
