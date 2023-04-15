@@ -166,13 +166,25 @@ public class BST
 
 		return validateBST(root.left) && validateBST(root.right);
 	}
+
+	public static Node mirrorBST(Node root)
+	{
+		if(root == null)
+			return null;
+		Node left = mirrorBST(root.right);
+		Node right = mirrorBST(root.left);
+
+		root.left = left;
+		root.right = right;
+		return root;
+	}
 	public static void main(String args[])
 	{
 
-		int[]  arr = new int[10];
+		int[]  arr = new int[6];
 		Scanner jin = new Scanner(System.in);
 
-		for(int i=0; i<9; i++)
+		for(int i=0; i<6; i++)
 		{
 			arr[i] = jin.nextInt();
 		    root = buildBST(root,arr[i]);
@@ -184,11 +196,14 @@ public class BST
 		// root = delete(root,5);
 		// inOrder(root);
 		// System.out.println();
-		// preOrder(root);b
+		preOrder(root);
+		root = mirrorBST(root);
+		System.out.println("\nMirror BST =");
+		preOrder(root);
 
 		// printInRange(root,5,12);
 		// rootToLeaf(root,new ArrayList<>());
-		System.out.println(validateBST(root));
+		// System.out.println(validateBST(root));
 
 	}
 }
