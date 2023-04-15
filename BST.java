@@ -69,8 +69,6 @@ public class BST
 
 	public static Node inOrderSuccessor(Node root)
 	{
-		if(root.left==null && root.right==null)
-			return root;
 		if(root.left == null) return root;
 		else  
 			return inOrderSuccessor(root.left);
@@ -117,13 +115,34 @@ public class BST
 		preOrder(root.left);
 		preOrder(root.right);
 	}
+
+	public static void printInRange(Node root, int k1,int k2)
+	{
+		if(root == null ) return;
+
+		if(root.data>=k1 && root.data<=k2)
+		{
+			printInRange(root.left,k1,k2);
+			System.out.print(root.data+" ");
+			printInRange(root.right,k1,k2);
+		}
+
+		if(root.data<k1)
+		{
+			printInRange(root.right,k1,k2);
+		}
+		if(root.data>k2)
+		{
+			printInRange(root.right,k1,k2);
+		}
+	}
 	public static void main(String args[])
 	{
 
 		int[]  arr = new int[10];
 		Scanner jin = new Scanner(System.in);
 
-		for(int i=0; i<10; i++)
+		for(int i=0; i<9; i++)
 		{
 			arr[i] = jin.nextInt();
 		    root = buildBST(root,arr[i]);
@@ -132,10 +151,12 @@ public class BST
 		inOrder(root);
 		// System.out.println(search(root,4));
 		System.out.println();
-		root = delete(root,5);
-		inOrder(root);
-		System.out.println();
-		preOrder(root);
+		// root = delete(root,5);
+		// inOrder(root);
+		// System.out.println();
+		// preOrder(root);
+
+		printInRange(root,5,12);
 
 	}
 }
