@@ -66,20 +66,76 @@ public class BST
 			return search(root.right,key);
 		}
 	}
+
+	public static Node inOrderSuccessor(Node root)
+	{
+		if(root.left==null && root.right==null)
+			return root;
+		if(root.left == null) return root;
+		else  
+			return inOrderSuccessor(root.left);
+	}
+	public static Node delete(Node root,int key)
+	{
+		if(root == null)
+			return null;
+		if(root.data == key)
+		{
+			if(root.left==null && root.right==null)
+				return null;
+			else if(root.left==null)
+				return root.right;
+			else if(root.right==null)
+				return root.left;
+			else{
+				Node temp = inOrderSuccessor(root.right);
+				root.data = temp.data;
+				root.right = delete(root.right,temp.data);
+			}
+		}
+		else
+		{
+			if(root.data>key)
+			{
+				root.left = delete(root.left,key);
+			}
+			else 
+			{
+				root.right = delete(root.right,key);
+			}
+		}
+
+		return root;
+	}
+
+	public static void preOrder(Node root)
+	{
+		if(root == null)
+			return;
+
+		System.out.print(root.data + " ");
+		preOrder(root.left);
+		preOrder(root.right);
+	}
 	public static void main(String args[])
 	{
 
-		int[]  arr = new int[8];
+		int[]  arr = new int[10];
 		Scanner jin = new Scanner(System.in);
 
-		for(int i=0; i<8; i++)
+		for(int i=0; i<10; i++)
 		{
 			arr[i] = jin.nextInt();
 		    root = buildBST(root,arr[i]);
 		}
 
-		// inOrder(root);
-		System.out.println(search(root,4));
+		inOrder(root);
+		// System.out.println(search(root,4));
+		System.out.println();
+		root = delete(root,5);
+		inOrder(root);
+		System.out.println();
+		preOrder(root);
 
 	}
 }
