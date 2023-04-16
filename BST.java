@@ -278,17 +278,68 @@ public class BST
 		}
 		return selfInfo;
 	}
+
+	public static void inOrderSeq(Node root,ArrayList<Integer> path)
+	{
+		if(root == null) return;
+
+		inOrderSeq(root.left,path);
+		path.add(root.data);
+		inOrderSeq(root.right,path);
+	}
+
+	public static void margePaths(ArrayList<Integer> path,ArrayList<Integer> path1,ArrayList<Integer> path2)
+	{
+		int i = 0; 
+		int j = 0;
+		while(i<path1.size() && j<path2.size())
+		{
+			if(path1.get(i)<path2.get(j))
+			{
+				path.add(path1.get(i));
+				i++;
+			}
+			else 
+			{
+				path.add(path2.get(j));
+				j++;
+			}
+		}
+
+		while(i<path1.size())
+		{
+			path.add(path1.get(i));
+			i++;
+		}
+		while(j<path2.size())
+		{
+			path.add(path2.get(j));
+			j++;
+		}
+	}
+	public static Node margeTooBST(Node root1,Node root2)
+	{
+		ArrayList<Integer> path1 = new ArrayList<>();
+		ArrayList<Integer> path2 = new ArrayList<>();
+		ArrayList<Integer> path = new ArrayList<>();
+		inOrderSeq(root1,path1);
+		inOrderSeq(root2,path2);
+
+		margePaths(path,path1,path2);
+
+		return balanced(path,0,path.size()-1);
+	}
 	public static void main(String args[])
 	{
 
-		int[]  arr = new int[7];
-		Scanner jin = new Scanner(System.in);
+		// int[]  arr = new int[7];
+		// Scanner jin = new Scanner(System.in);
 
-		for(int i=0; i<7; i++)
-		{
-			arr[i] = jin.nextInt();
-		    root = buildBST(root,arr[i]);
-		}
+		// for(int i=0; i<7; i++)
+		// {
+		// 	arr[i] = jin.nextInt();
+		//     root = buildBST(root,arr[i]);
+		// }
 
 		// inOrder(root);
 		// System.out.println(search(root,4));
@@ -311,13 +362,26 @@ public class BST
 		// root = bstTobalancedBST(root);
 		// preOrder(root);
 
-		Node rootBT = null;
-		int arye[] = {50,30,5,-1,-1,20,-1,-1,60,45,-1,-1,70,65,-1,-1,80,-1,-1};
+		// Node rootBT = null;
+		// int arye[] = {50,30,5,-1,-1,20,-1,-1,60,45,-1,-1,70,65,-1,-1,80,-1,-1};
 
+		// BTree tr = new BTree();
+		// rootBT = tr.buildTree(arye);
+		// preOrder(rootBT);
+		// Infoclass nod = largestBST(rootBT);
+		// System.out.println("largest BST = "+nod.maxSize);
+
+		Node root1 = null;
+		Node root2 = null;
+		int[] bst1 = {2,1,-1,-1,4,-1,-1};
+		int[] bst2 = {9,3,-1,-1,12,-1,-1};
 		BTree tr = new BTree();
-		rootBT = tr.buildTree(arye);
-		preOrder(rootBT);
-		Infoclass nod = largestBST(rootBT);
-		System.out.println("largest BST = "+nod.maxSize);
+		BTree tr1 = new BTree();
+		root1 = tr.buildTree(bst1);
+		root2 = tr1.buildTree(bst2);
+
+		Node margedRoot = margeTooBST(root1,root2);
+
+		preOrder(margedRoot);
 	}
 }
