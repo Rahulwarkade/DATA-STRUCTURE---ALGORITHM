@@ -190,6 +190,36 @@ public class BST
 
 		return root;
 	}
+	public static Node balanced(ArrayList<Integer> arr,int st,int en)
+	{
+		if(st>en) return null;
+
+		int mid = ((en-st)>>1)+st;
+		Node root = new Node(arr.get(mid));
+		root.left = balanced(arr,st,mid-1);
+		root.right = balanced(arr,mid+1,en);
+
+		return root;
+	}
+	public static void sortedList(Node root,ArrayList<Integer> list)
+	{
+		if(root==null)
+			return;
+
+		sortedList(root.left,list);
+		list.add(root.data);
+		sortedList(root.right,list);
+	}
+
+	public static Node bstTobalancedBST(Node root)
+	{
+
+		ArrayList<Integer> list = new ArrayList<>();
+
+		sortedList(root,list);
+
+		return balanced(list,0,list.size()-1);
+	}
 	public static void main(String args[])
 	{
 
@@ -199,7 +229,7 @@ public class BST
 		for(int i=0; i<7; i++)
 		{
 			arr[i] = jin.nextInt();
-		    // root = buildBST(root,arr[i]);
+		    root = buildBST(root,arr[i]);
 		}
 
 		// inOrder(root);
@@ -209,16 +239,18 @@ public class BST
 		// inOrder(root);
 		// System.out.println();
 
-		root = balancedBST(arr,0,6);
-		inOrder(root);
-		System.out.println();
+		// root = balancedBST(arr,0,6);
+		// inOrder(root);
+		// System.out.println();
 		// root = mirrorBST(root);
 		// System.out.println("\nMirror BST =");
-		preOrder(root);
+		// preOrder(root);
 
 		// printInRange(root,5,12);
 		// rootToLeaf(root,new ArrayList<>());
 		// System.out.println(validateBST(root));
 
+		root = bstTobalancedBST(root);
+		preOrder(root);
 	}
 }
