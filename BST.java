@@ -17,6 +17,22 @@ public class BST
 	}
 
 	static Node root = null;
+	public static class BTree
+	{
+		int idx = -1;
+		Node buildTree(int node[])
+		{
+			idx++;
+			if(node[idx]==-1)
+				return null;	
+
+			Node newNode = new Node(node[idx]);
+			newNode.left = buildTree(node);
+			newNode.right = buildTree(node);
+
+			return newNode;
+		}
+	}
 	public static Node buildBST(Node root,int data)
 	{
 		if(root == null)
@@ -220,6 +236,48 @@ public class BST
 
 		return balanced(list,0,list.size()-1);
 	}
+
+	public static class Infoclass 
+	{
+		boolean isBST; 
+		int size,min,max,data,maxSize;
+
+		Infoclass(int data)
+		{
+			this.data = data;
+			this.isBST = true;
+			this.size = 0;
+			this.min = Integer.MAX_VALUE;
+			this.max = Integer.MIN_VALUE;
+			this.maxSize = Integer.MIN_VALUE;
+		}
+	}
+
+	public static Infoclass largestBST(Node root)
+	{
+		if(root == null)
+			return new Infoclass(0);
+		Infoclass leftInfo = largestBST(root.left);
+		Infoclass rightInfo = largestBST(root.right);
+		Infoclass selfInfo = new Infoclass(root.data);
+		if(leftInfo.isBST==false || rightInfo.isBST == false)
+		{
+			selfInfo.isBST = false;
+		}
+
+		if(selfInfo.data<leftInfo.min || selfInfo.data>rightInfo.max){
+			selfInfo.isBST = false;
+		}
+		selfInfo.min = Math.min(selfInfo.data,Math.min(leftInfo.min,rightInfo.min));
+		selfInfo.max = Math.max(selfInfo.data,Math.max(leftInfo.max,rightInfo.max));
+		selfInfo.size = leftInfo.size + rightInfo.size+1;
+		if(selfInfo.isBST) selfInfo.maxSize = selfInfo.size;
+		else {
+			if(leftInfo.isBST) selfInfo.maxSize = leftInfo.size;
+			else selfInfo.maxSize = rightInfo.size;
+		}
+		return selfInfo;
+	}
 	public static void main(String args[])
 	{
 
@@ -250,7 +308,16 @@ public class BST
 		// rootToLeaf(root,new ArrayList<>());
 		// System.out.println(validateBST(root));
 
-		root = bstTobalancedBST(root);
-		preOrder(root);
+		// root = bstTobalancedBST(root);
+		// preOrder(root);
+
+		Node rootBT = null;
+		int arye[] = {50,30,5,-1,-1,20,-1,-1,60,45,-1,-1,70,65,-1,-1,80,-1,-1};
+
+		BTree tr = new BTree();
+		rootBT = tr.buildTree(arye);
+		preOrder(rootBT);
+		Infoclass nod = largestBST(rootBT);
+		System.out.println("largest BST = "+nod.maxSize);
 	}
 }
