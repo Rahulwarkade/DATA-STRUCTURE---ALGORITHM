@@ -181,11 +181,11 @@ public class BST
 
 	public static Node balancedBST(int arr[],int st,int en)
 	{
-		if(st>=en) return null;
+		if(st>en) return null;
 
 		int mid = ((en-st)>>1)+st;
 		Node root = new Node(arr[mid]);
-		root.left = balancedBST(arr,st,mid);
+		root.left = balancedBST(arr,st,mid-1);
 		root.right = balancedBST(arr,mid+1,en);
 
 		return root;
@@ -199,7 +199,7 @@ public class BST
 		for(int i=0; i<7; i++)
 		{
 			arr[i] = jin.nextInt();
-		    root = buildBST(root,arr[i]);
+		    // root = buildBST(root,arr[i]);
 		}
 
 		// inOrder(root);
@@ -208,9 +208,12 @@ public class BST
 		// root = delete(root,5);
 		// inOrder(root);
 		// System.out.println();
-		preOrder(root);
-		root = mirrorBST(root);
-		System.out.println("\nMirror BST =");
+
+		root = balancedBST(arr,0,6);
+		inOrder(root);
+		System.out.println();
+		// root = mirrorBST(root);
+		// System.out.println("\nMirror BST =");
 		preOrder(root);
 
 		// printInRange(root,5,12);
