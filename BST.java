@@ -178,13 +178,25 @@ public class BST
 		root.right = right;
 		return root;
 	}
+
+	public static Node balancedBST(int arr[],int st,int en)
+	{
+		if(st>=en) return null;
+
+		int mid = ((en-st)>>1)+st;
+		Node root = new Node(arr[mid]);
+		root.left = balancedBST(arr,st,mid);
+		root.right = balancedBST(arr,mid+1,en);
+
+		return root;
+	}
 	public static void main(String args[])
 	{
 
-		int[]  arr = new int[6];
+		int[]  arr = new int[7];
 		Scanner jin = new Scanner(System.in);
 
-		for(int i=0; i<6; i++)
+		for(int i=0; i<7; i++)
 		{
 			arr[i] = jin.nextInt();
 		    root = buildBST(root,arr[i]);
