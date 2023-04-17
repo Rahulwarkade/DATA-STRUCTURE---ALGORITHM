@@ -109,6 +109,18 @@ public class Heaps
 	// 		System.out.println(pq1.peek().name+" rank = "+pq1.peek().rank);
 	// 		pq1.remove();
 	// 	}
-		
+
+		Heap hp = new Heap();
+
+		hp.add(3);
+		hp.add(4);
+		hp.add(1);
+		hp.add(5);
+
+		while(!hp.isEmpty())
+		{
+			System.out.println(hp.peek());
+			hp.remove();
+		}
 	}
 }
