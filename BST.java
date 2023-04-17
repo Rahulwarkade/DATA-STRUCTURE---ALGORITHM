@@ -329,6 +329,120 @@ public class BST
 
 		return balanced(path,0,path.size()-1);
 	}
+
+	public static class AvlNode 
+	{
+		int data,height;
+		AvlNode left,right;
+
+		AvlNode(int data)
+		{
+			this.data = data;
+			this.height = 1;
+		}
+	}
+	public static class AVLTree
+	{
+		public static int height(AvlNode root)
+		{
+			if(root == null)
+				return 0;
+			return root.height;
+		}
+
+		public static int balancedFactor(AvlNode root)
+		{
+			if(root == null)
+				return 0;
+			return height(root.left) - height(root.right);
+		}
+		public static  AvlNode leftRotation(AvlNode Y)
+		{
+			AvlNode X = Y.right;
+			AvlNode T2 = X.left;
+
+			X.left = Y;
+			Y.right = T2;
+
+			X.height = Math.max(height(X.left),height(X.right)) + 1;
+			Y.height = Math.max(height(Y.left),height(Y.right)) + 1;
+
+			return X;
+		}
+		public static AvlNode rightRotation(AvlNode Y)
+		{
+			AvlNode X = Y.left;
+			AvlNode T2 = X.right;
+
+			X.right = Y;
+			Y.left = T2;
+
+			X.height = Math.max(height(X.left),height(X.right)) + 1;
+			Y.height = Math.max(height(Y.left),height(Y.right)) + 1;
+
+			return X;
+		}
+		public static AvlNode insert(AvlNode root,int key)
+		{
+			if(root == null)
+			{
+				return new AvlNode(key);
+			}
+
+			if(root.data>key)
+			{
+				root.left = insert(root.left,key);
+			}
+			else if(root.data<key)
+			{
+				root.right = insert(root.right,key);
+
+			}
+			else 
+			{
+				return root;
+			}
+
+			root.height = Math.max(height(root.left),height(root.right)) + 1;
+
+			int bf = balancedFactor(root);
+
+			//left left unbalanced
+			if(bf>1 && key<root.left.data)
+			{
+				return rightRotation(root);
+			}
+			//right right unbalanced
+			if(bf< -1 && key>root.right.data)
+			{
+				root = leftRotation(root);
+				return root;
+			}
+			//left right unbalanced
+			if (bf>1 && key>root.left.data)
+			{
+				root.left = rightRotation(root.left);
+				return leftRotation(root);
+			}
+			//right left unbalaced
+			if(bf< -1 && key<root.right.data)
+			{
+				root.right = leftRotation(root.right);
+				return rightRotation(root);
+			}
+
+			return root;
+		}
+	}
+
+	public static void preOrderAvl(AvlNode root)
+	{
+		if(root == null)
+			{return;}
+		System.out.print(root.data+" ");
+		preOrderAvl(root.left);
+		preOrderAvl(root.right);
+	}
 	public static void main(String args[])
 	{
 
@@ -371,17 +485,28 @@ public class BST
 		// Infoclass nod = largestBST(rootBT);
 		// System.out.println("largest BST = "+nod.maxSize);
 
-		Node root1 = null;
-		Node root2 = null;
-		int[] bst1 = {2,1,-1,-1,4,-1,-1};
-		int[] bst2 = {9,3,-1,-1,12,-1,-1};
-		BTree tr = new BTree();
-		BTree tr1 = new BTree();
-		root1 = tr.buildTree(bst1);
-		root2 = tr1.buildTree(bst2);
+		// Node root1 = null;
+		// Node root2 = null;
+		// int[] bst1 = {2,1,-1,-1,4,-1,-1};
+		// int[] bst2 = {9,3,-1,-1,12,-1,-1};
+		// BTree tr = new BTree();
+		// BTree tr1 = new BTree();
+		// root1 = tr.buildTree(bst1);
+		// root2 = tr1.buildTree(bst2);
 
-		Node margedRoot = margeTooBST(root1,root2);
+		// Node margedRoot = margeTooBST(root1,root2);
 
-		preOrder(margedRoot);
+		// preOrder(margedRoot);
+
+		AVLTree obj = new AVLTree();
+		AvlNode avlRoot = null;
+		avlRoot = AVLTree.insert(avlRoot,10);
+		avlRoot = AVLTree.insert(avlRoot,20);
+		avlRoot = AVLTree.insert(avlRoot,30);
+		avlRoot = AVLTree.insert(avlRoot,40);
+		avlRoot = AVLTree.insert(avlRoot,50);
+		// avlRoot = AVLTree.insert(avlRoot,25);
+
+		preOrderAvl(avlRoot);
 	}
 }
