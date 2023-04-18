@@ -234,5 +234,24 @@ public class Heaps
 		// {
 		// 	System.out.println("C"+p.remove().idx);
 		// }
+
+		int ropes[] = {4,3,3,2,6};
+		PriorityQueue<Integer> rop = new PriorityQueue<>();
+
+		for(int i=0; i<ropes.length; i++)
+		{
+			rop.add(ropes[i]);
+		}
+
+		int ans = 0;
+
+		for(int i=0; i<ropes.length-1; i++)
+		{
+			int num1 = rop.remove();
+			int num2 = rop.remove();
+			ans += num1+num2;
+			rop.add(num1+num2);
+		}
+		System.out.println(ans);
 	}
 }
