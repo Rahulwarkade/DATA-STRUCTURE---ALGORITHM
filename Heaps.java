@@ -204,6 +204,24 @@ public class Heaps
 			return this.solcount - row2.solcount;
 		}
 	}
+
+	public static class Pair implements Comparable<Pair>
+	{
+		int value;
+		int idx;
+
+		Pair(int value,int idx)
+		{
+			this.value = value;
+			this.idx = idx;
+		}
+
+		@Override
+		public int compareTo(Pair to)
+		{
+			return to.value - this.value;
+		}
+	}
 	public static void main(String args[])
 	{
 		// PriorityQueue<Integer> pq = new PriorityQueue<>();
@@ -276,23 +294,53 @@ public class Heaps
 		// }
 		// System.out.println(ans);
 
-		int soldier[][] = {{1,0,0,0},{1,1,1,1},{1,0,0,0},{1,0,0,0}};
-		PriorityQueue<Soldier> so = new PriorityQueue<>();
-		int k2 = 2;
-		for(int i=0; i<soldier.length; i++)
+		// int soldier[][] = {{1,0,0,0},{1,1,1,1},{1,0,0,0},{1,0,0,0}};
+		// PriorityQueue<Soldier> so = new PriorityQueue<>();
+		// int k2 = 2;
+		// for(int i=0; i<soldier.length; i++)
+		// {
+		// 	int solcount = 0;
+		// 	for(int j=0; j<soldier[i].length; j++)
+		// 	{
+		// 		solcount += soldier[i][j]==1 ? 1 : 0;
+		// 	}
+
+		// 	so.add(new Soldier(solcount,i));
+		// }
+
+		// for(int i=0; i<k2; i++)
+		// {
+		// 	System.out.println("row"+so.remove().idx);
+		// }
+
+		int arrWindow[] = {1,3,-1,-3,5,3,6,7};
+		int k = 3;
+		int n = arrWindow.length;
+		PriorityQueue<Pair> p = new PriorityQueue<>();
+
+		for(int i=0; i<k; i++)
 		{
-			int solcount = 0;
-			for(int j=0; j<soldier[i].length; j++)
+			p.add(new Pair(arrWindow[i],i));
+		}
+
+		int res[] = new int[n-k+1];
+
+		res[0] = p.peek().value;
+
+		for(int i=k; i<n; i++)
+		{
+			while(p.size()>0 && p.peek().idx<=(i-k))
 			{
-				solcount += soldier[i][j]==1 ? 1 : 0;
+				p.remove();
 			}
-
-			so.add(new Soldier(solcount,i));
+			p.add(new Pair(arrWindow[i],i));
+			res[i-k+1] = p.peek().value;
 		}
 
-		for(int i=0; i<k2; i++)
+		for(int i=0; i<res.length; i++)
 		{
-			System.out.println("row"+so.remove().idx);
+			System.out.print(res[i]+" ");
 		}
+		System.out.println();
 	}
 }
