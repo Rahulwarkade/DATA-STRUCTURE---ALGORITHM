@@ -165,6 +165,23 @@ public class Heaps
 		}
 
 	}
+
+	public static class Points implements Comparable<Points>
+	{
+		int minDist;
+		int idx;
+		Points(int minDist,int idx)
+		{
+			this.minDist = minDist;
+			this.idx = idx;
+		}
+
+		@Override
+		public int compareTo(Points obj2)
+		{
+			return this.minDist - obj2.minDist;
+		}
+	}
 	public static void main(String args[])
 	{
 		// PriorityQueue<Integer> pq = new PriorityQueue<>();
@@ -194,14 +211,28 @@ public class Heaps
 		// 	hp.remove();
 		// }
 
-		int[] arr = {1,2,4,5,3};
+		// int[] arr = {1,2,4,5,3};
 
-		heapSort(arr);
+		// heapSort(arr);
 
-		for(int i=0; i<arr.length; i++)
+		// for(int i=0; i<arr.length; i++)
+		// {
+		// 	System.out.print(arr[i]+" ");
+		// }
+		// System.out.println();
+
+		int cordinates[][] = {{3,3},{5,-1},{-2,4}};
+		int k = 2;
+		PriorityQueue<Points> p = new PriorityQueue<>();
+		for(int i=0; i<cordinates.length; i++)
 		{
-			System.out.print(arr[i]+" ");
+			int dist = cordinates[i][0]*cordinates[i][0] +cordinates[i][1]*cordinates[i][1];
+			p.add(new Points(dist,i));
 		}
-		System.out.println();
+
+		for(int i=0; i<k; i++)
+		{
+			System.out.println("C"+p.remove().idx);
+		}
 	}
 }
