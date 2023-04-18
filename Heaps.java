@@ -182,6 +182,28 @@ public class Heaps
 			return this.minDist - obj2.minDist;
 		}
 	}
+
+	public static class Soldier implements Comparable<Soldier>
+	{
+		int solcount;
+		int idx;
+
+		Soldier(int solcount,int idx)
+		{
+			this.solcount = solcount;
+			this.idx = idx;
+		}
+
+		@Override
+		public int compareTo(Soldier row2)
+		{
+			if(this.solcount==row2.solcount)
+			{
+				return this.idx-row2.idx;
+			}
+			return this.solcount - row2.solcount;
+		}
+	}
 	public static void main(String args[])
 	{
 		// PriorityQueue<Integer> pq = new PriorityQueue<>();
@@ -254,6 +276,23 @@ public class Heaps
 		// }
 		// System.out.println(ans);
 
-		
+		int soldier[][] = {{1,0,0,0},{1,1,1,1},{1,0,0,0},{1,0,0,0}};
+		PriorityQueue<Soldier> so = new PriorityQueue<>();
+		int k2 = 2;
+		for(int i=0; i<soldier.length; i++)
+		{
+			int solcount = 0;
+			for(int j=0; j<soldier[i].length; j++)
+			{
+				solcount += soldier[i][j]==1 ? 1 : 0;
+			}
+
+			so.add(new Soldier(solcount,i));
+		}
+
+		for(int i=0; i<k2; i++)
+		{
+			System.out.println("row"+so.remove().idx);
+		}
 	}
 }
