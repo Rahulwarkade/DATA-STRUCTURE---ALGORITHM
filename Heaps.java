@@ -94,6 +94,77 @@ public class Heaps
 			return data;
 		}
 	}
+
+	public static void heapify(int arr[],int idx,int sz)
+	{
+		int left = (idx*2)+1;
+		int right = (idx*2)+2;
+		int maxIdx = idx;
+
+		if(left<sz && arr[maxIdx]<arr[left])
+		{
+			maxIdx = left;
+		}
+		if(right<sz && arr[maxIdx]<arr[right])
+		{
+			maxIdx = right;
+		}
+
+		if(maxIdx!=idx)
+		{
+			int temp = arr[idx];
+			arr[idx] = arr[maxIdx];
+			arr[maxIdx] = temp;
+
+			heapify(arr,maxIdx,sz);
+		}
+	}
+
+	public static void heapify2(int arr[],int idx,int sz)
+	{
+		int left = (idx*2)+1;
+		int right = (idx*2)+2;
+		int minIdx = idx;
+
+		if(left<sz && arr[minIdx]>arr[left])
+		{
+			minIdx = left;
+		}
+		if(right<sz && arr[minIdx]>arr[right])
+		{
+			minIdx = right;
+		}
+
+		if(minIdx!=idx)
+		{
+			int temp = arr[idx];
+			arr[idx] = arr[minIdx];
+			arr[minIdx] = temp;
+
+			heapify(arr,minIdx,sz);
+		}
+	}
+
+	public static void heapSort(int arr[])
+	{
+		int n = arr.length;
+
+		//making Max heap
+		for(int i=n/2; i>=0; i--)
+		{
+			heapify2(arr,i,n);
+		}
+
+		for(int i = n-1; i>=0; i--)
+		{
+			int temp = arr[i];
+			arr[i] = arr[0];
+			arr[0] = temp;
+
+			heapify2(arr,0,i);
+		}
+
+	}
 	public static void main(String args[])
 	{
 		// PriorityQueue<Integer> pq = new PriorityQueue<>();
@@ -110,17 +181,27 @@ public class Heaps
 	// 		pq1.remove();
 	// 	}
 
-		Heap hp = new Heap();
+		// Heap hp = new Heap();
 
-		hp.add(3);
-		hp.add(4);
-		hp.add(1);
-		hp.add(5);
+		// hp.add(3);
+		// hp.add(4);
+		// hp.add(1);
+		// hp.add(5);
 
-		while(!hp.isEmpty())
+		// while(!hp.isEmpty())
+		// {
+		// 	System.out.println(hp.peek());
+		// 	hp.remove();
+		// }
+
+		int[] arr = {1,2,4,5,3};
+
+		heapSort(arr);
+
+		for(int i=0; i<arr.length; i++)
 		{
-			System.out.println(hp.peek());
-			hp.remove();
+			System.out.print(arr[i]+" ");
 		}
+		System.out.println();
 	}
 }
