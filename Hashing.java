@@ -231,6 +231,34 @@ public class Hashing
 		}
 		return s.size();
 	}
+
+	public static void union_Intersection(int[] num1,int[] num2)
+	{
+		HashSet<Integer> set1 = new HashSet<>();
+		HashSet<Integer> set2 = new HashSet<>();
+
+		for(int i=0; i<num1.length; i++)
+			set1.add(num1[i]);
+		for(int i=0; i<num2.length; i++)
+			set1.add(num2[i]);
+
+		System.out.println("Union = "+set1);
+
+		set1.clear();
+
+		for(int i=0; i<num1.length; i++)
+			set1.add(num1[i]);
+
+		for(int i=0; i<num2.length; i++)
+		{
+			if(set1.contains(num2[i]))
+			{
+				set2.add(num2[i]);
+			}
+		}
+
+		System.out.println("Intersection = "+set2);
+	}
 	public static void main(String args[])
 	{
 		
@@ -388,8 +416,12 @@ public class Hashing
 
 		// System.out.println(ts);
 
-		int[] num = {4,3,2,5,6,7,3,4,2,1};
-		System.out.println(ditinctElm(num));
+		// int[] num = {4,3,2,5,6,7,3,4,2,1};
+		// System.out.println(ditinctElm(num));
 
+
+		int[] num1 = {2,3,9,87,7,5,6};
+		int[] num2 = {2,9,47,7,8,2};
+		union_Intersection(num1,num2);
 	}
 }
