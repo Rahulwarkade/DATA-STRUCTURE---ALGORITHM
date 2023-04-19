@@ -292,6 +292,27 @@ public class Hashing
 			start = tickets.get(start);
 		}
 	}
+
+	public static void largestSubArrWithSumZero(int[] arr)
+	{
+		HashMap<Integer,Integer> mp = new HashMap<>();
+		int len=Integer.MIN_VALUE,sum=0;
+		for(int i=0; i<arr.length; i++)
+		{
+			sum+=arr[i];
+
+			if(mp.containsKey(sum))
+			{
+				len = Math.max(len,i-mp.get(sum));
+			}
+			else 
+			{
+				mp.put(sum,i);
+			}
+		}
+
+		System.out.println("length = "+len);
+	}
 	public static void main(String args[])
 	{
 		
@@ -457,6 +478,10 @@ public class Hashing
 		int[] num2 = {2,9,47,7,8,2};
 		// union_Intersection(num1,num2);
 
-		Itinerary();
+		// Itinerary();
+
+		int[] arr3 = {15,-2,2,-8,1,7,10,23};
+
+		largestSubArrWithSumZero(arr3);
 	}
 }
