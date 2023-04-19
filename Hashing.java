@@ -160,6 +160,28 @@ public class Hashing
     //         return N;
     //     }
 	// }
+	
+	public static void majorityElm(int[] arr)
+	{
+		HashMap<Integer,Integer> hm = new HashMap<>();
+		for(int i=0; i<arr.length; i++)
+		{
+			if(hm.containsKey(arr[i]))
+			{
+				hm.put(arr[i],hm.get(arr[i])+1);
+			}
+			else  
+			{
+				hm.put(arr[i],1);
+			}
+		}
+		int n = arr.length/3;
+		for(Integer key : hm.keySet())
+		{
+			if(hm.get(key)>n)
+				System.out.print(key);
+		}
+	}
 	public static void main(String args[])
 	{
 		// HashMap<String,Integer> hm = new HashMap<>();
@@ -230,23 +252,26 @@ public class Hashing
         // System.out.println(hm.length());
 
 // LinkedHashMap
-		HashMap<String,Integer> hm = new HashMap<>();
-		LinkedHashMap<String,Integer> lhm = new LinkedHashMap<>();
-		hm.put("Ukrain",88);
-		hm.put("Argentina",88);
-		hm.put("Pakistan",88);
+		// HashMap<String,Integer> hm = new HashMap<>();
+		// LinkedHashMap<String,Integer> lhm = new LinkedHashMap<>();
+		// hm.put("Ukrain",88);
+		// hm.put("Argentina",88);
+		// hm.put("Pakistan",88);
 
-		lhm.put("Ukrain",88);
-		lhm.put("Argentina",88);
-		lhm.put("Pakistan",88);
+		// lhm.put("Ukrain",88);
+		// lhm.put("Argentina",88);
+		// lhm.put("Pakistan",88);
 
-		System.out.println(hm);
-		System.out.println(lhm);
+		// System.out.println(hm);
+		// System.out.println(lhm);
+// TreeMap
+		// TreeMap<String,Integer> tm = new TreeMap<>();
+		// tm.put("Ukrain",88);
+		// tm.put("Argentina",88);
+		// tm.put("Pakistan",88);
+		// System.out.println(tm);
 
-		TreeMap<String,Integer> tm = new TreeMap<>();
-		tm.put("Ukrain",88);
-		tm.put("Argentina",88);
-		tm.put("Pakistan",88);
-		System.out.println(tm);
+		int[] nums = {1,3,2,5,1,3,1,5,1};
+		majorityElm(nums);
 	}
 }
