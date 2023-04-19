@@ -26,6 +26,7 @@ public class Hashing
 	// 	{
 	// 		this.N = 4;
 	// 		this.n = 0;
+	// 		@SuppressWarnings("rawtypes")
 	// 		this.buckets = new LinkedList[4];
 	// 		for(int i=0; i<N; i++)
 	// 			buckets[i] = new LinkedList<Node>();
@@ -47,11 +48,12 @@ public class Hashing
 	// 		}
 	// 		return -1;
 	// 	}
-
+	// 	// @SuppressWarnings("All")
     //     @SuppressWarnings("unchecked")
     //     private void rehash()
     //     {
     //         LinkedList<Node> oldBuckets[] = buckets;
+    //         @SuppressWarnings("rawtypes")
     //         buckets = new LinkedList[2*N];
     //         N = 2*N;
     //         n = 0;
@@ -326,11 +328,24 @@ public class Hashing
 		set.add(20);
 		set.add(23);
 
-		System.out.println(set);
-		set.remove(2);
-		System.out.println(set);
-		System.out.println(set.contains(24));
-		set.clear();
-		System.out.println(set.isEmpty());
+		// System.out.println(set);
+		// set.remove(2);
+		// System.out.println(set);
+		// System.out.println(set.contains(24));
+		// System.out.println(set.size());
+		// set.clear();
+		// System.out.println(set.isEmpty());
+
+//Interation on set
+		@SuppressWarnings("rawtypes")
+		Iterator it = set.iterator();
+		while(it.hasNext())
+		{
+			System.out.println(it.next());
+		}
+
+		for (Integer elm : set) {
+			System.out.print(elm+" ");	
+		}
 	}
 }
