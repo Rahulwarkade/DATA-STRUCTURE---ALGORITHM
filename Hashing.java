@@ -187,6 +187,8 @@ public class Hashing
 
 	public static boolean isAnagream(String s,String t)
 	{
+
+		// if(s.length!=t.length) return false;
 		HashMap<Character,Integer> hm = new HashMap<>();
 
 		for(int i=0; i<s.length(); i++)
@@ -309,8 +311,26 @@ public class Hashing
 		// int[] nums = {1,3,2,5,1,3,1,5,1};
 		// majorityElm(nums);
 
-		String s = "race",t = "cre";
+		// String s = "race",t = "care";
 
-		System.out.println(isAnagream(s,t));
+		// System.out.println(isAnagream(s,t));
+
+// HashSet
+
+		HashSet<Integer> set = new HashSet<>();
+
+		set.add(2);
+		set.add(2);
+		set.add(2);
+		set.add(24);
+		set.add(20);
+		set.add(23);
+
+		System.out.println(set);
+		set.remove(2);
+		System.out.println(set);
+		System.out.println(set.contains(24));
+		set.clear();
+		System.out.println(set.isEmpty());
 	}
 }
