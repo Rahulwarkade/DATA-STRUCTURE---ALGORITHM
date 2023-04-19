@@ -337,15 +337,26 @@ public class Hashing
 		// System.out.println(set.isEmpty());
 
 //Interation on set
-		@SuppressWarnings("rawtypes")
-		Iterator it = set.iterator();
-		while(it.hasNext())
-		{
-			System.out.println(it.next());
-		}
+		// @SuppressWarnings("rawtypes")
+		// Iterator it = set.iterator();
+		// while(it.hasNext())
+		// {
+		// 	System.out.println(it.next());
+		// }
 
-		for (Integer elm : set) {
-			System.out.print(elm+" ");	
-		}
+		// for (Integer elm : set) {
+		// 	System.out.print(elm+" ");	
+		// }
+
+// LinkedHashSet
+
+		LinkedHashSet<String> cities = new LinkedHashSet<>();
+		cities.add("Bhopal");
+		cities.add("Asam");
+		cities.add("Keral");
+		cities.add("Mombia");
+		cities.add("Noida");
+		cities.add("Bengluru");
+		System.out.println(cities);
 	}
 }
