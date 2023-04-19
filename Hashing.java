@@ -242,5 +242,11 @@ public class Hashing
 
 		System.out.println(hm);
 		System.out.println(lhm);
+
+		TreeMap<String,Integer> tm = new TreeMap<>();
+		tm.put("Ukrain",88);
+		tm.put("Argentina",88);
+		tm.put("Pakistan",88);
+		System.out.println(tm);
 	}
 }
