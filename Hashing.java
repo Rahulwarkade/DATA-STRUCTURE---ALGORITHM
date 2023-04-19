@@ -184,6 +184,39 @@ public class Hashing
 				System.out.print(key+" ");
 		}
 	}
+
+	public static boolean isAnagream(String s,String t)
+	{
+		HashMap<Character,Integer> hm = new HashMap<>();
+
+		for(int i=0; i<s.length(); i++)
+		{
+			char ch = s.charAt(i);
+			hm.put(ch,hm.getOrDefault(ch,0)+1);
+		}
+
+		for(int i=0; i<t.length(); i++)
+		{
+			char ch = t.charAt(i);
+			if(hm.get(ch)!=null)
+			{
+				if(hm.get(ch)==1)
+				{
+					hm.remove(ch);
+				}
+				else  
+				{
+					hm.put(ch,hm.get(ch)-1);
+				}
+			}
+			else 
+			{
+				return false;
+			}
+		}
+
+		return hm.isEmpty();
+	}
 	public static void main(String args[])
 	{
 		// HashMap<String,Integer> hm = new HashMap<>();
@@ -273,7 +306,11 @@ public class Hashing
 		// tm.put("Pakistan",88);
 		// System.out.println(tm);
 
-		int[] nums = {1,3,2,5,1,3,1,5,1};
-		majorityElm(nums);
+		// int[] nums = {1,3,2,5,1,3,1,5,1};
+		// majorityElm(nums);
+
+		String s = "race",t = "cre";
+
+		System.out.println(isAnagream(s,t));
 	}
 }
