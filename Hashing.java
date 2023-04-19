@@ -166,20 +166,22 @@ public class Hashing
 		HashMap<Integer,Integer> hm = new HashMap<>();
 		for(int i=0; i<arr.length; i++)
 		{
-			if(hm.containsKey(arr[i]))
-			{
-				hm.put(arr[i],hm.get(arr[i])+1);
-			}
-			else  
-			{
-				hm.put(arr[i],1);
-			}
+			// if(hm.containsKey(arr[i]))
+			// {
+			// 	hm.put(arr[i],hm.get(arr[i])+1);
+			// }
+			// else  
+			// {
+			// 	hm.put(arr[i],1);
+			// }
+
+			hm.put(arr[i],hm.getOrDefault(arr[i],0)+1);
 		}
 		int n = arr.length/3;
 		for(Integer key : hm.keySet())
 		{
 			if(hm.get(key)>n)
-				System.out.print(key);
+				System.out.print(key+" ");
 		}
 	}
 	public static void main(String args[])
