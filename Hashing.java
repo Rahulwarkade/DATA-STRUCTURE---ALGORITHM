@@ -221,8 +221,19 @@ public class Hashing
 
 		return hm.isEmpty();
 	}
+
+	public static int ditinctElm(int[] nums)
+	{
+		HashSet<Integer> s = new HashSet<>();
+		for(int i=0; i<nums.length; i++)
+		{
+			s.add(nums[i]);
+		}
+		return s.size();
+	}
 	public static void main(String args[])
 	{
+		
 		// HashMap<String,Integer> hm = new HashMap<>();
 
 // .put(key,value) -> O(1)
@@ -356,7 +367,7 @@ public class Hashing
 		hs.add("Mombia");
 		hs.add("Noida");
 		hs.add("Bengluru");
-		System.out.println(hs);
+		// System.out.println(hs);
 
 		LinkedHashSet<String> lhs = new LinkedHashSet<>();
 		lhs.add("Bhopal");
@@ -365,7 +376,7 @@ public class Hashing
 		lhs.add("Mombia");
 		lhs.add("Noida");
 		lhs.add("Bengluru");
-		System.out.println(lhs);
+		// System.out.println(lhs);
 
 		TreeSet<String> ts = new TreeSet<>();
 		ts.add("Bhopal");
@@ -375,7 +386,10 @@ public class Hashing
 		ts.add("Noida");
 		ts.add("Bengluru");
 
-		System.out.println(ts);
+		// System.out.println(ts);
+
+		int[] num = {4,3,2,5,6,7,3,4,2,1};
+		System.out.println(ditinctElm(num));
 
 	}
 }
