@@ -349,14 +349,33 @@ public class Hashing
 		// }
 
 // LinkedHashSet
+		HashSet<String> hs = new HashSet<>();
+		hs.add("Bhopal");
+		hs.add("Asam");
+		hs.add("Keral");
+		hs.add("Mombia");
+		hs.add("Noida");
+		hs.add("Bengluru");
+		System.out.println(hs);
 
-		LinkedHashSet<String> cities = new LinkedHashSet<>();
-		cities.add("Bhopal");
-		cities.add("Asam");
-		cities.add("Keral");
-		cities.add("Mombia");
-		cities.add("Noida");
-		cities.add("Bengluru");
-		System.out.println(cities);
+		LinkedHashSet<String> lhs = new LinkedHashSet<>();
+		lhs.add("Bhopal");
+		lhs.add("Asam");
+		lhs.add("Keral");
+		lhs.add("Mombia");
+		lhs.add("Noida");
+		lhs.add("Bengluru");
+		System.out.println(lhs);
+
+		TreeSet<String> ts = new TreeSet<>();
+		ts.add("Bhopal");
+		ts.add("Asam");
+		ts.add("Keral");
+		ts.add("Mombia");
+		ts.add("Noida");
+		ts.add("Bengluru");
+
+		System.out.println(ts);
+
 	}
 }
