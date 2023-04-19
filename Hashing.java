@@ -313,6 +313,27 @@ public class Hashing
 
 		System.out.println("length = "+len);
 	}
+
+	public static void sumEqualToK(int[] arr)
+	{
+		HashMap<Integer,Integer> mp = new HashMap<>();
+		mp.put(0,1);
+		int k = -10;
+		int sum = 0,ans = 0;
+
+		for(int j=0; j<arr.length; j++)
+		{
+			sum += arr[j];
+			if(mp.containsKey(sum-k))
+			{
+				ans += mp.get(sum-k);
+			}
+
+			mp.put(sum,mp.getOrDefault(sum,0)+1);
+		}
+
+		System.out.println(ans);
+	}
 	public static void main(String args[])
 	{
 		
@@ -482,6 +503,10 @@ public class Hashing
 
 		int[] arr3 = {15,-2,2,-8,1,7,10,23};
 
-		largestSubArrWithSumZero(arr3);
+		// largestSubArrWithSumZero(arr3);
+
+		int[] arr4 = {10,2,-2,-20,10};
+
+		sumEqualToK(arr4);
 	}
 }
