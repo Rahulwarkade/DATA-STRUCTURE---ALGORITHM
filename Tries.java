@@ -113,20 +113,39 @@ public class Tries
 			}
 		}
 	}
+
+	public static boolean startsWith(String prefix)
+	{
+		Node curr = root;
+
+		for(int i=0; i<prefix.length(); i++)
+		{
+			int idx = prefix.charAt(i)-'a';
+
+			if(curr.children[idx]==null)
+				return false;
+			curr = curr.children[idx];
+		}
+
+		return true;
+	}
 	public static void main(String args[])
 	{
 		// String words[] = {"the","a","there","their","any","thee"};
 		// String words[] = {"i","like","sam","samsung","mobile","ice"};
-		String words[] = {"zebra","dog","duck","dove"};
+		// String words[] = {"zebra","dog","duck","dove"};
+		String words[] = {"apple","app","mango","man","woman"};
 
 		for (int i=0; i<words.length; i++) {
-			insertfp(words[i]);
+			insert(words[i]);
 		}
 
 		// System.out.println(search("an"));
 
 		// System.out.println(wordBreak("ilikesam"));
-		root1.freq = -1;
-		findPrefix(root1,"");
+		// root1.freq = -1;
+		// findPrefix(root1,"");
+
+		System.out.println(startsWith("man"));
 	}
 }
