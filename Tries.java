@@ -129,16 +129,35 @@ public class Tries
 
 		return true;
 	}
+
+	public static int uniqueSubString(Node root)
+	{
+		if(root == null)
+		{
+			return 0;
+		}
+
+		int count = 0;
+		for(int i=0; i<26; i++)
+		{
+			if(root.children[i]!=null)
+			{
+				count += uniqueSubString(root.children[i]);
+			}
+		}
+
+		return count+1;
+	}
 	public static void main(String args[])
 	{
 		// String words[] = {"the","a","there","their","any","thee"};
 		// String words[] = {"i","like","sam","samsung","mobile","ice"};
 		// String words[] = {"zebra","dog","duck","dove"};
-		String words[] = {"apple","app","mango","man","woman"};
+		// String words[] = {"apple","app","mango","man","woman"};
 
-		for (int i=0; i<words.length; i++) {
-			insert(words[i]);
-		}
+		// for (int i=0; i<words.length; i++) {
+		// 	insert(words[i]);
+		// }
 
 		// System.out.println(search("an"));
 
@@ -146,6 +165,15 @@ public class Tries
 		// root1.freq = -1;
 		// findPrefix(root1,"");
 
-		System.out.println(startsWith("man"));
+		// System.out.println(startsWith("man"));
+
+		String str = "ababa";
+
+		for(int i=0; i<str.length(); i++)
+		{
+			insert(str.substring(i));
+		}
+
+		System.out.println(uniqueSubString(root));
 	}
 }
