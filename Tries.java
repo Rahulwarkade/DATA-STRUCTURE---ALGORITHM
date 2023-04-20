@@ -148,6 +148,29 @@ public class Tries
 
 		return count+1;
 	}
+
+	public static String ans = "";
+
+	public static void longestWord(Node root,StringBuilder temp)
+	{
+		if(root == null)
+			return;
+
+		for(int i=0; i<26; i++)
+		{
+			if(root.children[i]!=null && root.children[i].eow==true)
+			{
+				char ch = (char)(i+'a');
+				temp.append(ch);
+				if(temp.length() > ans.length())
+				{
+					ans = temp.toString();
+				}
+				longestWord(root.children[i],temp);
+				temp.deleteCharAt(temp.length()-1);
+			}
+		}
+	}
 	public static void main(String args[])
 	{
 		// String words[] = {"the","a","there","their","any","thee"};
@@ -167,13 +190,23 @@ public class Tries
 
 		// System.out.println(startsWith("man"));
 
-		String str = "ababa";
+		// String str = "ababa";
 
-		for(int i=0; i<str.length(); i++)
+		// for(int i=0; i<str.length(); i++)
+		// {
+		// 	insert(str.substring(i));
+		// }
+
+		// System.out.println(uniqueSubString(root));
+
+		String words[] = {"a","banana","app","appl","ap","apply","apple"};
+
+		for(int i=0; i<words.length; i++)
 		{
-			insert(str.substring(i));
+			insert(words[i]);
 		}
 
-		System.out.println(uniqueSubString(root));
+		longestWord(root,new StringBuilder(""));
+		System.out.println(ans);
 	}
 }
