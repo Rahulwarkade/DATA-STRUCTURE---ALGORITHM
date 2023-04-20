@@ -60,17 +60,73 @@ public class Tries
 		}
 		return false;
 	}
+
+	public static class Node1
+	{
+		Node1 children[] = new Node1[26];
+		boolean eow = false;
+		int freq;
+		Node1(){
+			for(int i=0; i<26; i++)
+			{
+				children[i] = null;
+			}
+			freq = 1;
+		}
+	}
+
+	public static Node1 root1 = new Node1();
+	public static void insertfp(String key)
+	{
+		Node1 curr = root1;
+		for(int i=0; i<key.length(); i++)
+		{
+			int idx = key.charAt(i) - 'a';
+			if(curr.children[idx]==null)
+			{
+				curr.children[idx] = new Node1();
+			}
+			else
+			{
+				curr.children[idx].freq++;
+			}
+			curr = curr.children[idx];
+		}
+
+		curr.eow = true;
+	}
+
+	public static void findPrefix(Node1 root1, String ans)
+	{
+		if(root1==null)
+			return;
+		if(root1.freq==1){
+			System.out.println(ans);
+			return;
+		}
+
+		for(int i=0; i<26; i++)
+		{
+			if(root1.children[i]!=null)
+			{
+				findPrefix(root1.children[i],ans+(char)(i+'a'));
+			}
+		}
+	}
 	public static void main(String args[])
 	{
 		// String words[] = {"the","a","there","their","any","thee"};
-		String words[] = {"i","like","sam","samsung","mobile","ice"};
+		// String words[] = {"i","like","sam","samsung","mobile","ice"};
+		String words[] = {"zebra","dog","duck","dove"};
 
 		for (int i=0; i<words.length; i++) {
-			insert(words[i]);
+			insertfp(words[i]);
 		}
 
 		// System.out.println(search("an"));
 
-		System.out.println(wordBreak("ilikesam"));
+		// System.out.println(wordBreak("ilikesam"));
+		root1.freq = -1;
+		findPrefix(root1,"");
 	}
 }
