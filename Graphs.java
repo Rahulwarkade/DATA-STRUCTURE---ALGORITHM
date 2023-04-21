@@ -12,6 +12,35 @@ public class Graphs
 			this.weight = weight;
 		}
 	}
+
+	public static void BFS(ArrayList<Edge>[] graph)
+	{
+		int n = graph.length;
+		Queue<Integer> q = new LinkedList<>();
+		boolean visited[]  = new boolean[n];
+
+		q.add(graph[0].get(0).src);
+
+		while(!q.isEmpty())
+		{
+			int curr = q.remove();
+
+			if(!visited[curr])
+			{
+				visited[curr] = true;
+				System.out.print(curr+" ");
+
+				for(int i=0; i<graph[curr].size(); i++)
+				{
+					int child = graph[curr].get(i).dest;
+					if(!visited[child])
+					{
+						q.add(child);
+					}
+				}
+			} 
+		}
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -20,7 +49,7 @@ public class Graphs
 
 		ArrayList<Edge>[] graph = new ArrayList[V];
 
-		for(int i=0; i<E; i++)
+		for(int i=0; i<V; i++)
 		{
 			graph[i] = new ArrayList<>();
 		}
@@ -38,10 +67,11 @@ public class Graphs
 		for(int i=0; i<E; i++)
 		{
 			int src,dest,wt;
-			src = nextInt();
-			dest = nextInt();
-			// wt = nextInt();
+			src = jin.nextInt();
+			dest = jin.nextInt();
+			// wt = jin.nextInt();
 			graph[src].add(new Edge(src,dest,1));
+			graph[dest].add(new Edge(dest,src,1));
 		}
 		// for(int i=0; i<V; i++)
 		// {
@@ -51,5 +81,7 @@ public class Graphs
 		// 		System.out.println("source = "+node.src+", destination = "+node.dest+" weight = "+node.weight);
 		// 	}
 		// }
+
+		BFS(graph);
 	}
 }
