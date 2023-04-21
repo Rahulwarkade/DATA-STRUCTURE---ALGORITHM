@@ -16,8 +16,24 @@ public class Graphs
 	public static void BFS(ArrayList<Edge>[] graph)
 	{
 		int n = graph.length;
-		Queue<Integer> q = new LinkedList<>();
 		boolean visited[]  = new boolean[n];
+
+		int cc = 0;
+		for(int i=0; i<n; i++)
+		{
+			if(!visited[i])
+			{
+				BFSutil(graph,visited);
+				cc++;
+			}
+		}
+
+		System.out.println("\nnumber of components = "+cc);
+
+	}
+	public static void BFSutil(ArrayList<Edge>[] graph,boolean visited[])
+	{
+		Queue<Integer> q = new LinkedList<>();
 
 		q.add(graph[0].get(0).src);
 
@@ -54,7 +70,7 @@ public class Graphs
 				components++;
 			}
 		}
-		System.out.println("number of components = "+components);
+		System.out.println("\nnumber of components = "+components);
 	}
 	public static void DFSutil(ArrayList<Edge>[] graph,int curr,boolean visited[])
 	{
@@ -128,12 +144,12 @@ public class Graphs
 		// 	}
 		// }
 
-		// BFS(graph);
+		BFS(graph);
 		// System.out.println();
 		// DFS(graph,graph[0].get(0).src,new boolean[V]);
 
 		//Components of graph
-		DFS(graph);
+		// DFS(graph);
 		// System.out.println();
 		// System.out.println(hasPath(graph,0,5,new boolean[V]));
 	}
