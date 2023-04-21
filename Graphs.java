@@ -54,6 +54,24 @@ public class Graphs
 				DFS(graph,child,visited);
 		}
 	}
+
+	public static boolean hasPath(ArrayList<Edge>[] graph,int src,int dest,boolean visited[])
+	{
+		if(src== dest){
+			return true;
+		}
+		visited[src] = true;
+
+		for(int i=0; i<graph[src].size(); i++)
+		{
+			int child = graph[src].get(i).dest;
+			if(!visited[child]&&hasPath(graph,child,dest,visited))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -95,8 +113,10 @@ public class Graphs
 		// 	}
 		// }
 
-		BFS(graph);
-		System.out.println();
-		DFS(graph,graph[0].get(0).src,new boolean[V]);
+		// BFS(graph);
+		// System.out.println();
+		// DFS(graph,graph[0].get(0).src,new boolean[V]);
+		// System.out.println();
+		System.out.println(hasPath(graph,0,5,new boolean[V]));
 	}
 }
