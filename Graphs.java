@@ -41,7 +41,22 @@ public class Graphs
 			} 
 		}
 	}
-	public static void DFS(ArrayList<Edge>[] graph,int curr,boolean visited[])
+
+	public static void DFS(ArrayList<Edge>[] graph)
+	{
+		boolean visited[] = new boolean[graph.length];
+		int components = 0;
+		for(int i=0; i<graph.length; i++)
+		{
+			if(!visited[i])
+			{
+				DFSutil(graph,i,visited);
+				components++;
+			}
+		}
+		System.out.println("number of components = "+components);
+	}
+	public static void DFSutil(ArrayList<Edge>[] graph,int curr,boolean visited[])
 	{
 		int n = graph.length;
 		System.out.print(curr+" ");
@@ -51,7 +66,7 @@ public class Graphs
 		{
 			int child = graph[curr].get(i).dest;
 			if(!visited[child])
-				DFS(graph,child,visited);
+				DFSutil(graph,child,visited);
 		}
 	}
 
@@ -116,7 +131,10 @@ public class Graphs
 		// BFS(graph);
 		// System.out.println();
 		// DFS(graph,graph[0].get(0).src,new boolean[V]);
+
+		//Components of graph
+		DFS(graph);
 		// System.out.println();
-		System.out.println(hasPath(graph,0,5,new boolean[V]));
+		// System.out.println(hasPath(graph,0,5,new boolean[V]));
 	}
 }
