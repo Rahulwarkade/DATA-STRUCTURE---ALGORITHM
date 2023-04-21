@@ -41,8 +41,7 @@ public class Graphs
 			} 
 		}
 	}
-	public static boolean visited[] = new boolean[7];
-	public static void DFS(ArrayList<Edge>[] graph,int curr)
+	public static void DFS(ArrayList<Edge>[] graph,int curr,boolean visited[])
 	{
 		int n = graph.length;
 		System.out.print(curr+" ");
@@ -52,7 +51,7 @@ public class Graphs
 		{
 			int child = graph[curr].get(i).dest;
 			if(!visited[child])
-				DFS(graph,child);
+				DFS(graph,child,visited);
 		}
 	}
 	public static void main(String args[])
@@ -98,6 +97,6 @@ public class Graphs
 
 		BFS(graph);
 		System.out.println();
-		DFS(graph,graph[0].get(0).src);
+		DFS(graph,graph[0].get(0).src,new boolean[V]);
 	}
 }
