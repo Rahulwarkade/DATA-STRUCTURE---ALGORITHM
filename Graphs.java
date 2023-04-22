@@ -304,8 +304,8 @@ public class Graphs
 		// System.out.println(hasPath(graph,0,5,new boolean[V]));
 
 		// System.out.println(detectCycle(graph));
-		// System.out.println(bipartite(graph));
-		System.out.println(isCycle(graph));
+		System.out.println(bipartite(graph));
+		// System.out.println(isCycle(graph));
 		// topologicalSort(graph);
 	}
 }
