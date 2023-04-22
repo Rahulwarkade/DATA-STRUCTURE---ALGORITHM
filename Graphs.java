@@ -416,7 +416,7 @@ public class Graphs
 
 		for(int i=0; i<graph.length; i++)
 		{
-			System.out.println(dist[i]+ " ");
+			System.out.print(dist[i]+ " ");
 		}
 	}
 	public static void main(String args[])
@@ -478,6 +478,8 @@ public class Graphs
 
 		// allPaths(graph,5,1,"");
 
-		dijkstra(graph,0);
+		// dijkstra(graph,0);
+
+		bellmanFord(graph,0);
 	}
 }
