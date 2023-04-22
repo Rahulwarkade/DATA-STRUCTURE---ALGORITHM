@@ -419,6 +419,48 @@ public class Graphs
 			System.out.print(dist[i]+ " ");
 		}
 	}
+
+	public static class Pair implements Comparable<Pair>
+	{
+		int node;
+		int cost;
+		Pair(int node,int cost)
+		{
+			this.node = node;
+			this.cost = cost;
+		}
+
+		@Override
+		public int compareTo(Pair obj2)
+		{
+			return this.cost - obj2.cost;
+		}
+	}
+	public static void prims(ArrayList<Edge>[] graph)
+	{
+		boolean vis[] = new boolean[graph.length];
+		PriorityQueue<Pair> pq = new PriorityQueue<>();
+		pq.add(new Path(0,0));
+
+		int finalCost = 0;
+		while(!pq.isEmpty())
+		{
+			Pair curr = pq.remove();
+			if(!vis[curr.node])
+			{
+				vis[curr.node] = true;
+				finalCost += curr.weight;
+				for(int i=0; i<graph[curr.node].size(); i++)
+				{
+					Edge e = graph[curr.node].get(i);
+
+					pq.add(new Pair(e.dest,e.weight))
+				}
+			}
+		}
+
+		System.out.println("MST cost = "+ finalCost);
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -449,6 +491,7 @@ public class Graphs
 			dest = jin.nextInt();
 			wt = jin.nextInt();
 			graph[src].add(new Edge(src,dest,wt));
+			graph[dest].add(new Edge(dest,src,wt));
 			// graph[dest].add(new Edge(dest,src,1));
 		}
 		// for(int i=0; i<V; i++)
