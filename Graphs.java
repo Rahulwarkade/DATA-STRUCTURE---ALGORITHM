@@ -103,6 +103,45 @@ public class Graphs
 		}
 		return false;
 	}
+
+	public static boolean detectCycle(ArrayList<Edge>[] graph)
+	{
+		boolean visited[] = new boolean[graph.length];
+
+		for(int i=0; i<graph.length; i++)
+		{
+			if(!visited[i])
+			{
+				if(detectCycleUtil(graph,i,-1,visited))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public static boolean detectCycleUtil(ArrayList<Edge>[] graph,int curr,int par,boolean visited[])
+	{
+		visited[curr] = true;
+
+		for(int i=0; i<graph[curr].size(); i++)
+		{
+			int child = graph[curr].get(i).dest;
+			if(visited[child] && child!=par)
+			{
+				return true;
+			}
+			else if(!visited[child])
+			{
+				if(detectCycleUtil(graph,child,curr,visited))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -144,7 +183,7 @@ public class Graphs
 		// 	}
 		// }
 
-		BFS(graph);
+		// BFS(graph);
 		// System.out.println();
 		// DFS(graph,graph[0].get(0).src,new boolean[V]);
 
@@ -152,5 +191,7 @@ public class Graphs
 		// DFS(graph);
 		// System.out.println();
 		// System.out.println(hasPath(graph,0,5,new boolean[V]));
+
+		System.out.println(detectCycle(graph));
 	}
 }
