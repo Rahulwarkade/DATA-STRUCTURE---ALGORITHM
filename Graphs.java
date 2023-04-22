@@ -299,6 +299,21 @@ public class Graphs
 			}
 		}
 	}
+
+	public static void allPaths(ArrayList<Edge>[] graph,int src,int target,String path)
+	{
+		if(src == target)
+		{
+			System.out.println(path+target);
+			return;
+		}
+
+		for(int i=0; i<graph[src].size(); i++)
+		{
+			int child = graph[src].get(i).dest;
+			allPaths(graph,child,target,path+src);
+		}
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -354,6 +369,8 @@ public class Graphs
 		// System.out.println(isCycle(graph));
 		// topologicalSort(graph);
 
-		topSortBFS(graph);
+		// topSortBFS(graph);
+
+		allPaths(graph,5,1,"");
 	}
 }
