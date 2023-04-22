@@ -440,7 +440,7 @@ public class Graphs
 	{
 		boolean vis[] = new boolean[graph.length];
 		PriorityQueue<Pair> pq = new PriorityQueue<>();
-		pq.add(new Path(0,0));
+		pq.add(new Pair(0,0));
 
 		int finalCost = 0;
 		while(!pq.isEmpty())
@@ -449,12 +449,12 @@ public class Graphs
 			if(!vis[curr.node])
 			{
 				vis[curr.node] = true;
-				finalCost += curr.weight;
+				finalCost += curr.cost;
 				for(int i=0; i<graph[curr.node].size(); i++)
 				{
 					Edge e = graph[curr.node].get(i);
 
-					pq.add(new Pair(e.dest,e.weight))
+					pq.add(new Pair(e.dest,e.weight));
 				}
 			}
 		}
@@ -523,6 +523,8 @@ public class Graphs
 
 		// dijkstra(graph,0);
 
-		bellmanFord(graph,0);
+		// bellmanFord(graph,0);
+
+		prims(graph);
 	}
 }
