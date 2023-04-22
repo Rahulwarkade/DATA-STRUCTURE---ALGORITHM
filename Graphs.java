@@ -183,6 +183,76 @@ public class Graphs
 
 		return true;
 	}
+
+	public static boolean isCycleUtil(ArrayList<Edge>[] graph,int curr,boolean[] vis,boolean[] stack)
+	{
+		vis[curr] = true;
+		stack[curr] = true;
+
+		for(int i=0; i<graph[curr].size(); i++)
+		{
+			int child = graph[curr].get(i).dest;
+
+			if(stack[child])
+			{
+				return true;
+			}
+			if(!vis[child] && isCycleUtil(graph,child,vis,stack))
+			{
+				return true;
+			}
+		}
+		stack[curr] = false;
+		return false;
+	}
+
+	public static void topologicalSortUtil(ArrayList<Edge>[] graph,int curr,boolean[] vis,Stack<Integer> stack)
+	{
+		vis[curr] = true;
+
+		for(int i=0; i<graph[curr].size(); i++)
+		{
+			int child = graph[curr].get(i).dest;
+			if(!vis[child])
+			{
+				topologicalSortUtil(graph,child,vis,stack);
+			}
+		}
+		stack.push(curr);
+	}
+	public static void topologicalSort(ArrayList<Edge>[] graph)
+	{
+		boolean[] vis = new boolean[graph.length];
+		Stack<Integer> stack = new Stack<>();
+		for(int i=0; i<graph.length; i++)
+		{
+			if(!vis[i])
+			{
+				topologicalSortUtil(graph,i,vis,stack);
+			}
+		}
+
+		while(!stack.isEmpty())
+		{
+			System.out.println(stack.pop());
+		}
+	}
+	public static boolean isCycle(ArrayList<Edge>[] graph)
+	{
+		boolean vis[] = new boolean[graph.length];
+		boolean stack[]  = new boolean[graph.length];
+		for(int i=0; i<graph.length; i++)
+		{
+			if(!vis[i])
+			{
+				if(isCycleUtil(graph,i,vis,stack))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -213,7 +283,7 @@ public class Graphs
 			dest = jin.nextInt();
 			// wt = jin.nextInt();
 			graph[src].add(new Edge(src,dest,1));
-			graph[dest].add(new Edge(dest,src,1));
+			// graph[dest].add(new Edge(dest,src,1));
 		}
 		// for(int i=0; i<V; i++)
 		// {
@@ -234,6 +304,8 @@ public class Graphs
 		// System.out.println(hasPath(graph,0,5,new boolean[V]));
 
 		// System.out.println(detectCycle(graph));
-		System.out.println(bipartite(graph));
+		// System.out.println(bipartite(graph));
+		// System.out.println(isCycle(graph));
+		topologicalSort(graph);
 	}
 }
