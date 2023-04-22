@@ -142,6 +142,47 @@ public class Graphs
 		}
 		return false;
 	}
+
+	public static boolean bipartite(ArrayList<Edge>[] graph)
+	{
+		int color[] = new int[graph.length];
+		for(int i=0; i<graph.length; i++)
+		{
+			color[i] = -1;
+		}
+
+		Queue<Integer> q = new LinkedList<>();
+
+		for(int i=0; i<graph.length; i++)
+		{
+			if(color[i]==-1)
+			{
+				q.add(i);
+				color[i] = 0;
+				while(!q.isEmpty())
+				{
+					int curr = q.remove();
+
+					for(int j=0; j<graph[curr].size(); j++)
+					{
+						int child = graph[curr].get(j).dest;
+						if(color[child]==-1)
+						{
+							int nextColor = color[curr]==0 ? 1 : 0;
+							color[child] = nextColor;
+							q.add(child);
+						}
+						else if(color[child]==color[curr])
+						{
+							return false;
+						}
+					}
+				}
+			}
+		}
+
+		return true;
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -192,6 +233,7 @@ public class Graphs
 		// System.out.println();
 		// System.out.println(hasPath(graph,0,5,new boolean[V]));
 
-		System.out.println(detectCycle(graph));
+		// System.out.println(detectCycle(graph));
+		System.out.println(bipartite(graph));
 	}
 }
