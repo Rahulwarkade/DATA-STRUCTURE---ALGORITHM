@@ -314,6 +314,71 @@ public class Graphs
 			allPaths(graph,child,target,path+src);
 		}
 	}
+
+	public static class Path implements Comparable<Path>
+	{
+		int node;
+		int distance;
+
+		Path(int node,int distance)
+		{
+			this.node = node; 
+			this.distance = distance;
+		}
+
+		@Override
+		public int compareTo(Path obj2)
+		{
+			return this.distance - obj2.distance;
+		}
+	}
+	public static void dijkstra(ArrayList<Edge>[] graph,int source)
+	{
+		int dist[] = new int[graph.length];
+
+		for(int i=0; i<graph.length; i++)
+		{
+			if(i!=source)
+			{
+				dist[i] = Integer.MAX_VALUE;
+			}
+		}
+
+		boolean[] vis = new boolean[graph.length];
+
+		PriorityQueue<Path> pq = new PriorityQueue<>();
+		pq.add(new Path(source,0));
+
+		while(!pq.isEmpty())
+		{
+			Path curr = pq.remove();
+
+			if(!vis[curr.node])
+			{
+				vis[curr.node] = true;
+
+				for(int i=0; i<graph[curr.node].size(); i++)
+				{
+					Edge e = graph[curr.node].get(i);
+
+					int u = e.src;
+					int v = e.dest;
+					int wt = e.weight;
+
+					if(dist[u]+wt<dist[v])
+					{
+						dist[v] = dist[u]+wt;
+						pq.add(new Path(v,dist[v]));
+					}
+				}
+			}
+		}
+
+		for(int i=1; i<graph.length; i++)
+		{
+			System.out.println(source+" -> "+i+" = "+dist[i]);
+		}
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -342,8 +407,8 @@ public class Graphs
 			int src,dest,wt;
 			src = jin.nextInt();
 			dest = jin.nextInt();
-			// wt = jin.nextInt();
-			graph[src].add(new Edge(src,dest,1));
+			wt = jin.nextInt();
+			graph[src].add(new Edge(src,dest,wt));
 			// graph[dest].add(new Edge(dest,src,1));
 		}
 		// for(int i=0; i<V; i++)
@@ -371,6 +436,8 @@ public class Graphs
 
 		// topSortBFS(graph);
 
-		allPaths(graph,5,1,"");
+		// allPaths(graph,5,1,"");
+
+		dijkstra(graph,0);
 	}
 }
