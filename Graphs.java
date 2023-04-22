@@ -253,6 +253,52 @@ public class Graphs
 		}
 		return false;
 	}
+
+	public static void inDgree(ArrayList<Edge>[] graph,int[] indgree)
+	{
+		for(int i=0; i<graph.length; i++)
+		{
+		   	ArrayList<Edge>	child = graph[i];
+
+		   	for(int j = 0; j<child.size(); j++)
+		   	{
+		   		int V = child.get(j).dest;
+		   		indgree[V]++;
+		   	}
+		}
+
+	}
+	public static void topSortBFS(ArrayList<Edge>[] graph)
+	{
+		int indgree[] = new int[graph.length];
+		inDgree(graph,indgree);
+
+		Queue<Integer> q = new LinkedList<>();
+
+		for(int i=0; i<graph.length; i++)
+		{
+			if(indgree[i]==0)
+			{
+				q.add(i);
+			}
+		}
+
+		while(!q.isEmpty())
+		{
+			int curr = q.remove();
+
+			System.out.println(curr);
+			for(int j=0; j<graph[curr].size(); j++)
+			{
+				int child = graph[curr].get(j).dest;
+				indgree[child]--;
+				if(indgree[child]==0)
+				{
+					q.add(child);
+				}
+			}
+		}
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -304,8 +350,10 @@ public class Graphs
 		// System.out.println(hasPath(graph,0,5,new boolean[V]));
 
 		// System.out.println(detectCycle(graph));
-		System.out.println(bipartite(graph));
+		// System.out.println(bipartite(graph));
 		// System.out.println(isCycle(graph));
 		// topologicalSort(graph);
+
+		topSortBFS(graph);
 	}
 }
