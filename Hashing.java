@@ -443,8 +443,8 @@ public class Hashing
 		set.add(23);
 
 		// System.out.println(set);
-		// set.remove(2);
-		// System.out.println(set);
+		set.remove(2);
+		System.out.println(set);
 		// System.out.println(set.contains(24));
 		// System.out.println(set.size());
 		// set.clear();
