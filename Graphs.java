@@ -622,7 +622,8 @@ public class Graphs
 	{
 		if(parent[v] == v)
 			return v;
-		return find(parent[v]);
+		//path comperasion
+		return parent[v] = find(parent[v]);
 	}
 
 	public static void union(int a,int b)
@@ -728,15 +729,15 @@ public class Graphs
 		// System.out.println(connectingCities(cities));
 
 
-		make();
-		union(1,3);
-		System.out.println(find(3));
-		// System.out.println(find(1));
-		union(2,4);
-		union(3,6);
-		union(1,4);
-		System.out.println(find(3));
-		System.out.println(find(4));
+		// make();
+		// union(1,3);
+		// System.out.println(find(3));
+		// // System.out.println(find(1));
+		// union(2,4);
+		// union(3,6);
+		// union(1,4);
+		// System.out.println(find(3));
+		// System.out.println(find(4));
 
 	}
 }
