@@ -667,7 +667,7 @@ public class Graphs
 
 		// dijkstra(graph,0);
 
-		// bellmanFord(graph,0);
+		bellmanFord(graph,0);
 
 		// prims(graph);
 
