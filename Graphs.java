@@ -662,7 +662,7 @@ public class Graphs
 		@Override
 		public int compareTo(Edg ob2)
 		{
-			return this.cost = ob2.cost;
+			return this.cost - ob2.cost;
 		}
 	}
 	public static void createGraph3(ArrayList<Edg> edges)
@@ -686,9 +686,7 @@ public class Graphs
 			Edg curr = edges.get(i);
 			int a = find(curr.src);
 			int b = find(curr.dest);
-				System.out.print(curr.src+" ");
-				System.out.print(curr.dest+" ");
-				System.out.println(curr.cost);
+
 			if(a!=b)
 			{
 				union(curr.src,curr.dest);
@@ -700,6 +698,17 @@ public class Graphs
 		// return mstCost;
 		System.out.println(mstCost);
 	}	
+
+	public static void floodFill(int[][] images,int sr,int sc,int color,int orgColor)
+	{
+		if(sr<0 || sc<0 || sr>=images.length || sc>=images[0].length || images[sr][sc] == color || images[sr][sc]!=orgColor)
+			return;
+		images[sr][sc] = color;
+		floodFill(images,sr-1,sc,color,orgColor);
+		floodFill(images,sr+1,sc,color,orgColor);
+		floodFill(images,sr,sc-1,color,orgColor);
+		floodFill(images,sr,sc+1,color,orgColor);
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -794,10 +803,25 @@ public class Graphs
 		// System.out.println(find(3));
 		// System.out.println(find(4));
 
-		int V2 = 4;
-		ArrayList<Edg> edges = new ArrayList<>();
+		// int V2 = 4;
+		// ArrayList<Edg> edges = new ArrayList<>();
 
 		// System.out.println(kruskalsMST(edges,V2));
-		kruskalsMST(edges,V2);
+		// kruskalsMST(edges,V2);
+
+		int[][] images = {{1,1,1},
+						  {1,1,0},	
+						  {1,0,1}};
+
+		floodFill(images,0,0,2,1);
+
+		for(int i=0; i<images.length; i++)
+		{
+			for(int j=0; j<images[0].length; j++)
+			{
+				System.out.print(images[i][j]+" ");
+			}
+			System.out.println();
+		}
 	}
 }
