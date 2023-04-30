@@ -663,9 +663,9 @@ public class Graphs
 
 		// topSortBFS(graph);
 
-		// allPaths(graph,5,1,"");
+		allPaths(graph,5,1,"");
 
-		dijkstra(graph,0);
+		// dijkstra(graph,0);
 
 		// bellmanFord(graph,0);
 
