@@ -665,9 +665,9 @@ public class Graphs
 
 		// allPaths(graph,5,1,"");
 
-		// dijkstra(graph,0);
+		dijkstra(graph,0);
 
-		bellmanFord(graph,0);
+		// bellmanFord(graph,0);
 
 		// prims(graph);
 
