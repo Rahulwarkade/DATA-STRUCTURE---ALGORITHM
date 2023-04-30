@@ -461,6 +461,100 @@ public class Graphs
 
 		System.out.println("MST cost = "+ finalCost);
 	}
+
+	public static class Edge2
+	{
+		int v;
+		int dest;
+		int wt;
+
+		Edge2(int v,int dest,int wt)
+		{
+			this.v = v;
+			this.dest = dest;
+			this.wt = wt;
+		}
+	}
+
+	public static void createGraph(ArrayList<Edge2>[] graph,int flights[][])
+	{
+		for(int i=0; i<flights.length; i++)
+		{
+			int v = flights[i][0];
+			int dest = flights[i][1];
+			int cost = flights[i][2];
+
+			graph[v].add(new Edge2(v,dest,cost));
+		}
+	}
+
+	public static class Info3
+	{
+		int v;
+		int cost;
+		int stop;
+
+		Info3(int v,int cost, int stop)
+		{
+			this.v = v;
+			this.cost = cost;
+			this.stop = stop;
+		}
+	}
+	public static int cheapestFlight(int[][] flights,int src,int k,int dest)
+	{
+		int dist[] = new int[flights.length];
+		for(int i=0; i<flights.length; i++)
+		{
+			if(i!=src)
+			{
+				dist[i] = Integer.MAX_VALUE;
+			}
+		}
+
+		@SuppressWarnings("unchecked")
+
+		ArrayList<Edge2> graph[] = new ArrayList[flights.length];
+
+		for(int i=0; i<flights.length; i++)
+		{
+			graph[i] = new ArrayList<Edge2>();
+		}
+
+		createGraph(graph,flights);
+
+		Queue<Info3> q = new LinkedList<>();
+
+		q.add(new Info3(src,0,0));
+
+		while(!q.isEmpty())
+		{
+			Info3 curr = q.remove();
+
+			if(curr.stop>k) break;
+
+			for(int i=0; i<graph[curr.v].size(); i++)
+			{
+				int u = graph[curr.v].get(i).v;
+				int v = graph[curr.v].get(i).dest;
+				int wt = graph[curr.v].get(i).wt;
+
+				// if(dist[u]+wt<dist[v] && curr.stop<=k)
+				if(curr.cost+wt<dist[v] && curr.stop<=k)
+				{
+					dist[v] = curr.cost+wt;
+					q.add(new Info3(v,dist[v],curr.stop+1));
+				}
+			}
+		}
+
+		if(dist[dest]!=Integer.MAX_VALUE)
+		{
+			return dist[dest];
+		}
+
+		return -1;
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -525,6 +619,13 @@ public class Graphs
 
 		// bellmanFord(graph,0);
 
-		prims(graph);
+		// prims(graph);
+
+		int n = 4;
+		int flights[][] = {{0,1,100},{1,2,100},{2,0,100},{1,3,600},{2,3,200}};
+
+		int src = 0,dest = 3,k = 1;
+
+		System.out.println(cheapestFlight(flights,src,k,dest));
 	}
 }
