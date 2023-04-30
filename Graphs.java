@@ -606,7 +606,7 @@ public class Graphs
 		return finalCost;
 	}
 
-	public static int n = 7;
+	public static int n = 4;
 	public static int parent[] = new int[n];
 	public static int rank[] = new int[n];
 	public static void make()
@@ -674,10 +674,10 @@ public class Graphs
 		edges.add(new Edg(2,3,50));
 	}
 
-	public static int kruskalsMST(ArrayList<Edg> edges,int V)
+	public static void kruskalsMST(ArrayList<Edg> edges,int V)
 	{
 		int count =0;
-		int finalCost = 0;
+		int mstCost = 0;
 		Collections.sort(edges);
 		make();
 		for(int i=0; count<V-1; i++)
@@ -685,16 +685,19 @@ public class Graphs
 			Edg curr = edges.get(i);
 			int a = find(curr.src);
 			int b = find(curr.dest);
-
+				System.out.print(curr.src+" ");
+				System.out.print(curr.dest+" ");
+				System.out.println(curr.cost);
 			if(a!=b)
 			{
 				union(curr.src,curr.dest);
-				finalCost += curr.cost;
+				mstCost += curr.cost;
 				count++;
 			}
 		}
 
-		return finalCost;
+		// return mstCost;
+		System.out.println(mstCost);
 	}	
 	public static void main(String args[])
 	{
@@ -795,6 +798,7 @@ public class Graphs
 
 		createGraph3(edges);
 
-		System.out.println(kruskalsMST(edges,V2));
+		// System.out.println(kruskalsMST(edges,V2));
+		kruskalsMST(edges,V2);
 	}
 }
