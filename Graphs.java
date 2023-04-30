@@ -645,6 +645,57 @@ public class Graphs
 			parent[parA] = parB;
 		}
 	}
+
+	public static class Edg implements Comparable<Edg>
+	{
+		int src;
+		int dest;
+		int cost;
+
+		Edg(int src,int dest,int cost)
+		{
+			this.src = src;
+			this.dest = dest;
+			this.cost = cost;
+		}
+
+		@Override
+		public int compareTo(Edg ob2)
+		{
+			return this.cost = ob2.cost;
+		}
+	}
+	public static void createGraph3(ArrayList<Edg> edges)
+	{
+		edges.add(new Edg(0,1,10));
+		edges.add(new Edg(0,2,15));
+		edges.add(new Edg(0,3,30));
+		edges.add(new Edg(1,3,40));
+		edges.add(new Edg(2,3,50));
+	}
+
+	public static int kruskalsMST(ArrayList<Edg> edges,int V)
+	{
+		int count =0;
+		int finalCost = 0;
+		Collections.sort(edges);
+		make();
+		for(int i=0; count<V-1; i++)
+		{
+			Edg curr = edges.get(i);
+			int a = find(curr.src);
+			int b = find(curr.dest);
+
+			if(a!=b)
+			{
+				union(curr.src,curr.dest);
+				finalCost += curr.cost;
+				count++;
+			}
+		}
+
+		return finalCost;
+	}	
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -739,5 +790,11 @@ public class Graphs
 		// System.out.println(find(3));
 		// System.out.println(find(4));
 
+		int V2 = 4;
+		ArrayList<Edg> edges = new ArrayList<>();
+
+		createGraph3(edges);
+
+		System.out.println(kruskalsMST(edges,V2));
 	}
 }
