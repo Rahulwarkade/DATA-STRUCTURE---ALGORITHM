@@ -676,9 +676,10 @@ public class Graphs
 
 	public static void kruskalsMST(ArrayList<Edg> edges,int V)
 	{
+		createGraph3(edges);
 		int count =0;
 		int mstCost = 0;
-		Collections.sort(edges);
+		// Collections.sort(edges);
 		make();
 		for(int i=0; count<V-1; i++)
 		{
@@ -795,8 +796,6 @@ public class Graphs
 
 		int V2 = 4;
 		ArrayList<Edg> edges = new ArrayList<>();
-
-		createGraph3(edges);
 
 		// System.out.println(kruskalsMST(edges,V2));
 		kruskalsMST(edges,V2);
