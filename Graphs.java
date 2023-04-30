@@ -659,11 +659,11 @@ public class Graphs
 		// System.out.println(detectCycle(graph));
 		// System.out.println(bipartite(graph));
 		// System.out.println(isCycle(graph));
-		// topologicalSort(graph);
+		topologicalSort(graph);
 
 		// topSortBFS(graph);
 
-		allPaths(graph,5,1,"");
+		// allPaths(graph,5,1,"");
 
 		// dijkstra(graph,0);
 
