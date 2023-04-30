@@ -1,4 +1,4 @@
-#import java.util.*;
+import java.util.*;
 
 public class Graphs 
 {
@@ -605,6 +605,45 @@ public class Graphs
 
 		return finalCost;
 	}
+
+	public static int n = 7;
+	public static int parent[] = new int[n];
+	public static int rank[] = new int[n];
+	public static void make()
+	{
+		for(int i=0; i<parent.length; i++)
+		{
+			parent[i] = i;
+			rank[i] = 0;
+		}
+	}
+
+	public static int find(int v)
+	{
+		if(parent[v] == v)
+			return v;
+		return find(parent[v]);
+	}
+
+	public static void union(int a,int b)
+	{
+		int parA = find(a);
+		int parB = find(b);
+
+		if(rank[parA] == rank[parB] )
+		{
+			parent[parB] = parA;
+			rank[parA]++;
+		}
+		if(rank[parA]>rank[parB])
+		{
+			parent[parB] = parA;
+		}
+		else 
+		{
+			parent[parA] = parB;
+		}
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -659,7 +698,7 @@ public class Graphs
 		// System.out.println(detectCycle(graph));
 		// System.out.println(bipartite(graph));
 		// System.out.println(isCycle(graph));
-		topologicalSort(graph);
+		// topologicalSort(graph);
 
 		// topSortBFS(graph);
 
@@ -687,6 +726,17 @@ public class Graphs
 		// };
 
 		// System.out.println(connectingCities(cities));
-		
+
+
+		make();
+		union(1,3);
+		System.out.println(find(3));
+		// System.out.println(find(1));
+		union(2,4);
+		union(3,6);
+		union(1,4);
+		System.out.println(find(3));
+		System.out.println(find(4));
+
 	}
 }
