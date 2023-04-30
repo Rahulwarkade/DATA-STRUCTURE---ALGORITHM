@@ -555,6 +555,56 @@ public class Graphs
 
 		return -1;
 	}
+
+
+	public static class Edge3 implements Comparable<Edge3>
+	{
+		int dest;
+		int cost;
+
+		Edge3(int dest,int cost)
+		{
+			this.dest = dest;
+			this.cost = cost;
+		}
+
+		@Override
+		public int compareTo(Edge3 ob2)
+		{
+			return this.cost - ob2.cost;
+		}
+	}
+	public static int connectingCities(int[][] cities)
+	{
+		boolean vis[] = new boolean[cities.length];
+
+		PriorityQueue<Edge3> pq = new PriorityQueue<>();
+
+		int finalCost = 0;
+
+		pq.add(new Edge3(0,0));
+
+		while(!pq.isEmpty())
+		{
+			Edge3 curr = pq.remove();
+
+			if(!vis[curr.dest])
+			{
+				vis[curr.dest] = true;
+				finalCost += curr.cost;
+
+				for(int i=0; i<cities[curr.dest].length; i++)
+				{
+					if(cities[curr.dest][i]!=0)
+					{
+						pq.add(new Edge3(i,cities[curr.dest][i]));
+					}
+				}
+			}
+		}
+
+		return finalCost;
+	}
 	public static void main(String args[])
 	{
 		Scanner jin = new Scanner(System.in);
@@ -621,11 +671,21 @@ public class Graphs
 
 		// prims(graph);
 
-		int n = 4;
-		int flights[][] = {{0,1,100},{1,2,100},{2,0,100},{1,3,600},{2,3,200}};
+		// int n = 4;
+		// int flights[][] = {{0,1,100},{1,2,100},{2,0,100},{1,3,600},{2,3,200}};
 
-		int src = 0,dest = 3,k = 1;
+		// int src = 0,dest = 3,k = 1;
 
-		System.out.println(cheapestFlight(flights,src,k,dest));
+		// System.out.println(cheapestFlight(flights,src,k,dest));
+
+		int cities[][] = {
+			{0,1,2,3,4},
+			{1,0,5,0,7},
+			{2,5,0,6,0},
+			{3,0,6,0,0},
+			{4,7,0,0,0}
+		};
+
+		System.out.println(connectingCities(cities));
 	}
 }
