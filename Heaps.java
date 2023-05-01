@@ -251,15 +251,15 @@ public class Heaps
 			hp.remove();
 		}
 
-		// int[] arr = {1,2,4,5,3};
+		int[] arr = {1,2,4,5,3};
 
-		// heapSort(arr);
+		heapSort(arr);
 
-		// for(int i=0; i<arr.length; i++)
-		// {
-		// 	System.out.print(arr[i]+" ");
-		// }
-		// System.out.println();
+		for(int i=0; i<arr.length; i++)
+		{
+			System.out.print(arr[i]+" ");
+		}
+		System.out.println();
 
 		// int cordinates[][] = {{3,3},{5,-1},{-2,4}};
 		// int k = 2;
