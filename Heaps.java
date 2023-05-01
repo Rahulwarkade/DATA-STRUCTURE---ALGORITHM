@@ -224,19 +224,19 @@ public class Heaps
 	}
 	public static void main(String args[])
 	{
-		// PriorityQueue<Integer> pq = new PriorityQueue<>();
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
 
-		// PriorityQueue<Students> pq1 = new PriorityQueue<>(Comparator.reverseOrder());
-	// 	pq1.add(new Students("A",12));
-	// 	pq1.add(new Students("B",1));
-	// 	pq1.add(new Students("C",9));
-	// 	pq1.add(new Students("D",2));
+		PriorityQueue<Students> pq1 = new PriorityQueue<>(Comparator.reverseOrder());
+		pq1.add(new Students("A",12));
+		pq1.add(new Students("B",1));
+		pq1.add(new Students("C",9));
+		pq1.add(new Students("D",2));
 
-	// 	while(!pq1.isEmpty())
-	// 	{
-	// 		System.out.println(pq1.peek().name+" rank = "+pq1.peek().rank);
-	// 		pq1.remove();
-	// 	}
+		while(!pq1.isEmpty())
+		{
+			System.out.println(pq1.peek().name+" rank = "+pq1.peek().rank);
+			pq1.remove();
+		}
 
 		// Heap hp = new Heap();
 
