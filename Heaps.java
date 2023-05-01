@@ -238,18 +238,18 @@ public class Heaps
 			pq1.remove();
 		}
 
-		// Heap hp = new Heap();
+		Heap hp = new Heap();
 
-		// hp.add(3);
-		// hp.add(4);
-		// hp.add(1);
-		// hp.add(5);
+		hp.add(3);
+		hp.add(4);
+		hp.add(1);
+		hp.add(5);
 
-		// while(!hp.isEmpty())
-		// {
-		// 	System.out.println(hp.peek());
-		// 	hp.remove();
-		// }
+		while(!hp.isEmpty())
+		{
+			System.out.println(hp.peek());
+			hp.remove();
+		}
 
 		// int[] arr = {1,2,4,5,3};
 
