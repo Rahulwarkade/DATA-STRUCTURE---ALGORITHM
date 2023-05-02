@@ -261,19 +261,19 @@ public class Heaps
 		}
 		System.out.println();
 
-		// int cordinates[][] = {{3,3},{5,-1},{-2,4}};
-		// int k = 2;
-		// PriorityQueue<Points> p = new PriorityQueue<>();
-		// for(int i=0; i<cordinates.length; i++)
-		// {
-		// 	int dist = cordinates[i][0]*cordinates[i][0] +cordinates[i][1]*cordinates[i][1];
-		// 	p.add(new Points(dist,i));
-		// }
+		int cordinates[][] = {{3,3},{5,-1},{-2,4}};
+		int k = 2;
+		PriorityQueue<Points> p = new PriorityQueue<>();
+		for(int i=0; i<cordinates.length; i++)
+		{
+			int dist = cordinates[i][0]*cordinates[i][0] +cordinates[i][1]*cordinates[i][1];
+			p.add(new Points(dist,i));
+		}
 
-		// for(int i=0; i<k; i++)
-		// {
-		// 	System.out.println("C"+p.remove().idx);
-		// }
+		for(int i=0; i<k; i++)
+		{
+			System.out.println("C"+p.remove().idx);
+		}
 
 		// int ropes[] = {4,3,3,2,6};
 		// PriorityQueue<Integer> rop = new PriorityQueue<>();
