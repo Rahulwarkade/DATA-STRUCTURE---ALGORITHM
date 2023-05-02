@@ -294,24 +294,24 @@ public class Heaps
 		}
 		System.out.println(ans);
 
-		// int soldier[][] = {{1,0,0,0},{1,1,1,1},{1,0,0,0},{1,0,0,0}};
-		// PriorityQueue<Soldier> so = new PriorityQueue<>();
-		// int k2 = 2;
-		// for(int i=0; i<soldier.length; i++)
-		// {
-		// 	int solcount = 0;
-		// 	for(int j=0; j<soldier[i].length; j++)
-		// 	{
-		// 		solcount += soldier[i][j]==1 ? 1 : 0;
-		// 	}
+		int soldier[][] = {{1,0,0,0},{1,1,1,1},{1,0,0,0},{1,0,0,0}};
+		PriorityQueue<Soldier> so = new PriorityQueue<>();
+		int k2 = 2;
+		for(int i=0; i<soldier.length; i++)
+		{
+			int solcount = 0;
+			for(int j=0; j<soldier[i].length; j++)
+			{
+				solcount += soldier[i][j]==1 ? 1 : 0;
+			}
 
-		// 	so.add(new Soldier(solcount,i));
-		// }
+			so.add(new Soldier(solcount,i));
+		}
 
-		// for(int i=0; i<k2; i++)
-		// {
-		// 	System.out.println("row"+so.remove().idx);
-		// }
+		for(int i=0; i<k2; i++)
+		{
+			System.out.println("row"+so.remove().idx);
+		}
 
 		int arrWindow[] = {1,3,-1,-3,5,3,6,7};
 		int k = 3;
