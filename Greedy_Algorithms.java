@@ -6,8 +6,8 @@ public class Greedy_Algorithms
 	{
 		// ArrayList<Integer> ans = new ArrayList<>();
 		ans.add(0);
-		// int maxActivity = 1;
-		// int end = endTime[0];
+		int maxActivity = 1;
+		int end = endTime[0];
 
 		int activities[][] = new int[startTime.length][3];
 
