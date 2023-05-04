@@ -5,7 +5,7 @@ public class Greedy_Algorithms
 	static void activitySelection(int startTime[],int endTime[])
 	{
 		// ArrayList<Integer> ans = new ArrayList<>();
-		// ans.add(0);
+		ans.add(0);
 		// int maxActivity = 1;
 		// int end = endTime[0];
 
