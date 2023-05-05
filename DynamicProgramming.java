@@ -19,6 +19,11 @@ public class DynamicProgramming
 		System.out.println();
 	}
 
+	public static int countWays(int n)
+	{
+		if(n==1 || n==0) return 1;
+		return countWays(n-1) + countWays(n-2);
+	}
 	public static int fibTabulation(int n,int[] dp)
 	{
 		dp[0] = 0;
@@ -40,7 +45,9 @@ public class DynamicProgramming
 		// Arrays.fill(dpfib,-1);
 		// dpfib[0] = 0;
 		// dpfib[1] = 1;
-		System.out.println(fibTabulation(n,dpfib));
-		printDp(dpfib);
+		// System.out.println(fibTabulation(n,dpfib));
+		// printDp(dpfib);
+
+		System.out.println(countWays(2));
 	}
 }
