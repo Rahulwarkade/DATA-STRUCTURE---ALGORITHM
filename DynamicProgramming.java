@@ -19,10 +19,12 @@ public class DynamicProgramming
 		System.out.println();
 	}
 
-	public static int countWays(int n)
+	public static int countWays(int n,int[] dp)
 	{
 		if(n==1 || n==0) return 1;
-		return countWays(n-1) + countWays(n-2);
+		if(dp[n]!=-1) return dp[n];
+		dp[n] = countWays(n-1,dp) + countWays(n-2,dp);
+		return dp[n];
 	}
 	public static int fibTabulation(int n,int[] dp)
 	{
@@ -42,12 +44,17 @@ public class DynamicProgramming
 		Scanner jin = new Scanner(System.in);
 		n = jin.nextInt();
 		int dpfib[] = new int[n+1];
-		// Arrays.fill(dpfib,-1);
-		// dpfib[0] = 0;
-		// dpfib[1] = 1;
-		// System.out.println(fibTabulation(n,dpfib));
-		// printDp(dpfib);
+		Arrays.fill(dpfib,-1);
+		dpfib[0] = 0;
+		dpfib[1] = 1;
+		System.out.println(fibTabulation(n,dpfib));
+		printDp(dpfib);
 
-		System.out.println(countWays(2));
+		Arrays.fill(dpfib,-1);
+		dpfib[0] = 1;
+		dpfib[1] = 1;
+		// System.out.println(countWays(2)); //RECURSION
+		System.out.println(countWays(5,dpfib)); //MEMOIZATION
+		printDp(dpfib);
 	}
 }
