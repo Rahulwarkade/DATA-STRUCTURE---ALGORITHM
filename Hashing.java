@@ -499,7 +499,7 @@ public class Hashing
 		int[] num2 = {2,9,47,7,8,2};
 		// union_Intersection(num1,num2);
 
-		// Itinerary();
+		Itinerary();
 
 		int[] arr3 = {15,-2,2,-8,1,7,10,23};
 
