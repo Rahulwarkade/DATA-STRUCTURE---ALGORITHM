@@ -503,7 +503,7 @@ public class Hashing
 
 		int[] arr3 = {15,-2,2,-8,1,7,10,23};
 
-		// largestSubArrWithSumZero(arr3);
+		largestSubArrWithSumZero(arr3);
 
 		int[] arr4 = {10,2,-2,-20,10};
 
