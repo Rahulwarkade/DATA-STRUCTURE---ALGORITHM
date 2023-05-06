@@ -26,6 +26,19 @@ public class DynamicProgramming
 		dp[n] = countWays(n-1,dp) + countWays(n-2,dp);
 		return dp[n];
 	}
+	public static int countWaysTab(int n)
+	{
+		int[] dp = new int[n+1];
+		dp[0] = 1;
+
+		for(int i=1; i<=n; ++i)
+		{
+			if(i==1) dp[i] = dp[i-1];
+			else dp[i] = dp[i-1]+dp[i-2];
+		}
+		printDp(dp);
+		return dp[n];
+	}
 	public static int fibTabulation(int n,int[] dp)
 	{
 		dp[0] = 0;
@@ -56,5 +69,7 @@ public class DynamicProgramming
 		// System.out.println(countWays(2)); //RECURSION
 		System.out.println(countWays(5,dpfib)); //MEMOIZATION
 		printDp(dpfib);
+
+		countWaysTab(n);// TABULATION
 	}
 }
