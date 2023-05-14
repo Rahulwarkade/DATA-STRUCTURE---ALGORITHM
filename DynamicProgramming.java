@@ -51,6 +51,33 @@ public class DynamicProgramming
 
 		return dp[n];
 	}
+
+
+	public static int zeroOneKnapsackRec(int[] val, int[] wt,int W,int idx,int n)
+	{
+		if(W==0 || idx == n) return 0;
+
+		if(wt[idx]<=W)
+		{
+			int ans1 = val[idx] + zeroOneKnapsackRec(val,wt,W-wt[idx],idx+1,n);
+			int ans2 = zeroOneKnapsackRec(val,wt,W,idx+1,n);
+
+			return Math.max(ans1,ans2);
+		}
+		else 
+		{
+			return zeroOneKnapsackRec(val,wt,W,idx+1,n);
+		}
+	}
+
+	public static void zeroOneKnapsack()
+	{
+		int[] val = {15,14,10,45,30};
+		int[] wt = {2,5,1,3,4};
+		int W = 7;
+
+		System.out.println("maximum profit = "+zeroOneKnapsackRec(val,wt,W,0,val.length));
+	}
 	public static void main(String args[])
 	{
 		int n;
@@ -60,16 +87,17 @@ public class DynamicProgramming
 		Arrays.fill(dpfib,-1);
 		dpfib[0] = 0;
 		dpfib[1] = 1;
-		System.out.println(fibTabulation(n,dpfib));
-		printDp(dpfib);
+		// System.out.println(fibTabulation(n,dpfib));
+		// printDp(dpfib);
 
 		Arrays.fill(dpfib,-1);
 		dpfib[0] = 1;
 		dpfib[1] = 1;
 		// System.out.println(countWays(2)); //RECURSION
-		System.out.println(countWays(5,dpfib)); //MEMOIZATION
-		printDp(dpfib);
+		// System.out.println(countWays(5,dpfib)); //MEMOIZATION
+		// printDp(dpfib);
+		// countWaysTab(n);// TABULATION
 
-		countWaysTab(n);// TABULATION
+		zeroOneKnapsack();
 	}
 }
