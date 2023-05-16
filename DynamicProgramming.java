@@ -102,7 +102,7 @@ public class DynamicProgramming
 			Arrays.fill(dp[i],-1);
 		}
 
-		// System.out.println("maximum profit = "+zeroOneKnapsackRec(val,wt,W,0,val.length));
+		System.out.println("maximum profit = "+zeroOneKnapsackRec(val,wt,W,0,val.length));
 		System.out.println("maximum profit = "+zeroOneKnapsackMem(val,wt,W,0,val.length,dp));
 	}
 	public static void main(String args[])
@@ -114,7 +114,7 @@ public class DynamicProgramming
 		Arrays.fill(dpfib,-1);
 		dpfib[0] = 0;
 		dpfib[1] = 1;
-		System.out.println(fibTabulation(n,dpfib));
+		// System.out.println(fibTabulation(n,dpfib));
 		// printDp(dpfib);
 
 		Arrays.fill(dpfib,-1);
