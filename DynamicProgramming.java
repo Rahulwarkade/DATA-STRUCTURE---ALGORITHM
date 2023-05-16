@@ -114,7 +114,7 @@ public class DynamicProgramming
 		Arrays.fill(dpfib,-1);
 		dpfib[0] = 0;
 		dpfib[1] = 1;
-		// System.out.println(fibTabulation(n,dpfib));
+		System.out.println(fibTabulation(n,dpfib));
 		// printDp(dpfib);
 
 		Arrays.fill(dpfib,-1);
