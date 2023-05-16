@@ -74,7 +74,7 @@ public class DynamicProgramming
 	{
 		if(W==0 || idx== n) return 0;
 
-		if(dp[idx][W]!=-1) return dp[n][W];
+		if(dp[idx][W]!=-1) return dp[idx][W];
 
 		if(wt[idx]<=W)
 		{
