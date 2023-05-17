@@ -90,6 +90,47 @@ public class DynamicProgramming
 			return dp[idx][W] = zeroOneKnapsackMem(val,wt,W,idx+1,n,dp);
 		}
 	}
+
+	public static void printTable(int [][] tab)
+	{
+		for(int i=0; i<tab.length; i++)
+		{
+			for (int j=0; j<tab[0].length; j++) {
+				System.out.print(tab[i][j]+" ");
+			}
+			System.out.println();
+		}
+	}
+	public static int zeroOneKnapsackTab(int[] val,int[] wt,int W)
+	{
+		int n = val.length+1, m = wt.length+1;
+		int tb[][] = new int[n][m];
+
+		for(int i=0; i<n; i++)
+			for(int j=0; j<m; j++)
+				tb[i][j] = (i==0 || j==0) ? 0 : -1;
+
+
+		for(int item = 1; item<n; item++)
+		{
+			for(int weight = 1; weight<m; weight++)
+			{
+				if(wt[item-1]<=weight)
+				{
+					int ans1 = val[item-1] + tb[item][weight-wt[item-1]];
+					int ans2 = tb[item-1][weight];
+
+					tb[item][weight] = Math.max(ans1,ans2);
+				}
+				else 
+				{
+					tb[item][weight] = tb[item-1][weight];
+				}
+			}
+		}
+		printTable(tb);
+		return tb[n-1][m-1];
+	}
 	public static void zeroOneKnapsack()
 	{
 		int[] val = {15,14,10,45,30};
@@ -102,8 +143,9 @@ public class DynamicProgramming
 			Arrays.fill(dp[i],-1);
 		}
 
-		System.out.println("maximum profit = "+zeroOneKnapsackRec(val,wt,W,0,val.length));
-		System.out.println("maximum profit = "+zeroOneKnapsackMem(val,wt,W,0,val.length,dp));
+		// System.out.println("maximum profit = "+zeroOneKnapsackRec(val,wt,W,0,val.length));// RECURSION
+		// System.out.println("maximum profit = "+zeroOneKnapsackMem(val,wt,W,0,val.length,dp));// MEMOIZATION
+		System.out.println("maximum profit = "+zeroOneKnapsackTab(val,wt,W));
 	}
 	public static void main(String args[])
 	{
