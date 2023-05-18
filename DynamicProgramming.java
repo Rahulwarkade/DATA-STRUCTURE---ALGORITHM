@@ -101,6 +101,16 @@ public class DynamicProgramming
 			System.out.println();
 		}
 	}
+	public static void printTable(boolean [][] tab)
+	{
+		for(int i=0; i<tab.length; i++)
+		{
+			for (int j=0; j<tab[0].length; j++) {
+				System.out.print(tab[i][j]+" ");
+			}
+			System.out.println();
+		}
+	}
 	public static int zeroOneKnapsackTab(int[] val,int[] wt,int W)
 	{
 		int n = val.length+1, m = W+1;
@@ -147,6 +157,36 @@ public class DynamicProgramming
 		// System.out.println("maximum profit = "+zeroOneKnapsackMem(val,wt,W,0,val.length,dp));// MEMOIZATION
 		System.out.println("maximum profit = "+zeroOneKnapsackTab(val,wt,W));
 	}
+
+	public static boolean targetSum(int[] numbers,int target)
+	{
+		int n = numbers.length+1, m = target+1;
+
+		boolean tb[][] = new boolean[n][m];
+
+		for(int i=0; i<tb.length; i++)
+		{
+			tb[i][0] = true;
+		}
+
+		for(int item = 1; item<n; item++)
+		{
+			for(int tget = 1; tget<m; tget++)
+			{
+				if(numbers[item-1]<=tget && tb[item-1][tget-numbers[item-1]])
+				{
+					tb[item][tget] = true;
+				}
+				else if(tb[item-1][tget])
+				{
+					tb[item][tget] = true;
+				}
+			}
+		}
+
+		printTable(tb);
+		return tb[n-1][m-1];
+	}
 	public static void main(String args[])
 	{
 		int n;
@@ -167,6 +207,11 @@ public class DynamicProgramming
 		// printDp(dpfib);
 		// countWaysTab(n);// TABULATION
 
-		zeroOneKnapsack();
+		// zeroOneKnapsack();
+
+		int[] numbers = {4,2,7,1,3};
+		int target = 10;
+
+		System.out.println(targetSum(numbers,target));
 	}
 }
