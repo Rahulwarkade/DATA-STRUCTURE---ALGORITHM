@@ -858,6 +858,7 @@ public class JavaBasics {
 
 
 //PRACTICE QUESTIONS
+     */
 
     System.out.println(average(3,3,3));
 
@@ -870,7 +871,6 @@ public class JavaBasics {
     System.out.println(Math.pow(10,5));
     System.out.println(Math.abs(-89));
     System.out.println(digitSum(121));
-     */
    
 }
 }
