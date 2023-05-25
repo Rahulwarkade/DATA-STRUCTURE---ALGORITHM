@@ -868,7 +868,7 @@ public class JavaBasics {
 
     // System.out.println(Math.max(3,Math.min(7,2)));
     // System.out.println(Math.sqrt(25));
-    // System.out.println(Math.pow(10,5));
+    System.out.println(Math.pow(10,5));
     System.out.println(Math.abs(-89));
     System.out.println(digitSum(121));
    
