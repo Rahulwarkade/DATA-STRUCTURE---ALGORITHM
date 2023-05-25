@@ -860,15 +860,15 @@ public class JavaBasics {
 //PRACTICE QUESTIONS
      */
 
-    System.out.println(average(3,3,3));
+    // System.out.println(average(3,3,3));
 
-    System.out.println(isEven(8));
+    // System.out.println(isEven(8));
 
-    System.out.println(isPalindrome(121));
+    // System.out.println(isPalindrome(121));
 
-    System.out.println(Math.max(3,Math.min(7,2)));
-    System.out.println(Math.sqrt(25));
-    System.out.println(Math.pow(10,5));
+    // System.out.println(Math.max(3,Math.min(7,2)));
+    // System.out.println(Math.sqrt(25));
+    // System.out.println(Math.pow(10,5));
     System.out.println(Math.abs(-89));
     System.out.println(digitSum(121));
    
