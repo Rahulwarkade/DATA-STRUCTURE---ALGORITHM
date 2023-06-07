@@ -187,21 +187,77 @@ public class DynamicProgramming
 		printTable(tb);
 		return tb[n-1][m-1];
 	}
+
+	public static int unboundedKnapsackRec(int[] val,int[] wt,int W,int n)
+	{
+		if(n<0 || W==0) return 0;
+
+		if(wt[n]<=W)//include
+		{
+			int included = val[n] + unboundedKnapsackRec(val,wt,W-wt[n],n);
+			int unincluded = unboundedKnapsackRec(val,wt,W,n-1);
+			return Math.max(included,unincluded);
+		}
+		else 
+		{
+			return unboundedKnapsackRec(val,wt,W,n-1);
+		}
+
+	}
+
+	public static int unboundedKnapsackMem(int[] val,int[] wt,int W,int n,int[][] dp)
+	{
+		if(n<0 || W == 0) return 0;
+		if(dp[n][W]!=-1) return dp[n][W];
+
+		if(wt[n]<=W)
+		{
+			int included = val[n] + unboundedKnapsackMem(val,wt,W-wt[n],n,dp);
+			int unincluded = unboundedKnapsackMem(val,wt,W,n-1,dp);
+			dp[n][W] = Math.max(included,unincluded);
+			// return dp[n][W];
+		}
+		else
+		{
+			 dp[n][W] = unboundedKnapsackMem(val,wt,W,n-1,dp);
+		}
+
+		return dp[n][W];
+	}
+
+
+
+	public static void unboundedKnapsack()
+	{
+		int[] val = {15,14,10,45,30};
+		int[] wt = {2,5,1,3,4};
+		int W = 7;
+		int n = wt.length;
+		int[][] dp = new int[n+1][W+1];
+
+		for(int i=0; i<dp.length; i++)
+		{
+			Arrays.fill(dp[i],-1);
+		}
+		// System.out.println(unboundedKnapsackRec(val,wt,W,wt.length-1));
+		System.out.println(unboundedKnapsackMem(val,wt,W,n-1,dp));
+		// System.out.println(unboundedKnapsackTab(val,wt,W,n));
+	}
 	public static void main(String args[])
 	{
-		int n;
-		Scanner jin = new Scanner(System.in);
-		n = jin.nextInt();
-		int dpfib[] = new int[n+1];
-		Arrays.fill(dpfib,-1);
-		dpfib[0] = 0;
-		dpfib[1] = 1;
-		// System.out.println(fibTabulation(n,dpfib));
-		// printDp(dpfib);
+		// int n;
+		// Scanner jin = new Scanner(System.in);
+		// n = jin.nextInt();
+		// int dpfib[] = new int[n+1];
+		// Arrays.fill(dpfib,-1);
+		// dpfib[0] = 0;
+		// dpfib[1] = 1;
+		// // System.out.println(fibTabulation(n,dpfib));
+		// // printDp(dpfib);
 
-		Arrays.fill(dpfib,-1);
-		dpfib[0] = 1;
-		dpfib[1] = 1;
+		// Arrays.fill(dpfib,-1);
+		// dpfib[0] = 1;
+		// dpfib[1] = 1;
 		// System.out.println(countWays(2)); //RECURSION
 		// System.out.println(countWays(5,dpfib)); //MEMOIZATION
 		// printDp(dpfib);
@@ -209,9 +265,11 @@ public class DynamicProgramming
 
 		// zeroOneKnapsack();
 
-		int[] numbers = {4,2,7,1,3};
-		int target = 10;
+		// int[] numbers = {4,2,7,1,3};
+		// int target = 10;
 
-		System.out.println(targetSum(numbers,target));
+		// System.out.println(targetSum(numbers,target));
+
+		unboundedKnapsack();
 	}
 }
