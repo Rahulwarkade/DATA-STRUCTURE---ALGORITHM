@@ -225,6 +225,27 @@ public class DynamicProgramming
 	}
 
 
+	public static int unboundedKnapsackTab(int[] val,int[] wt,int w,int n)
+	{
+		int[][] dp = new int[n+1][w+1];
+
+		for(int i=1; i<=n; i++)
+		{
+			for(int j=1; j<=w; j++)
+			{
+				if(wt[i-1]<=j)
+				{
+					dp[i][j] = Math.max(dp[i-1][j],val[i-1] + dp[i][j-wt[i-1]]);
+				}
+				else 
+				{
+					dp[i][j] = dp[i-1][j];
+				}
+			}
+		}
+
+		return dp[n][w];
+	}
 
 	public static void unboundedKnapsack()
 	{
@@ -239,8 +260,8 @@ public class DynamicProgramming
 			Arrays.fill(dp[i],-1);
 		}
 		// System.out.println(unboundedKnapsackRec(val,wt,W,wt.length-1));
-		System.out.println(unboundedKnapsackMem(val,wt,W,n-1,dp));
-		// System.out.println(unboundedKnapsackTab(val,wt,W,n));
+		// System.out.println(unboundedKnapsackMem(val,wt,W,n-1,dp));
+		System.out.println("maximum profit = "+unboundedKnapsackTab(val,wt,W,n));
 	}
 	public static void main(String args[])
 	{
