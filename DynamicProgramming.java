@@ -215,7 +215,6 @@ public class DynamicProgramming
 			int included = val[n] + unboundedKnapsackMem(val,wt,W-wt[n],n,dp);
 			int unincluded = unboundedKnapsackMem(val,wt,W,n-1,dp);
 			dp[n][W] = Math.max(included,unincluded);
-			// return dp[n][W];
 		}
 		else
 		{
