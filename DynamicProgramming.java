@@ -259,9 +259,40 @@ public class DynamicProgramming
 		{
 			Arrays.fill(dp[i],-1);
 		}
-		// System.out.println(unboundedKnapsackRec(val,wt,W,wt.length-1));
-		// System.out.println(unboundedKnapsackMem(val,wt,W,n-1,dp));
+		System.out.println(unboundedKnapsackRec(val,wt,W,wt.length-1));
+		System.out.println(unboundedKnapsackMem(val,wt,W,n-1,dp));
 		System.out.println("maximum profit = "+unboundedKnapsackTab(val,wt,W,n));
+	}
+	public static int coinChangeTab(int[] coins,int sum,int n,int[][] dp)
+	{
+		for(int i=1; i<=n; i++)
+		{
+			for(int j=1; j<=sum; j++)
+			{
+				if(coins[i-1]<=j)
+				{
+					dp[i][j] = dp[i][j-coins[i-1]] + dp[i-1][j];
+				}
+				else 
+				{
+					dp[i][j] = dp[i-1][j];
+				}
+			}
+		}
+
+		return dp[n][sum];
+	}
+	public static void coinChange()
+	{
+		int coins[] = {2,5,3,6};
+		int sum = 10;
+		int n = coins.length;
+		int dp[][] = new int[n+1][sum+1];
+		for(int i=0; i<=n; i++)
+		{
+			dp[i][0] = 1;
+		}
+		System.out.println(coinChangeTab(coins,sum,n,dp));
 	}
 	public static void main(String args[])
 	{
@@ -290,6 +321,7 @@ public class DynamicProgramming
 
 		// System.out.println(targetSum(numbers,target));
 
-		unboundedKnapsack();
+		// unboundedKnapsack();
+		coinChange();
 	}
 }
