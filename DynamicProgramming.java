@@ -325,6 +325,54 @@ public class DynamicProgramming
 
 		System.out.println(rodCuttingTab(price,length,rodlegth,price.length));
 	}
+
+	public static int lcsRec(String str1,String str2,int n,int m)
+	{
+		if(n<0||m<0) return 0;
+
+		if(str1.charAt(n)==str2.charAt(m))
+		{
+			return lcsRec(str1,str2,n-1,m-1) + 1;
+		}
+		else 
+		{
+			int lcs1 = lcsRec(str1,str2,n-1,m);
+			int lcs2 = lcsRec(str1,str2,n,m-1);
+			return Math.max(lcs1,lcs2);
+		}
+	}
+
+	public static int lcsMem(String str1,String str2,int n,int m,int[][] dp)
+	{
+		if(n<0||m<0) return 0;
+
+		if(dp[n][m] != -1) return dp[n][m];
+		if(str1.charAt(n)==str2.charAt(m))
+		{
+			dp[n][m] = lcsMem(str1,str2,n-1,m-1,dp) + 1;
+		}
+		else 
+		{
+			int lcs1 = lcsMem(str1,str2,n-1,m,dp);
+			int lcs2 = lcsMem(str1,str2,n,m-1,dp);
+			dp[n][m] = Math.max(lcs1,lcs2);
+		}
+
+		return dp[n][m];
+	}
+	public static void longestCommonSubsequence()
+	{
+		String str1 = "abcde", str2 = "ace";
+		int n = str1.length();
+		int m = str2.length();
+		int[][] dp = new int[n][m];
+		for(int i=0; i<n; i++)
+		{
+			Arrays.fill(dp[i],-1);
+		}
+		// System.out.println("lcs = "+lcsRec(str1,str2,n-1,m-1));
+		System.out.println("lcs = "+lcsMem(str1,str2,n-1,m-1,dp));
+	}
 	public static void main(String args[])
 	{
 		// int n;
@@ -354,6 +402,7 @@ public class DynamicProgramming
 
 		// unboundedKnapsack();
 		// coinChange();
-		rodCutting();
+		// rodCutting();
+		longestCommonSubsequence();
 	}
 }
