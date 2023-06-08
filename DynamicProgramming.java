@@ -294,6 +294,37 @@ public class DynamicProgramming
 		}
 		System.out.println(coinChangeTab(coins,sum,n,dp));
 	}
+
+	public static int rodCuttingTab(int[] price,int[] length,int rodlegth,int n)
+	{
+		int[][] dp = new int[n+1][rodlegth+1];
+
+		for(int i=1; i<=n; i++)
+		{
+			for(int j=1; j<=rodlegth; j++)
+			{
+				if(length[i-1]<=j)
+				{
+					dp[i][j] = Math.max(dp[i-1][j],price[i-1] + dp[i][j-length[i-1]]);
+				}
+				else 
+				{
+					dp[i][j] = dp[i-1][j];
+				}
+			}
+		}
+
+		return dp[n][rodlegth];
+	}
+
+	public static void rodCutting()
+	{
+		int[] price = {1,5,8,9,10,17,17,20};
+		int[] length = {1,2,3,4,5,6,7,8};
+		int rodlegth = 8;
+
+		System.out.println(rodCuttingTab(price,length,rodlegth,price.length));
+	}
 	public static void main(String args[])
 	{
 		// int n;
@@ -322,6 +353,7 @@ public class DynamicProgramming
 		// System.out.println(targetSum(numbers,target));
 
 		// unboundedKnapsack();
-		coinChange();
+		// coinChange();
+		rodCutting();
 	}
 }
