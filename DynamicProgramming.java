@@ -446,7 +446,7 @@ public class DynamicProgramming
 		}
 		return dp[n][m];
 	}
-	public static int lcs(int[] arr,int n)
+	public static int lis(int[] arr,int n)
 	{
 		int arr2[] = new int[n];
 		for(int i=0; i<n; i++)
@@ -491,6 +491,6 @@ public class DynamicProgramming
 
 		// System.out.println(longestCommonSubString("abcde","abgce",5,5));
 		int arr[] = {50,3,10,7,40,80};
-		System.out.println(lcs(arr,6));
+		System.out.println(lis(arr,6));
 	}
 }
