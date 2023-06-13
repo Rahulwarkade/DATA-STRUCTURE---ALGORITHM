@@ -484,7 +484,7 @@ public class DynamicProgramming
 				}
 			}
 		}
-		printTable(dp);
+		// printTable(dp);
 		return dp[n][m];
 	}
 	public static void editDistance(String str1,String str2)
@@ -493,6 +493,45 @@ public class DynamicProgramming
 		int m = str2.length();
 
 		System.out.println(editDistanceTab(str1,str2,n,m));
+	}
+
+	public static boolean wildCardMatchingTab(String text,String pattern,int n,int m)
+	{
+		boolean[][] dp = new boolean[m+1][n+1];
+		dp[0][0] = true;
+		for(int i=1; i<=m; i++)
+		{
+			if(pattern.charAt(i-1) == '*')
+			{
+				dp[i][0] = dp[i-1][0];
+			}
+		}
+
+		for(int i=1; i<=m; i++)
+		{
+			for(int j=1; j<=n; j++)
+			{
+				if(pattern.charAt(i-1) == text.charAt(j-1) || text.charAt(j-1) == '?')
+				{
+					dp[i][j] = dp[i-1][j-1];
+				}
+				else 
+				{
+					dp[i][j] = (dp[i-1][j] || dp[i][j-1]);
+				}
+			}
+		}
+
+		return dp[m][n];
+	}
+	public static void wildCardMatching()
+	{
+		String text = "baadbab";
+		String pattern = "*****ba*****ab";
+		int n = text.length();
+		int m = pattern.length();
+
+		System.out.println(wildCardMatchingTab(text,pattern,n,m));
 	}
 	public static void main(String args[])
 	{
@@ -530,6 +569,8 @@ public class DynamicProgramming
 		// int arr[] = {50,3,10,7,40,80};
 		// System.out.println(lis(arr,6));
 
-		editDistance("intention","execution");
+		// editDistance("intention","execution");
+
+		wildCardMatching();
 	}
 }
