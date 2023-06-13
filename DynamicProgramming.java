@@ -526,8 +526,8 @@ public class DynamicProgramming
 	}
 	public static void wildCardMatching()
 	{
-		String text = "baadbab";
-		String pattern = "*****ba*****ab";
+		String text = "baabab";
+		String pattern = "a*ab";
 		int n = text.length();
 		int m = pattern.length();
 
