@@ -630,15 +630,15 @@ public class DynamicProgramming
 		// System.out.print(catalanTab(n));
 	}
 
-	public static int mcm(int[] matrixces,int i,int j)
+	public static int mcmRec(int[] matrixces,int i,int j)
 	{
 		if(i==j) return 0;
 
 		int ans = Integer.MAX_VALUE;
 		for(int k = i; k<=j-1; k++)
 		{
-			int cost1 = mcm(matrixces,i,k);
-			int cost2 = mcm(matrixces,k+1,j);
+			int cost1 = mcmRec(matrixces,i,k);
+			int cost2 = mcmRec(matrixces,k+1,j);
 			int cost3 = matrixces[i-1]*matrixces[k]*matrixces[j];
 			int finalCost = cost1 + cost2 + cost3;
 
@@ -647,11 +647,38 @@ public class DynamicProgramming
 
 		return ans;
 	}
+	public static int mcmMem(int[] matrixces,int i,int j,int[][] dp)
+	{
+		if(i==j) return 0;
+
+		if(dp[i][j]!=-1)
+		{
+			return dp[i][j];
+		}
+		int ans = Integer.MAX_VALUE;
+		for(int k = i; k<=j-1; k++)
+		{
+			int cost1 = mcmMem(matrixces,i,k,dp);
+			int cost2 = mcmMem(matrixces,k+1,j,dp);
+			int cost3 = matrixces[i-1]*matrixces[k]*matrixces[j];
+			int finalCost = cost1 + cost2 + cost3;
+
+			ans = Math.min(finalCost,ans); 
+		}
+
+		return dp[i][j] = ans;
+	}
 	public static void matrixChainMultiplication()
 	{
 		int matrixces[] = {1,2,3,4,3};
 		int n = matrixces.length;
-		System.out.println(mcm(matrixces,1,n-1));
+		int[][] dp = new int[n][n];
+		for(int i=0; i<n; i++)
+		{
+			Arrays.fill(dp[i],-1);
+		}
+		// System.out.println(mcmRec(matrixces,1 ,n-1));
+		System.out.println(mcmMem(matrixces,1 ,n-1,dp));
 	}
 	public static void main(String args[])
 	{
