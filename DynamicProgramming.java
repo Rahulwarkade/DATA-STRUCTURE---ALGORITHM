@@ -534,7 +534,23 @@ public class DynamicProgramming
 		System.out.println(wildCardMatchingTab(text,pattern,n,m));
 	}
 
-	public static int catalanRec(int n,int[] dp)
+	public static int catalanRec(int n)
+	{
+		if(n==0 || n==1)
+		{
+			return 1;
+		}
+
+		int ans = 0;
+
+		for(int i=0; i<=n-1; i++)
+		{
+			ans += catalanRec(i) * catalanRec(n-i-1);
+		}
+
+		return ans;
+	}	
+	public static int catalanMem(int n,int[] dp)
 	{
 		if(n==0 || n==1)
 		{
@@ -548,7 +564,7 @@ public class DynamicProgramming
 
 		for(int i=0; i<=n-1; i++)
 		{
-			ans += catalanRec(i,dp) * catalanRec(n-i-1,dp);
+			ans += catalanMem(i,dp) * catalanMem(n-i-1,dp);
 		}
 
 		return dp[n] = ans;
@@ -558,7 +574,9 @@ public class DynamicProgramming
 		int n = 12;
 		int[] dp = new int[n+1];
 		Arrays.fill(dp,-1);
-		System.out.print(catalanRec(n,dp));
+		// System.out.print(catalanRec(n));
+		System.out.print(catalanMem(n,dp));
+
 	}
 	public static void main(String args[])
 	{
