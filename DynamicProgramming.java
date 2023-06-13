@@ -584,6 +584,41 @@ public class DynamicProgramming
 		}
 
 		return dp[n];
+	}	
+	public static int coutBST(int n)
+	{
+		int dp[] = new int[n+1];
+		dp[0] = dp[1] = 1;
+
+		for(int i =2; i<=n; i++)
+		{
+			for(int j=0; j<=i-1; j++)
+			{
+				int left = dp[j];
+				int right = dp[i-j-1];
+				dp[i] += left*right;
+			}
+		}
+
+		return dp[n];
+	}	
+
+	public static int mountainRanges(int n)
+	{
+		int dp[] = new int[n+1];
+		dp[0] = dp[1] = 1;
+
+		for(int i =2; i<=n; i++)
+		{
+			for(int j=0; j<=i-1; j++)
+			{
+				int inside = dp[j];
+				int outside = dp[i-j-1];
+				dp[i] += inside*outside;
+			}
+		}
+
+		return dp[n];
 	}
 	public static void catalanNumber()
 	{
@@ -592,8 +627,7 @@ public class DynamicProgramming
 		Arrays.fill(dp,-1);
 		// System.out.print(catalanRec(n));
 		// System.out.print(catalanMem(n,dp));
-		System.out.print(catalanTab(n));
-
+		// System.out.print(catalanTab(n));
 	}
 	public static void main(String args[])
 	{
@@ -635,6 +669,8 @@ public class DynamicProgramming
 
 		// wildCardMatching();
 
-		catalanNumber();
+		// catalanNumber();
+		System.out.println(coutBST(4));
+		System.out.println(mountainRanges(4));
 	}
 }
