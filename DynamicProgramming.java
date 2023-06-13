@@ -668,6 +668,36 @@ public class DynamicProgramming
 
 		return dp[i][j] = ans;
 	}
+
+	public static int mcmTab(int[] matrixces,int n)
+	{
+		int[][] dp = new int[n][n];
+
+		//initialization
+		for(int i=0; i<n; i++)
+		{
+			dp[i][i] = 0;
+		}
+
+		for(int len = 2; len<=n-1; len++)
+		{
+			for(int i =1; i<=n-len; i++)
+			{
+				int j = i + len -1;
+				int minCost = Integer.MAX_VALUE;
+				for(int k = i; k<=j-1; k++)
+				{
+					int cost1 = dp[i][k];
+					int cost2 = dp[k+1][j];
+					int cost3 = matrixces[i-1]*matrixces[k]*matrixces[j];
+					int finalCost = cost1 + cost2 +cost3;
+					minCost = Math.min(minCost,finalCost);
+				}
+				dp[i][j] = minCost;
+			}
+		}
+		return dp[1][n-1];
+	}
 	public static void matrixChainMultiplication()
 	{
 		int matrixces[] = {1,2,3,4,3};
@@ -678,7 +708,41 @@ public class DynamicProgramming
 			Arrays.fill(dp[i],-1);
 		}
 		// System.out.println(mcmRec(matrixces,1 ,n-1));
-		System.out.println(mcmMem(matrixces,1 ,n-1,dp));
+		// System.out.println(mcmMem(matrixces,1 ,n-1,dp));
+		System.out.println(mcmTab(matrixces,n));
+	}
+
+	public static int minimumPartitioning(int[] set)
+	{
+		int n = set.length;
+		int sum = 0;
+		for(int i = 0; i<n; i++)
+			sum += set[i];
+
+		int sum1 = sum/2;
+		int W = sum1;
+
+		int[][] dp = new int[n+1][W+1];
+
+		for(int i=1; i<=n; i++)
+		{
+			for(int j=1; j<=W; j++)
+			{
+				if(set[i-1]<=j)
+				{
+					dp[i][j] = Math.max(set[i-1]+dp[i-1][W-set[i-1]],dp[i-1][j]);
+				}
+				else 
+				{
+					dp[i][j] = dp[i-1][j];
+				}
+			}
+		}
+
+		sum1 = dp[n][W];
+		int sum2 = sum-sum1;
+
+		return Math.abs(sum1-sum2);
 	}
 	public static void main(String args[])
 	{
@@ -723,6 +787,10 @@ public class DynamicProgramming
 		// catalanNumber();
 		// System.out.println(coutBST(4));
 		// System.out.println(mountainRanges(4));
-		matrixChainMultiplication();
+		// matrixChainMultiplication();
+
+		int set[] = {11,5,6,1};
+
+		System.out.println(minimumPartitioning(set));
 	}
 }
