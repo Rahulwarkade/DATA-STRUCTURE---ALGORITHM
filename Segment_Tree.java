@@ -87,17 +87,45 @@ class Segment_Tree
 
 		st[i] = Math.max(st[2*i+1],st[2*i+2]);
 	}
+
+	public static int getMaxUtil(int i,int si,int sj,int qi,int qj)
+	{
+		if(qi>sj || qj<si)
+		{
+			return Integer.MIN_VALUE;
+		}
+		else if(qi<=si && sj<=qj)
+		{
+			return st[i];
+		}
+		else 
+		{
+			int mid = si + (sj-si)/2;
+
+			int leftmax = getMaxUtil(2*i+1,si,mid,qi,qj);
+			int rightmax = getMaxUtil(2*i+2,mid+1,sj,qi,qj);
+
+			return Math.max(leftmax,rightmax);
+		}
+	}
+	public static void getMax(int[] arr,int qi,int qj)
+	{
+		int n = arr.length;
+
+		System.out.println(getMaxUtil(0,0,n-1,qi,qj));
+	}
 	public static void segmentTree(int[] arr,int n)
 	{
 		init(n);
 		// buildST(arr,st,0,0,n-1);
 
 		buildST2(arr,0,0,n-1);
-		for(int i=0; i<n*2; i++)
-		{
-			System.out.print(st[i]+" ");
-		}
+		// for(int i=0; i<n*2; i++)
+		// {
+		// 	System.out.print(st[i]+" ");
+		// }
 
+		getMax(arr,2,5);
 		// System.out.println(getSum(arr,2,5));
 		// update(arr,2,2);
 		// System.out.println(getSum(arr,2,5));
