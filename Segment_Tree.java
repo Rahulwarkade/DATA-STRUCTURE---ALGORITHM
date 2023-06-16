@@ -72,23 +72,40 @@ class Segment_Tree
 		int n = arr.length;
 		updateUtil(0,0,n-1,idx,diff);
 	}
+
+	public static void buildST2(int[] arr,int i,int si,int sj)
+	{
+		if(si==sj)
+		{
+			st[i] = arr[si];
+			return;
+		}
+
+		int mid = si+(sj-si)/2;
+		buildST2(arr,2*i+1,si,mid);
+		buildST2(arr,2*i+2,mid+1,sj);
+
+		st[i] = Math.max(st[2*i+1],st[2*i+2]);
+	}
 	public static void segmentTree(int[] arr,int n)
 	{
 		init(n);
-		buildST(arr,st,0,0,n-1);
+		// buildST(arr,st,0,0,n-1);
 
-		// for(int i=0; i<n*2; i++)
-		// {
-		// 	System.out.print(st[i]+" ");
-		// }
+		buildST2(arr,0,0,n-1);
+		for(int i=0; i<n*2; i++)
+		{
+			System.out.print(st[i]+" ");
+		}
 
-		System.out.println(getSum(arr,2,5));
-		update(arr,2,2);
-		System.out.println(getSum(arr,2,5));
+		// System.out.println(getSum(arr,2,5));
+		// update(arr,2,2);
+		// System.out.println(getSum(arr,2,5));
 	}
 	public static void main(String agrs[])
 	{
-		int arr[] = {1,2,3,4,5,6,7,8};
+		// int arr[] = {1,2,3,4,5,6,7,8};
+		int arr[] = {6,8,-1,2,17,1,3,2,4};
 		int n = arr.length;
 
 		segmentTree(arr,n);
