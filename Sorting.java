@@ -82,7 +82,7 @@ public class Sorting
         int j=0;
         for(int i=0; i<countArr.length; i++)
         {
-            if(countArr[i]>0)
+            while(countArr[i]>0)
             {
                 arr[j] = i;
                 countArr[i]--;
