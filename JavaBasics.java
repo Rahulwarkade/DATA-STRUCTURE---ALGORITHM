@@ -132,39 +132,36 @@ public class JavaBasics {
     }
     public static void main(String args[])
     {
-    // Scanner jin = new Scanner(System.in);
-
-    /*
-// System.out.println("****");
-// System.out.println("***");
-// System.out.println("**");
-// System.out.println("*");
-// int a = 10;
-// int b = 5;
-// System.out.println(a);
-// System.out.println(b);
-// a=2;
-// System.out.println(a);
-// String name = "Tony stark";
-// System.out.println(name);
- */
+        Scanner jin = new Scanner(System.in);
+        System.out.println("****");
+        System.out.println("***");
+        System.out.println("**");
+        System.out.println("*");
+        int a = 10;
+        int b = 5;
+        System.out.println(a);
+        System.out.println(b);
+        a=2;
+        System.out.println(a);
+        String name = "Tony stark";
+        System.out.println(name);
 
     // VARIABLES AND DATA TYPES
-            /* 
-        PARIMPTIVE DATA TYPES
+             
+    //     PARIMPTIVE DATA TYPES
 
-           type                 size         range
+    //        type                 size         range
 
-         * byte         -       1 byte      -128 to 127 = 256
-         * boolean              1 byte      true & false
-         * short        -       2 byte      
-         * char         -       2 byte
-         * int          -       4 byte      -2B t0 2B
-         * float        -       4 byte
-         * long         -       8 byte
-         * double       -       8 byte
-         * 
-         * 
+    //      * byte         -       1 byte      -128 to 127 = 256
+    //      * boolean              1 byte      true & false
+    //      * short        -       2 byte      
+    //      * char         -       2 byte
+    //      * int          -       4 byte      -2B t0 2B
+    //      * float        -       4 byte
+    //      * long         -       8 byte
+    //      * double       -       8 byte
+    //      * 
+    //      * 
          tring name = jin.nextLine();
          System.out.println(name);
 
@@ -204,7 +201,7 @@ public class JavaBasics {
 
         float area = pai*rad*rad;
         System.out.println(area);
-
+/*
     type conversion/widening conversion/implicit conversion
         int n1 = 23;
         float n2 = n1;
