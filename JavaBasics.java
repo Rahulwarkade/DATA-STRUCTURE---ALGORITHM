@@ -586,7 +586,6 @@ public class JavaBasics {
 
 //PATTERNS (PART1)
 
-     /*
     int row = jin.nextInt();
     int col = jin.nextInt();
      //star pattern
@@ -816,7 +815,6 @@ public class JavaBasics {
         }
         System.out.println();
     }
-      */ 
 
 //FUNCTION/METHOD
 
